@@ -48,9 +48,9 @@
 * [Dynamic Memory Network](https://github.com/zhedongzheng/finch/tree/master/nlp-models/tensorflow/dmn) 
 
 #### Generative Modelling（生成式建模）
-* [RNN-VAE](https://github.com/zhedongzheng/finch/tree/master/nlp-models/tensorflow/vae)
+* [VAE (RNN)](https://github.com/zhedongzheng/finch/tree/master/nlp-models/tensorflow/vae)
 
-   * [RNN-VAE + CNN-Discriminator](https://github.com/zhedongzheng/finch/tree/master/nlp-models/tensorflow/toward-control)
+   * [VAE (RNN) + Discriminator (CNN)](https://github.com/zhedongzheng/finch/tree/master/nlp-models/tensorflow/toward-control)
 
 #### Reinforcement Learning（强化学习）
 
