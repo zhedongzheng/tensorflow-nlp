@@ -79,3 +79,7 @@ For this section, please install [OpenAI Gym](https://github.com/openai/gym)
    python rnn_attn_estimator_imdb_test.py
    ```
 ---
+#### Questions Have Been Asked
+* [Is the function "add_encoder_layer" in "seq2seq_ultimate.py" correct?](https://github.com/zhedongzheng/finch/issues/1)
+* [in vae code,how to use LSTMcell?](https://github.com/zhedongzheng/finch/issues/2)
+---
