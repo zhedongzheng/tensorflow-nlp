@@ -3,11 +3,10 @@ import numpy as np
 
 
 class PointerNetwork:
-    def __init__(self, max_len, rnn_size, attn_size, X_word2idx, embedding_dim,
+    def __init__(self, max_len, rnn_size, X_word2idx, embedding_dim,
                  sess=tf.Session(), grad_clip=5.0):
         self.max_len = max_len
         self.rnn_size = rnn_size
-        self.attn_size = attn_size
         self.grad_clip = grad_clip
         self.X_word2idx = X_word2idx
         self.embedding_dim = embedding_dim
@@ -55,10 +54,10 @@ class PointerNetwork:
         def loop_fn(state, reuse=None):
             num_units = state.get_shape().as_list()[1]
             with tf.variable_scope('rnn_decoder', reuse=reuse):
-                v = tf.get_variable('attention_v', [self.attn_size], tf.float32)
-                query = tf.layers.dense(tf.expand_dims(state, 1), self.attn_size, reuse=reuse) # (B, 1, D)
-                keys = tf.layers.dense(self.enc_rnn_out, self.attn_size, reuse=reuse)              # (B, T, D)
-            align = tf.reduce_sum(v * tf.tanh(keys + query), [2])                              # (B, T)
+                v = tf.get_variable('attention_v', [self.rnn_size], tf.float32)
+                query = tf.expand_dims(state, 1)
+                keys = self.enc_rnn_out
+            align = tf.reduce_sum(v * tf.tanh(keys + query), [2])
             return align
 
         def rnn_decoder(initial_state, cell, embedding):
