@@ -52,11 +52,11 @@
 
    * [VAE + Discriminator](https://github.com/zhedongzheng/finch/tree/master/nlp-models/tensorflow/toward-control)
 
-#### Reinforcement Learning（强化学习）
-* Policy Gradient &nbsp; &nbsp; [Model](https://github.com/zhedongzheng/finch/blob/master/nlp-models/rl-models/tensorflow/pg.py) &nbsp; &nbsp; [CartPole Test](https://github.com/zhedongzheng/finch/blob/master/nlp-models/rl-models/tensorflow/pg_cartpole_test.py)
-
 #### Speech Recognition (语音识别)
 * [RNN + CTC](https://github.com/zhedongzheng/finch/tree/master/nlp-models/tensorflow/asr)
+
+#### Reinforcement Learning（强化学习）
+* Policy Gradient &nbsp; &nbsp; [Model](https://github.com/zhedongzheng/finch/blob/master/nlp-models/rl-models/tensorflow/pg.py) &nbsp; &nbsp; [CartPole Test](https://github.com/zhedongzheng/finch/blob/master/nlp-models/rl-models/tensorflow/pg_cartpole_test.py)
 
 ---
 #### How To Use
