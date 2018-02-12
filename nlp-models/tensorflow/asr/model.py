@@ -25,13 +25,11 @@ class Model:
     def backward(self):
         time_major_logits = tf.transpose(self.logits, [1, 0, 2])
 
-        self.loss = tf.reduce_mean(tf.nn.ctc_loss(self.targets, time_major_logits, self.seq_lens))
-
         decoded, log_prob = tf.nn.ctc_greedy_decoder(time_major_logits, self.seq_lens)
         decoded = tf.to_int32(decoded[0])
-
         self.predictions = tf.sparse_tensor_to_dense(decoded)
 
+        self.loss = tf.reduce_mean(tf.nn.ctc_loss(self.targets, time_major_logits, self.seq_lens))
         self.edit_dist = tf.reduce_mean(tf.edit_distance(decoded, self.targets))
 
         params = tf.trainable_variables()
