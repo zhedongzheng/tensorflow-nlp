@@ -2,7 +2,6 @@ from __future__ import print_function
 import sys
 import nltk
 import numpy as np
-import matplotlib.pyplot as plt
 from sklearn.decomposition import TruncatedSVD
 from sklearn.feature_extraction.text import TfidfVectorizer
 
@@ -33,9 +32,9 @@ class LSA:
         terms = self.vectorizer.get_feature_names()
         for i, comp in enumerate(lsa.components_): # lsa.components_ is V of USV, of shape (concepts, terms)
             terms_comp = zip(terms, comp)
-            sorted_t = sorted(terms_comp, key=lambda x: x[1], reverse=True)[:top_k]
+            sorted_tc = sorted(terms_comp, key=lambda x: x[1], reverse=True)[:top_k]
             print("Concept %d :" % i, end = ' ')
-            for term_comp in sorted_t:
+            for term_comp in sorted_tc:
                 print(term_comp[0], end=' | ')
             print()
     # end method        

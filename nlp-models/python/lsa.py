@@ -1,6 +1,8 @@
 import sys
 import nltk
 import numpy as np
+import matplotlib
+matplotlib.use('TkAgg')
 import matplotlib.pyplot as plt
 from sklearn.decomposition import TruncatedSVD
 
