@@ -2,11 +2,11 @@ from __future__ import print_function
 import sys
 import nltk
 import numpy as np
-from sklearn.decomposition import TruncatedSVD
+from sklearn.decomposition import LatentDirichletAllocation
 from sklearn.feature_extraction.text import TfidfVectorizer
 
 
-class LSA:
+class LDA:
     def __init__(self, stopwords, n_components=20):
         self.stopwords = stopwords
         self.n_components = n_components
@@ -27,16 +27,10 @@ class LSA:
 
 
     def concepts(self, top_k=5):
-        lsa = TruncatedSVD(self.n_components, n_iter=100)
-        lsa.fit(self.X)
+        lda = LatentDirichletAllocation(self.n_components, learning_offset=50, max_iter=100)
+        lda.fit(self.X)
         terms = self.vectorizer.get_feature_names()
-        for i, comp in enumerate(lsa.components_): # lsa.components_ is V of USV, of shape (concepts, terms)
-            terms_comp = zip(terms, comp)
-            sorted_tc = sorted(terms_comp, key=lambda x: x[1], reverse=True)[:top_k]
-            print("Concept %d :" % i, end = ' ')
-            for term_comp in sorted_tc:
-                print(term_comp[0], end=' | ')
-            print()
+        self.print_top_words(lda, terms, top_k)
     # end method        
 
 
@@ -47,5 +41,16 @@ class LSA:
         tokens = [token for token in tokens if token not in self.stopwords] # remove stopwords
         tokens = [token for token in tokens if not any(c.isdigit() for c in token)] # remove any token that contains number
         return tokens
+    # end method
+
+
+    def print_top_words(self, model, feature_names, n_top_words):
+        # .components_ is V of USV, of shape (concepts, terms)
+        for topic_idx, term_vals in enumerate(model.components_):
+            message = "Topic #%d: " % topic_idx
+            message += " ".join([feature_names[i]
+                                for i in term_vals.argsort()[:-n_top_words - 1:-1]])
+            print(message)
+        print()
     # end method
 # end class
