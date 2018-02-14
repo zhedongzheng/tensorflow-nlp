@@ -16,7 +16,7 @@ def forward_pass(sources, targets, params, reuse=False):
                 sources, params['source_vocab_size'], args.hidden_units, zero_pad=True, scale=True)
         
         with tf.variable_scope('encoder_positional_encoding', reuse=reuse):
-            encoded += pos_enc(sources, en_masks, args.hidden_units, zero_pad=False, scale=False)
+            encoded += pos_enc(sources, en_masks, args.hidden_units)
         
         with tf.variable_scope('encoder_dropout', reuse=reuse):
             encoded = tf.layers.dropout(encoded, args.dropout_rate, training=(not reuse))
@@ -45,7 +45,7 @@ def forward_pass(sources, targets, params, reuse=False):
                     decoder_inputs, params['target_vocab_size'], args.hidden_units, zero_pad=True, scale=True)
         
         with tf.variable_scope('decoder_positional_encoding', reuse=reuse):
-            decoded += pos_enc(decoder_inputs, de_masks, args.hidden_units, zero_pad=False, scale=False)
+            decoded += pos_enc(decoder_inputs, de_masks, args.hidden_units)
                 
         with tf.variable_scope('decoder_dropout', reuse=reuse):
             decoded = tf.layers.dropout(decoded, args.dropout_rate, training=(not reuse))
@@ -147,9 +147,9 @@ def _shift_right(targets, start_symbol):
 
 def _get_positional_encoder():
     if args.positional_encoding == 'sinusoidal':
-        pos_enc = sinusoidal_positional_encoding
+        pos_enc = sinusoidal_position_encoding
     elif args.positional_encoding == 'learned':
-        pos_enc = learned_positional_encoding
+        pos_enc = learned_position_encoding
     else:
         raise ValueError("positional encoding has to be either 'sinusoidal' or 'learned'")
     return pos_enc

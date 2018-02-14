@@ -18,15 +18,11 @@ def layer_norm(inputs, epsilon=1e-8):
 
 def embed_seq(inputs, vocab_size=None, embed_dim=None, zero_pad=False, scale=False):
     lookup_table = tf.get_variable('lookup_table', dtype=tf.float32, shape=[vocab_size, embed_dim])
-
     if zero_pad:
         lookup_table = tf.concat((tf.zeros([1, embed_dim]), lookup_table[1:, :]), axis=0)
-    
     outputs = tf.nn.embedding_lookup(lookup_table, inputs)
-
     if scale:
-        outputs = outputs * (embed_dim ** 0.5)
-    
+        outputs = outputs * np.sqrt(embed_dim)
     return outputs
 
 
@@ -52,7 +48,7 @@ def multihead_attn(queries, keys, q_masks, k_masks, num_units=None, num_heads=8,
 
     # Scaled Dot-Product
     align = tf.matmul(Q_, tf.transpose(K_, [0,2,1]))                               # (h*N, T_q, T_k)
-    align = align / (K_.get_shape().as_list()[-1] ** 0.5)                          # scale
+    align = align / np.sqrt(K_.get_shape().as_list()[-1])                         # scale
 
     # Key Masking
     paddings = tf.fill(tf.shape(align), float('-inf'))                             # exp(-large) -> 0
@@ -102,17 +98,16 @@ def pointwise_feedforward(inputs, num_units=[None, None], activation=None):
     return outputs
 
 
-def learned_positional_encoding(inputs, mask, embed_dim, zero_pad=False, scale=False):
+def learned_position_encoding(inputs, mask, embed_dim):
     T = inputs.get_shape().as_list()[-1]
     outputs = tf.range(tf.shape(inputs)[1])                # (T_q)
     outputs = tf.expand_dims(outputs, 0)                   # (1, T_q)
     outputs = tf.tile(outputs, [tf.shape(inputs)[0], 1])   # (N, T_q)
-    outputs = embed_seq(outputs, T, embed_dim, zero_pad=zero_pad, scale=scale)
-
+    outputs = embed_seq(outputs, T, embed_dim, zero_pad=False, scale=False)
     return tf.expand_dims(tf.to_float(mask), -1) * outputs
 
 
-def sinusoidal_positional_encoding(inputs, mask, num_units, zero_pad=False, scale=False):
+def sinusoidal_position_encoding(inputs, mask, num_units):
     T = inputs.get_shape().as_list()[-1]
     position_idx = tf.tile(tf.expand_dims(tf.range(T), 0), [tf.shape(inputs)[0], 1])
 
@@ -120,14 +115,10 @@ def sinusoidal_positional_encoding(inputs, mask, num_units, zero_pad=False, scal
         [[pos / np.power(10000, 2.*i/num_units) for i in range(num_units)] for pos in range(T)])
     position_enc[:, 0::2] = np.sin(position_enc[:, 0::2])  # dim 2i
     position_enc[:, 1::2] = np.cos(position_enc[:, 1::2])  # dim 2i+1
+
     lookup_table = tf.convert_to_tensor(position_enc, tf.float32)
-
-    if zero_pad:
-        lookup_table = tf.concat([tf.zeros([1, num_units]), lookup_table[1:, :]], axis=0)
     outputs = tf.nn.embedding_lookup(lookup_table, position_idx)
-    if scale:
-        outputs = outputs * num_units ** 0.5
-
+    
     return tf.expand_dims(tf.to_float(mask), -1) * outputs
 
 
