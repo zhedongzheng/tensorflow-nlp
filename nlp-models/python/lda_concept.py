@@ -45,7 +45,9 @@ class LDA:
 
 
     def print_top_words(self, model, feature_names, n_top_words):
-        # .components_ is V of USV, of shape (concepts, terms)
+        # components_ shape: (topics, terms)
+        # components_[i, j] can be viewed as pseudocount that represents the number of times
+        # word j was assigned to topic i
         for topic_idx, term_vals in enumerate(model.components_):
             message = "Topic #%d: " % topic_idx
             message += " ".join([feature_names[i]
