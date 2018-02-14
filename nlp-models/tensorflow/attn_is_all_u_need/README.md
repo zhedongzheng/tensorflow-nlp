@@ -24,14 +24,13 @@ Some functions are adapted from [Kyubyong's](https://github.com/Kyubyong/transfo
 
 * Small Task 1: learn sorting characters
 
-    ``` python train_letters.py ```
+    ```  python train_letters.py --tied_embedding --label_smoothing ```
         
     ```
-    INFO:tensorflow:loss = 0.0635108, step = 4902 (20.712 sec)
-    INFO:tensorflow:lr = 0.000893285 (20.712 sec)
-    INFO:tensorflow:Saving checkpoints for 5001 into ./saved/model.ckpt.
-    INFO:tensorflow:Loss for final step: 0.0711864.
-    INFO:tensorflow:Restoring parameters from ./saved/model.ckpt-5001
+    INFO:tensorflow:lr = 0.000914113 (22.901 sec)
+    INFO:tensorflow:Saving checkpoints for 4000 into ./saved/model.ckpt.
+    INFO:tensorflow:Loss for final step: 0.707183.
+    INFO:tensorflow:Restoring parameters from ./saved/model.ckpt-4000
     apple -> aelpp
     common -> cmmnoo
     zhedong -> deghnoz
