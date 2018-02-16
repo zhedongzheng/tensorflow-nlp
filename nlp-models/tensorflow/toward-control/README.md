@@ -27,27 +27,27 @@ python train_discriminator.py
 ```
 ```
 ------------
-Step 21115 | Train Discriminator | [3/25] | [0/781]
-	| clf_loss:45.84 | clf_acc:0.85 | L_u: 5.21
+Step 22647 | Train Discriminator | [4/25] | [750/781]
+	| clf_loss:36.01 | clf_acc:0.90 | L_u: 5.34
 
-Step 21115 | Train Encoder | [3/25] | [0/781]
-	| seq_loss:63.1 | kl_w:1.00 | kl_loss:11.35
+Step 22647 | Train Encoder | [4/25] | [750/781]
+	| seq_loss:65.2 | kl_w:1.00 | kl_loss:11.48
 
-Step 21115 | Train Generator | [3/25] | [0/781]
-	| seq_loss:64.6 | kl_w:1.00 | kl_loss:11.22
-	| temperature:0.12 | l_attr_z:0.44 | l_attr_c:1.23
+Step 22647 | Train Generator | [4/25] | [750/781]
+	| seq_loss:65.7 | kl_w:1.00 | kl_loss:11.48
+	| temperature:0.25 | l_attr_z:1.94 | l_attr_c:0.80
 ------------
 I: i love this film it is so good to watch
 
-O: there are so many years to see this movie it was very good for me <end>
+O: this is the best movie ever made for a long time i have ever seen <end>
 
-R: i think this movie was the worst movie i've ever seen br br the plot <end>
+R: after watching this movie i give it a chance to watch this movie is horrible <end>
 ------------
 I: this movie is horrible and waste my time
 
-O: this movie was awful awful it was nothing better than this movie was the worst <end>
+O: a insult to punish your money on the script and the acting was hideously dull <end>
 
-R: this film is amazing and it was very good and see it for the masterpiece <end>
+R: this movie is fun to anyone who appreciates great music is the best movie ever <end>
 ------------
 ```
 where:
