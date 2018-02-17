@@ -53,6 +53,7 @@
 * [Attention Is All You Need](https://github.com/zhedongzheng/finch/tree/master/nlp-models/tensorflow/attn_is_all_u_need) 
 
 #### Question Answering（问题回答）
+<img src="https://github.com/zhedongzheng/finch/blob/master/assets/dmn-details.png" height='150'>
 * [Dynamic Memory Network](https://github.com/zhedongzheng/finch/tree/master/nlp-models/tensorflow/dmn) 
 
 #### Speech Recognition (语音识别)
