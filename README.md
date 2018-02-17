@@ -69,6 +69,8 @@
    * [VAE + Discriminator](https://github.com/zhedongzheng/finch/tree/master/nlp-models/tensorflow/toward-control)
 
 #### Speech Recognition (语音识别)
+<img src="https://github.com/zhedongzheng/finch/blob/master/assets/decoration_7.png" height='150'>
+
 * [RNN + CTC](https://github.com/zhedongzheng/finch/tree/master/nlp-models/tensorflow/asr)
 
 #### Topic Modelling (主题建模)
