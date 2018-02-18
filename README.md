@@ -61,10 +61,10 @@
 
 * [Dynamic Memory Network](https://github.com/zhedongzheng/finch/tree/master/nlp-models/tensorflow/dmn) 
 
-#### Speech Recognition (语音识别)
+#### Speech (语音)
 <img src="https://github.com/zhedongzheng/finch/blob/master/assets/decoration_7.png" height='150'>
 
-* [End-To-End CTC](https://github.com/zhedongzheng/finch/tree/master/nlp-models/tensorflow/asr)
+* [ASR CTC](https://github.com/zhedongzheng/finch/tree/master/nlp-models/tensorflow/asr)
 
 #### Generative Modelling（生成建模）
 <img src="https://github.com/zhedongzheng/finch/blob/master/assets/decoration_3.png" height='150'>
