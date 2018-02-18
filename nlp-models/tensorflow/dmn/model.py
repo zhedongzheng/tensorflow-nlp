@@ -236,11 +236,11 @@ class MemoryNetwork:
 
         demo_i, demo_q, demo_a = demo
         print()
-        pprint.PrettyPrinter().pprint(demo_i[demo_idx])
+        pprint.pprint(demo_i[demo_idx])
         print()
-        print(demo_q[demo_idx])
+        print('Question:', demo_q[demo_idx])
         print()
-        print(demo_a[demo_idx])
+        print('Ground Truth:', demo_a[demo_idx])
         print()
         print('- '*12)
-        print([idx2word[id] for id in ids])
+        print('Machine Answer:', [idx2word[id] for id in ids])
