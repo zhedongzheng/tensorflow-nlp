@@ -64,7 +64,7 @@
 #### Speech (语音)
 <img src="https://github.com/zhedongzheng/finch/blob/master/assets/decoration_7.png" height='150'>
 
-* [CTC for ASR](https://github.com/zhedongzheng/finch/tree/master/nlp-models/tensorflow/asr)
+* [CTC](https://github.com/zhedongzheng/finch/tree/master/nlp-models/tensorflow/asr)
 
 #### Generative Modelling（生成建模）
 <img src="https://github.com/zhedongzheng/finch/blob/master/assets/decoration_3.png" height='150'>
