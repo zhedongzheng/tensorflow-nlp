@@ -10,8 +10,12 @@
 python train.py
 ```
 ```
+Data Shuffled
+[10/10] | [0/156] | loss:0.049 | acc:0.992
+[10/10] | [50/156] | loss:0.046 | acc:0.992
+[10/10] | [100/156] | loss:0.015 | acc:0.992
 [10/10] | [150/156] | loss:0.009 | acc:1.000
-final testing accuracy: 0.995
+final testing accuracy: 0.997
 
 [['Fred', 'picked', 'up', 'the', 'football', 'there', '<end>'],
  ['Fred', 'gave', 'the', 'football', 'to', 'Jeff', '<end>'],
@@ -22,10 +26,10 @@ final testing accuracy: 0.995
  ['Jeff', 'handed', 'the', 'football', 'to', 'Fred', '<end>'],
  ['Fred', 'gave', 'the', 'football', 'to', 'Jeff', '<end>']]
 
-['Who', 'did', 'Fred', 'give', 'the', 'football', 'to', '?']
+Question: ['Who', 'did', 'Fred', 'give', 'the', 'football', 'to', '?']
 
-['Jeff', '<end>']
+Ground Truth: ['Jeff', '<end>']
 
 - - - - - - - - - - - - 
-['Jeff', '<end>']
+Machine Answer: ['Jeff', '<end>']
 ```
