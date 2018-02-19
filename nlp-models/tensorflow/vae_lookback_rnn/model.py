@@ -81,7 +81,8 @@ class VRAE:
 
     def _decoder_training(self, z):
         with tf.variable_scope('encoder', reuse=True):
-            tied_embedding = tf.get_variable('tied_embedding', [self.params['vocab_size'], args.embedding_dim])
+            tied_embedding = tf.get_variable('tied_embedding',
+                [self.params['vocab_size'], args.embedding_dim])
 
         with tf.variable_scope('decoding'):
             lookback_cell = self._lookback_rnn_cell()
@@ -109,7 +110,8 @@ class VRAE:
         tiled_z = tf.tile(tf.expand_dims(self.z, 1), [1, args.beam_width, 1])
         
         with tf.variable_scope('encoder', reuse=True):
-            tied_embedding = tf.get_variable('tied_embedding', [self.params['vocab_size'], args.embedding_dim])
+            tied_embedding = tf.get_variable('tied_embedding',
+                [self.params['vocab_size'], args.embedding_dim])
 
         with tf.variable_scope('decoding', reuse=True):
             lookback_cell = self._lookback_rnn_cell(reuse=True)
@@ -117,21 +119,22 @@ class VRAE:
             lookback_state = (tf.layers.dense(self.z, args.rnn_size, tf.nn.relu, reuse=True),
                 lookback_state[1])
 
-            decoder = BeamSearchDecoder(
-                cell = lookback_cell,
+            helper = tf.contrib.seq2seq.GreedyEmbeddingHelper(
                 embedding = tied_embedding,
                 start_tokens = tf.tile(tf.constant(
                     [self.params['word2idx']['<start>']], dtype=tf.int32), [self._batch_size]),
-                end_token = self.params['word2idx']['<end>'],
-                initial_state = tf.contrib.seq2seq.tile_batch(lookback_state, args.beam_width),
-                beam_width = args.beam_width,
+                end_token = self.params['word2idx']['<end>'])
+            decoder = BasicDecoder(
+                cell = lookback_cell,
+                helper = helper,
+                initial_state = lookback_state,
                 output_layer = tf.layers.Dense(self.params['vocab_size'], _reuse=True),
-                concat_z = tiled_z)
+                concat_z = self.z)
             decoder_output, _, _ = tf.contrib.seq2seq.dynamic_decode(
                 decoder = decoder,
                 maximum_iterations = 2*tf.reduce_max(self.enc_seq_len))
 
-        return decoder_output.predicted_ids[:, :, 0]
+        return decoder_output.sample_id
 
 
     def _rnn_cell(self, rnn_size=None, reuse=False):
