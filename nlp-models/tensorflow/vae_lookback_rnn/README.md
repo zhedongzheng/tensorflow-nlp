@@ -1,8 +1,7 @@
 <img src="https://github.com/zhedongzheng/finch/blob/master/assets/lookback_rnn.jpg" height='300'>
 
----
 We have modified the decoding GRU cell to attend to previous states (generated word predictions) in each step
----
+
 ``` python train.py ```
 ```
 Step 23429 | [30/30] | [750/781] | nll_loss:50.5 | kl_w:1.000 | kl_loss:14.03 
