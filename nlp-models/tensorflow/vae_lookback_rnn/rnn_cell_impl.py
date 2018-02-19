@@ -408,6 +408,7 @@ class AttnGRUCell(_LayerRNNCell):
     attn = array_ops.concat([new_h, self.attend(keys, query)], -1)
     attn = math_ops.matmul(attn, self._attn_kernel)
     attn = nn_ops.bias_add(attn, self._attn_bias)
+    attn = nn_ops.relu(attn)
 
     return attn, (attn, array_ops.reshape(keys, [-1, self._attn_window*self._num_units]))
 

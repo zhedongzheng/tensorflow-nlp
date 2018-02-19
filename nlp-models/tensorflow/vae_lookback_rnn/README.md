@@ -1,19 +1,7 @@
-<img src="https://github.com/zhedongzheng/finch/blob/master/assets/vrae_struct.jpg" height='300'>
+<img src="https://github.com/zhedongzheng/finch/blob/master/assets/lookback_rnn.jpg" height='300'>
 
 ---
-Implementing the idea of ["Generating Sentences from a Continuous Space"](https://arxiv.org/abs/1511.06349)
-
----
-Following tricks are enabled:
-* KL cost annealing
-
-* Word dropout
-
-  ```word_dropout_rate``` is the % of decoder input words masked with unknown tags, in order to weaken the decoder and force it relying on encoder
-
-* Concatenating latent vector (z) into decoder inputs, which requires modifying the decoder in source code ```tf.contrib.seq2seq```
-
-  The modified decoders are placed in the folder ``` modified_tf_classes ```
+We have modified the decoding GRU cell to attend to previous states (generated word predictions) in each step
 ---
 ``` python train.py ```
 ```

@@ -86,7 +86,7 @@ class VRAE:
         with tf.variable_scope('decoding'):
             lookback_cell = self._lookback_rnn_cell()
             lookback_state = lookback_cell.zero_state(self._batch_size, tf.float32)
-            lookback_state = (tf.layers.dense(self.z, args.rnn_size, tf.nn.elu),
+            lookback_state = (tf.layers.dense(self.z, args.rnn_size, tf.nn.relu),
                 lookback_state[1])
 
             lin_proj = tf.layers.Dense(self.params['vocab_size'], _scope='decoder/dense')
@@ -114,7 +114,7 @@ class VRAE:
         with tf.variable_scope('decoding', reuse=True):
             lookback_cell = self._lookback_rnn_cell(reuse=True)
             lookback_state = lookback_cell.zero_state(self._batch_size, tf.float32)
-            lookback_state = (tf.layers.dense(self.z, args.rnn_size, tf.nn.elu, reuse=True),
+            lookback_state = (tf.layers.dense(self.z, args.rnn_size, tf.nn.relu, reuse=True),
                 lookback_state[1])
 
             decoder = BeamSearchDecoder(
