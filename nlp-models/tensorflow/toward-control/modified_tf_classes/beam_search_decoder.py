@@ -449,9 +449,6 @@ class BeamSearchDecoder(decoder.Decoder):
     Returns:
       `(outputs, next_state, next_inputs, finished)`.
     """
-    # modification here
-    inputs = array_ops.concat([inputs, self.z], -1)
-    # modification here
 
     batch_size = self._batch_size
     beam_width = self._beam_width

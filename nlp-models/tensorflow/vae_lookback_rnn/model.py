@@ -119,22 +119,21 @@ class VRAE:
             lookback_state = (tf.layers.dense(self.z, args.rnn_size, tf.nn.relu, reuse=True),
                 lookback_state[1])
 
-            helper = tf.contrib.seq2seq.GreedyEmbeddingHelper(
+            decoder = BeamSearchDecoder(
+                cell = lookback_cell,
                 embedding = tied_embedding,
                 start_tokens = tf.tile(tf.constant(
                     [self.params['word2idx']['<start>']], dtype=tf.int32), [self._batch_size]),
-                end_token = self.params['word2idx']['<end>'])
-            decoder = BasicDecoder(
-                cell = lookback_cell,
-                helper = helper,
-                initial_state = lookback_state,
+                end_token = self.params['word2idx']['<end>'],
+                initial_state = tf.contrib.seq2seq.tile_batch(lookback_state, args.beam_width),
+                beam_width = args.beam_width,
                 output_layer = tf.layers.Dense(self.params['vocab_size'], _reuse=True),
-                concat_z = self.z)
+                concat_z = tiled_z)
             decoder_output, _, _ = tf.contrib.seq2seq.dynamic_decode(
                 decoder = decoder,
                 maximum_iterations = 2*tf.reduce_max(self.enc_seq_len))
 
-        return decoder_output.sample_id
+        return decoder_output.predicted_ids[:, :, 0]
 
 
     def _rnn_cell(self, rnn_size=None, reuse=False):

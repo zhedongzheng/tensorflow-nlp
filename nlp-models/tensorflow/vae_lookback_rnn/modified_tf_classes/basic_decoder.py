@@ -142,9 +142,6 @@ class BasicDecoder(decoder.Decoder):
     Returns:
       `(outputs, next_state, next_inputs, finished)`.
     """
-    # modification here
-    inputs = array_ops.concat([inputs, self.z], -1)
-    # modification here
 
     with ops.name_scope(name, "BasicDecoderStep", (time, inputs, state)):
       cell_outputs, cell_state = self._cell(inputs, state)

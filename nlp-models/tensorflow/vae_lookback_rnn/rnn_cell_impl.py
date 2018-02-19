@@ -331,7 +331,7 @@ class AttnGRUCell(_LayerRNNCell):
 
   @property
   def state_size(self):
-    return (self._num_units, self._attn_window * self._num_units)
+    return (self._num_units, self._attn_window*self._num_units)
 
   @property
   def output_size(self):
@@ -382,7 +382,6 @@ class AttnGRUCell(_LayerRNNCell):
 
   def call(self, inputs, state_tuple):
     """Gated recurrent unit (GRU) with nunits cells."""
-
     state, keys = state_tuple
 
     gate_inputs = math_ops.matmul(
@@ -403,7 +402,7 @@ class AttnGRUCell(_LayerRNNCell):
 
     query = new_h
     keys = array_ops.reshape(keys, [-1, self._attn_window, self._num_units])
-    keys = array_ops.concat([keys, array_ops.reshape(new_h, [-1, 1, self._num_units])], 1)
+    keys = array_ops.concat([keys, array_ops.reshape(query, [-1, 1, self._num_units])], 1)
     keys = keys[:, 1:, :]
     
     attn = array_ops.concat([new_h, self.attend(keys, query)], -1)
