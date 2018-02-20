@@ -70,8 +70,8 @@
 <img src="https://github.com/zhedongzheng/finch/blob/master/assets/decoration_3.png" height='150'>
 
 * [Variational Autoencoder (VAE)](https://github.com/zhedongzheng/finch/tree/master/nlp-models/tensorflow/vae)
-
-   * [VAE + Discriminator + Wake-sleep](https://github.com/zhedongzheng/finch/tree/master/nlp-models/tensorflow/toward-control)
+   * [VAE + Self-Attention](https://github.com/zhedongzheng/finch/tree/master/nlp-models/tensorflow/vae_lookback_rnn)
+   * [VAE + Discriminator + Wake-Sleep](https://github.com/zhedongzheng/finch/tree/master/nlp-models/tensorflow/toward-control)
 
 #### Topic Modelling (主题建模)
 ``` pip3 install nltk ```
