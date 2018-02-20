@@ -400,15 +400,13 @@ class AttnGRUCell(_LayerRNNCell):
     c = self._activation(candidate)
     new_h = u * state + (1 - u) * c
 
-    query = new_h
     keys = array_ops.reshape(keys, [-1, self._attn_window, self._num_units])
-    keys = array_ops.concat([keys, array_ops.reshape(query, [-1, 1, self._num_units])], 1)
+    keys = array_ops.concat([keys, array_ops.expand_dims(inputs, 1)], 1)
     keys = keys[:, 1:, :]
     
+    query = new_h
     attn = array_ops.concat([new_h, self.attend(keys, query)], -1)
-    attn = math_ops.matmul(attn, self._attn_kernel)
-    attn = nn_ops.bias_add(attn, self._attn_bias)
-    attn = nn_ops.relu(attn)
+    attn = nn_ops.relu(nn_ops.xw_plus_b(attn, self._attn_kernel, self._attn_bias))
 
     return attn, (attn, array_ops.reshape(keys, [-1, self._attn_window*self._num_units]))
 
