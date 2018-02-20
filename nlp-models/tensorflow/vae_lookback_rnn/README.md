@@ -1,4 +1,4 @@
-We have modified the decoding GRU cell, in order to attend to previous words, in each step
+We have modified the decoding GRU cell, in order to attend to previous words stored in memory, in each step
 
 <img src="https://github.com/zhedongzheng/finch/blob/master/assets/lookback_rnn.jpg" height='300'>
 
