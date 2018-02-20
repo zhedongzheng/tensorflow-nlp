@@ -1,27 +1,27 @@
-We have modified the decoding GRU cell, in order to attend to previous words stored in memory, in each step
+We have modified the decoding GRU cell, in order to attend to previous states stored in memory, in each step
 
 <img src="https://github.com/zhedongzheng/finch/blob/master/assets/lookback_rnn.jpg" height='300'>
 
 ---
 ``` python train.py ```
 ```
-Step 23429 | [30/30] | [750/781] | nll_loss:49.1 | kl_w:1.000 | kl_loss:6.35 
+Step 10135 | [13/30] | [750/781] | nll_loss:56.8 | kl_w:1.000 | kl_loss:12.90 
 
-G: at the bullfight scene where to begin with this film as much as i can <end>
+G: a lot of those movies this is a good movie a film to be missed <end>
 ------------
-I: the 60´s is a well balanced mini series between historical facts and a good plot
+I: fight scenes br br a great fun film that adults and children alike will enjoy
 
-D: <start> the 60´s is a well <unk> mini series between <unk> facts and <unk> good <unk>
+D: <start> <unk> <unk> br <unk> <unk> <unk> <unk> <unk> <unk> <unk> <unk> <unk> <unk> <unk> <unk>
 
-O: the bfg is one of the best movies of all time in the history of <end>
+O: spoilers spoilers br br a great horror film that is a must see it to <end>
 ------------
 I: i love this film and i think it is one of the best films
 
-O: i absolutely loved this film i have never been a fan of the tv series <end>
+O: i rented this movie when i thought it was a one of the best movies <end>
 ------------
 I: this movie is a waste of time and there is no point to watch it
 
-O: this is a very good movie and it is not as bad as it is <end>
+O: this movie is a waste of time if you like this movie to be warned <end>
 ------------
 ```
 where:
