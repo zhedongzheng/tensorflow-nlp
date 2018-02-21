@@ -368,8 +368,8 @@ class AttnGRUCell(_LayerRNNCell):
 
     self._attn_kernel = self.add_variable(
         "attn/%s" % _WEIGHTS_VARIABLE_NAME,
-        shape=[2 * self._num_units, self._num_units],
-        initializer=init_ops.glorot_uniform_initializer())
+        shape=[2*self._num_units, self._num_units],
+        initializer=self._kernel_initializer)
     self._attn_bias = self.add_variable(
         "attn/%s" % _BIAS_VARIABLE_NAME,
         shape=[self._num_units],
@@ -401,12 +401,12 @@ class AttnGRUCell(_LayerRNNCell):
     new_h = u * state + (1 - u) * c
 
     keys = array_ops.reshape(keys, [-1, self._attn_window, self._num_units])
-    keys = array_ops.concat([keys, array_ops.expand_dims(inputs, 1)], 1)
+    keys = array_ops.concat([keys, array_ops.expand_dims(new_h, 1)], 1)
     keys = keys[:, 1:, :]
     
     query = new_h
     attn = array_ops.concat([new_h, self.attend(keys, query)], -1)
-    attn = nn_ops.relu(nn_ops.xw_plus_b(attn, self._attn_kernel, self._attn_bias))
+    attn = nn_ops.xw_plus_b(attn, self._attn_kernel, self._attn_bias)
 
     return attn, (attn, array_ops.reshape(keys, [-1, self._attn_window*self._num_units]))
 

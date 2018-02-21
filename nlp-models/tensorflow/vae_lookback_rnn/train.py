@@ -35,6 +35,8 @@ def main():
         model.customized_reconstruct(sess, 'i love this film and i think it is one of the best films')
         model.customized_reconstruct(sess, 'this movie is a waste of time and there is no point to watch it')
 
+    save_path = saver.save(sess, './saved/vrae.ckpt')
+    print("Model saved in file: %s" % save_path)
 
 if __name__ == '__main__':
     print(json.dumps(args.__dict__, indent=4))
