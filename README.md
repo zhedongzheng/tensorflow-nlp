@@ -8,7 +8,7 @@
 * [Sequence Labelling（序列标记）](https://github.com/zhedongzheng/finch#sequence-labelling%E5%BA%8F%E5%88%97%E6%A0%87%E8%AE%B0)
 * [Sequence to Sequence（序列到序列）](https://github.com/zhedongzheng/finch#sequence-to-sequence%E5%BA%8F%E5%88%97%E5%88%B0%E5%BA%8F%E5%88%97)
 * [Question Answering（问题回答）](https://github.com/zhedongzheng/finch#question-answering%E9%97%AE%E9%A2%98%E5%9B%9E%E7%AD%94)
-* [Speech (语音)](https://github.com/zhedongzheng/finch#speech-%E8%AF%AD%E9%9F%B3)
+* [CTC](https://github.com/zhedongzheng/finch#speech-%E8%AF%AD%E9%9F%B3)
 * [Generative Modelling（生成建模）](https://github.com/zhedongzheng/finch#generative-modelling%E7%94%9F%E6%88%90%E5%BB%BA%E6%A8%A1)
 * [Topic Modelling (主题建模)](https://github.com/zhedongzheng/finch#topic-modelling-%E4%B8%BB%E9%A2%98%E5%BB%BA%E6%A8%A1)
 * [Reinforcement Learning（强化学习）](https://github.com/zhedongzheng/finch#reinforcement-learning%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0)
@@ -72,10 +72,10 @@
 
 * [Dynamic Memory Network](https://github.com/zhedongzheng/finch/tree/master/nlp-models/tensorflow/dmn) 
 
-#### Speech (语音)
+#### CTC
 <img src="https://github.com/zhedongzheng/finch/blob/master/assets/decoration_7.png" height='150'>
 
-* [CTC](https://github.com/zhedongzheng/finch/tree/master/nlp-models/tensorflow/asr)
+* [Speech Recognition](https://github.com/zhedongzheng/finch/tree/master/nlp-models/tensorflow/asr)
 
 #### Generative Modelling（生成建模）
 <img src="https://github.com/zhedongzheng/finch/blob/master/assets/decoration_3.png" height='150'>
