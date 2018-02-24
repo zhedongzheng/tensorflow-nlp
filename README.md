@@ -11,7 +11,7 @@
 * [Generative Modelling（生成建模）](https://github.com/zhedongzheng/finch#generative-modelling%E7%94%9F%E6%88%90%E5%BB%BA%E6%A8%A1)
 * [Topic Modelling (主题建模)](https://github.com/zhedongzheng/finch#topic-modelling-%E4%B8%BB%E9%A2%98%E5%BB%BA%E6%A8%A1)
 * [Reinforcement Learning（强化学习）](https://github.com/zhedongzheng/finch#reinforcement-learning%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0)
-* [CTC](https://github.com/zhedongzheng/finch#speech-%E8%AF%AD%E9%9F%B3)
+* [CTC](https://github.com/zhedongzheng/finch#ctc)
 ---
 #### Word Embedding（词向量）
 <img src="https://github.com/zhedongzheng/finch/blob/master/assets/decoration_6.png" height='150'>
