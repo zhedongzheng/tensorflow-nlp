@@ -9,7 +9,6 @@
 * [Sequence to Sequence（序列到序列）](https://github.com/zhedongzheng/finch#sequence-to-sequence%E5%BA%8F%E5%88%97%E5%88%B0%E5%BA%8F%E5%88%97)
 * [Question Answering（问题回答）](https://github.com/zhedongzheng/finch#question-answering%E9%97%AE%E9%A2%98%E5%9B%9E%E7%AD%94)
 * [Generative Modelling（生成建模）](https://github.com/zhedongzheng/finch#generative-modelling%E7%94%9F%E6%88%90%E5%BB%BA%E6%A8%A1)
-* [Topic Modelling (主题建模)](https://github.com/zhedongzheng/finch#topic-modelling-%E4%B8%BB%E9%A2%98%E5%BB%BA%E6%A8%A1)
 * [Reinforcement Learning（强化学习）](https://github.com/zhedongzheng/finch#reinforcement-learning%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0)
 * [CTC](https://github.com/zhedongzheng/finch#ctc)
 ---
@@ -80,12 +79,6 @@
    * [VAE + Memory + Attention](https://github.com/zhedongzheng/finch/tree/master/nlp-models/tensorflow/vae_lookback_rnn)
    
    * [VAE + Discriminator + Wake-Sleep](https://github.com/zhedongzheng/finch/tree/master/nlp-models/tensorflow/toward-control)
-
-#### Topic Modelling (主题建模)
-``` pip3 install nltk ```
-* LSA &nbsp; &nbsp; [Model](https://github.com/zhedongzheng/finch/blob/master/nlp-models/python/lsa_concept.py) &nbsp; &nbsp; [Test](https://github.com/zhedongzheng/finch/blob/master/nlp-models/python/lsa_concept_test.py) &nbsp; &nbsp; [Result](https://github.com/zhedongzheng/finch/blob/master/nlp-models/python/lsa_concept_test.md) &nbsp; &nbsp; [Visualization](https://github.com/zhedongzheng/finch/blob/master/nlp-models/python/lsa_test.md)
-
-* LDA &nbsp; &nbsp; [Model](https://github.com/zhedongzheng/finch/blob/master/nlp-models/python/lda_concept.py) &nbsp; &nbsp; [Test](https://github.com/zhedongzheng/finch/blob/master/nlp-models/python/lda_concept_test.py) &nbsp; &nbsp; [Result](https://github.com/zhedongzheng/finch/blob/master/nlp-models/python/lda_concept_test.md) 
 
 #### Reinforcement Learning（强化学习）
 ```pip3 install gym ```
