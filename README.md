@@ -9,7 +9,6 @@
 * [Sequence to Sequence（序列到序列）](https://github.com/zhedongzheng/finch#sequence-to-sequence%E5%BA%8F%E5%88%97%E5%88%B0%E5%BA%8F%E5%88%97)
 * [Question Answering（问题回答）](https://github.com/zhedongzheng/finch#question-answering%E9%97%AE%E9%A2%98%E5%9B%9E%E7%AD%94)
 * [Generative Modelling（生成建模）](https://github.com/zhedongzheng/finch#generative-modelling%E7%94%9F%E6%88%90%E5%BB%BA%E6%A8%A1)
-* [CTC](https://github.com/zhedongzheng/finch#ctc)
 ---
 #### Word Embedding（词向量）
 <img src="https://github.com/zhedongzheng/finch/blob/master/assets/decoration_6.png" height='150'>
@@ -65,6 +64,12 @@
 
 * [Attention Is All You Need](https://github.com/zhedongzheng/finch/tree/master/nlp-models/tensorflow/attn_is_all_u_need) 
 
+* CTC
+
+   <img src="https://github.com/zhedongzheng/finch/blob/master/assets/decoration_7.png" height='150'>
+
+   * [Speech Recognition](https://github.com/zhedongzheng/finch/tree/master/nlp-models/tensorflow/asr)
+
 #### Question Answering（问题回答）
 <img src="https://github.com/zhedongzheng/finch/blob/master/assets/dmn-details.png" height='150'>
 
@@ -78,11 +83,6 @@
    * [VAE + Memory + Attention](https://github.com/zhedongzheng/finch/tree/master/nlp-models/tensorflow/vae_lookback_rnn)
    
    * [VAE + Discriminator + Wake-Sleep](https://github.com/zhedongzheng/finch/tree/master/nlp-models/tensorflow/toward-control)
-
-#### CTC
-<img src="https://github.com/zhedongzheng/finch/blob/master/assets/decoration_7.png" height='150'>
-
-* [Speech Recognition](https://github.com/zhedongzheng/finch/tree/master/nlp-models/tensorflow/asr)
 
 ---
 #### How To Use
