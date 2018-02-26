@@ -42,8 +42,6 @@
 * [Variational Autoencoder (VAE)](https://github.com/zhedongzheng/finch/tree/master/nlp-models/tensorflow/vae)
 
    <img src="https://github.com/zhedongzheng/finch/blob/master/assets/decoration_3.png" height='150'>
-
-   * [VAE + Memory + Attention](https://github.com/zhedongzheng/finch/tree/master/nlp-models/tensorflow/vae_lookback_rnn)
    
    * [VAE + Discriminator + Wake-Sleep](https://github.com/zhedongzheng/finch/tree/master/nlp-models/tensorflow/toward-control)
 
