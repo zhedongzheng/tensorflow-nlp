@@ -40,8 +40,6 @@
 * Only-Attention &nbsp; &nbsp; [Model](https://github.com/zhedongzheng/finch/blob/master/nlp-models/tensorflow/self_attn_lm.py) &nbsp; | &nbsp; [English Story Test](https://github.com/zhedongzheng/finch/blob/master/nlp-models/tensorflow/self_attn_lm_test.py) &nbsp; &nbsp; [Result](https://github.com/zhedongzheng/finch/blob/master/nlp-models/tensorflow/self_attn_lm_test.md) &nbsp; | &nbsp; [Chinese Address Test](https://github.com/zhedongzheng/finch/blob/master/nlp-models/tensorflow/self_attn_lm_addr_test.py) &nbsp; &nbsp; [Result](https://github.com/zhedongzheng/finch/blob/master/nlp-models/tensorflow/self_attn_lm_addr_test.md)
 
 * [Variational Autoencoder (VAE)](https://github.com/zhedongzheng/finch/tree/master/nlp-models/tensorflow/vae)
-
-   <img src="https://github.com/zhedongzheng/finch/blob/master/assets/decoration_3.png" height='150'>
    
    * [VAE + Discriminator + Wake-Sleep](https://github.com/zhedongzheng/finch/tree/master/nlp-models/tensorflow/toward-control)
 
@@ -70,8 +68,6 @@
 * [Attention Is All You Need](https://github.com/zhedongzheng/finch/tree/master/nlp-models/tensorflow/attn_is_all_u_need) 
 
 * CTC
-
-   <img src="https://github.com/zhedongzheng/finch/blob/master/assets/decoration_7.png" height='150'>
 
    * [Speech Recognition](https://github.com/zhedongzheng/finch/tree/master/nlp-models/tensorflow/asr)
 
