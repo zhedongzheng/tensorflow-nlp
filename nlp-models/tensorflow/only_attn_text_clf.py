@@ -36,8 +36,7 @@ class OnlyAttentionClassifier:
 
 
     def add_word_embedding(self):
-        embedding = tf.get_variable('encoder', [self.vocab_size,self.embedding_dims], tf.float32,
-                                     tf.random_uniform_initializer(-1.0, 1.0))
+        embedding = tf.get_variable('encoder', [self.vocab_size,self.embedding_dims], tf.float32)
         embedded = tf.nn.embedding_lookup(embedding, self._pointer)
         self._pointer = tf.nn.dropout(embedded, self.keep_prob)
     # end method add_word_embedding_layer
@@ -47,6 +46,10 @@ class OnlyAttentionClassifier:
         x = self._pointer
 
         align = tf.squeeze(tf.layers.dense(x, 1, tf.tanh), -1)
+
+        paddings = tf.fill(tf.shape(align), float('-inf'))
+        align = tf.where(tf.equal(tf.sign(self.X), 0), paddings, align) 
+
         align = tf.expand_dims(tf.nn.softmax(align), -1)
         x = tf.squeeze(tf.matmul(x, align, transpose_a=True), -1)
 
