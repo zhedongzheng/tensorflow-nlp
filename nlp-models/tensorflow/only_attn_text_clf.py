@@ -44,17 +44,30 @@ class OnlyAttentionClassifier:
 
     def add_self_attention(self):
         x = self._pointer
-
+        
+        # alignment
         align = tf.squeeze(tf.layers.dense(x, 1, tf.tanh), -1)
-
+        # masking
         paddings = tf.fill(tf.shape(align), float('-inf'))
-        align = tf.where(tf.equal(tf.sign(self.X), 0), paddings, align) 
-
+        align = tf.where(tf.equal(tf.sign(self.X), 0), paddings, align)
+        # probability
         align = tf.expand_dims(tf.nn.softmax(align), -1)
-        x = tf.squeeze(tf.matmul(x, align, transpose_a=True), -1)
+        # dropout
+        align = tf.nn.dropout(align, self.keep_prob)
+        # weighted sum
+        attention = tf.squeeze(tf.matmul(x, align, transpose_a=True), -1)
 
-        self._pointer = x
+        self._pointer = attention
     # end method add_self_attention
+
+
+    def global_pooling(self, x, fn):
+        batch_size = tf.shape(self.X)[0]
+        num_units = x.get_shape().as_list()[-1]
+        x = fn(x, x.get_shape().as_list()[1], 1)
+        x = tf.reshape(x, [batch_size, num_units])
+        return x
+    # end method global_pooling
 
 
     def add_output_layer(self):
