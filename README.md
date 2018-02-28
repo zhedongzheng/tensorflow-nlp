@@ -1,6 +1,7 @@
 * [Python 3](https://www.python.org/downloads/)
-* [TensorFlow >= 1.4](https://www.tensorflow.org/)
+* [TensorFlow >= 1.5](https://www.tensorflow.org/)
 * [scikit-learn](http://scikit-learn.org/)
+* [SciPy](https://www.scipy.org/)
 ---
 * [Word Embedding（词向量）](https://github.com/zhedongzheng/finch#word-embedding%E8%AF%8D%E5%90%91%E9%87%8F)
 * [Text Classification（文本分类）](https://github.com/zhedongzheng/finch#text-classification%E6%96%87%E6%9C%AC%E5%88%86%E7%B1%BB)
