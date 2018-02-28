@@ -1,8 +1,10 @@
+#### Dependency
 * [Python 3](https://www.python.org/downloads/)
 * [TensorFlow >= r1.5](https://www.tensorflow.org/)
 * [Sklearn](http://scikit-learn.org/)
 * [SciPy](https://www.scipy.org/)
 ---
+#### Contents
 * [Word Embedding（词向量）](https://github.com/zhedongzheng/finch#word-embedding%E8%AF%8D%E5%90%91%E9%87%8F)
 * [Text Classification（文本分类）](https://github.com/zhedongzheng/finch#text-classification%E6%96%87%E6%9C%AC%E5%88%86%E7%B1%BB)
 * [Text Generation（文本生成）](https://github.com/zhedongzheng/finch#text-generation%E6%96%87%E6%9C%AC%E7%94%9F%E6%88%90)
