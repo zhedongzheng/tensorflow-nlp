@@ -37,7 +37,6 @@ class OnlyAttentionClassifier:
 
     def add_word_embedding(self):
         embedding = tf.get_variable('encoder', [self.vocab_size, self.embedding_dims], tf.float32)
-        embedding = self.zero_pad(embedding)
         embedded = tf.nn.embedding_lookup(embedding, self._pointer)
         self._pointer = tf.nn.dropout(embedded, self.keep_prob)
     # end method add_word_embedding_layer
@@ -56,6 +55,7 @@ class OnlyAttentionClassifier:
         align = tf.where(tf.equal(k_masks, 0), paddings, align)
         # probability
         align = tf.nn.softmax(align)
+        align = tf.nn.dropout(align, 1.0-0.1)
         # query masking
         q_masks = tf.to_float(masks)
         q_masks = tf.tile(tf.expand_dims(q_masks, -1), [1, 1, self.seq_len]) 
@@ -66,6 +66,7 @@ class OnlyAttentionClassifier:
         max_attn = self.global_pooling(attn, tf.layers.max_pooling1d)
         avg_attn = self.global_pooling(attn, tf.layers.average_pooling1d)
         self._pointer = tf.concat([max_attn, avg_attn], -1)
+        self._pointer = tf.nn.dropout(self._pointer, self.keep_prob)
     # end method add_self_attention
 
 
@@ -76,11 +77,6 @@ class OnlyAttentionClassifier:
         x = tf.reshape(x, [batch_size, num_units])
         return x
     # end method global_pooling
-
-    
-    def zero_pad(self, x):
-        return tf.concat((tf.zeros([1, self.embedding_dims]), x[1:, :]), axis=0)
-    # end method zero_pad
 
 
     def add_output_layer(self):
