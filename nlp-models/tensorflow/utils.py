@@ -93,7 +93,7 @@ def label_smoothing_sequence_loss(logits,
     
     with tf.name_scope(name, "sequence_loss", [logits, targets, weights]):
         targets = label_smoothing(tf.one_hot(targets, depth=label_depth))
-        crossent = tf.nn.softmax_cross_entropy_with_logits(labels=targets, logits=logits)
+        crossent = tf.nn.softmax_cross_entropy_with_logits_v2(labels=targets, logits=logits)
         crossent = tf.reshape(crossent, [-1]) *  tf.reshape(weights, [-1])
         
         if average_across_timesteps and average_across_batch:

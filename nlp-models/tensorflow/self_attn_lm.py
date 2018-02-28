@@ -164,7 +164,7 @@ def self_multihead_attn(queries, keys, num_units, num_heads, dropout_rate, is_tr
 
     # Future Binding
     lower_tri = tf.ones([T_q, T_k])                                                # (T_q, T_k)
-    lower_tri = tf.contrib.linalg.LinearOperatorTriL(lower_tri).to_dense()         # (T_q, T_k)
+    lower_tri = tf.linalg.LinearOperatorLowerTriangular(lower_tri).to_dense()      # (T_q, T_k)
     masks = tf.tile(tf.expand_dims(lower_tri,0), [tf.shape(align)[0], 1, 1])       # (h*N, T_q, T_k)
     align = tf.where(tf.equal(masks, 0), paddings, align)                          # (h*N, T_q, T_k)
 

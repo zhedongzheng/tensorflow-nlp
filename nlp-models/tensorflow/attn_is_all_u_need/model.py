@@ -25,7 +25,7 @@ def forward_pass(sources, targets, params, reuse=False):
             with tf.variable_scope('encoder_attn_%d'%i, reuse=reuse):
                 encoded = multihead_attn(queries=encoded, keys=encoded, q_masks=en_masks, k_masks=en_masks,
                     num_units=args.hidden_units, num_heads=args.num_heads, dropout_rate=args.dropout_rate,
-                    future_binding=False, reuse=reuse, activation=None)
+                    future_binding=False, reuse=reuse, activation=params['activation'])
             
             with tf.variable_scope('encoder_feedforward_%d'%i, reuse=reuse):
                 encoded = pointwise_feedforward(encoded, num_units=[4*args.hidden_units, args.hidden_units],
@@ -54,12 +54,12 @@ def forward_pass(sources, targets, params, reuse=False):
             with tf.variable_scope('decoder_self_attn_%d'%i, reuse=reuse):
                 decoded = multihead_attn(queries=decoded, keys=decoded, q_masks=de_masks, k_masks=de_masks,
                     num_units=args.hidden_units, num_heads=args.num_heads, dropout_rate=args.dropout_rate,
-                    future_binding=True, reuse=reuse, activation=None)
+                    future_binding=True, reuse=reuse, activation=params['activation'])
             
             with tf.variable_scope('decoder_attn_%d'%i, reuse=reuse):
                 decoded = multihead_attn(queries=decoded, keys=encoded, q_masks=de_masks, k_masks=en_masks,
                     num_units=args.hidden_units, num_heads=args.num_heads, dropout_rate=args.dropout_rate,
-                    future_binding=False, reuse=reuse, activation=None)
+                    future_binding=False, reuse=reuse, activation=params['activation'])
             
             with tf.variable_scope('decoder_feedforward_%d'%i, reuse=reuse):
                 decoded = pointwise_feedforward(decoded, num_units=[4*args.hidden_units, args.hidden_units],
