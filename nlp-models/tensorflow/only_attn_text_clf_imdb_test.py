@@ -4,7 +4,7 @@ import numpy as np
 
 
 vocab_size = 5000
-seq_len = 400  # cut texts after this number of words (among top max_features most common words)
+seq_len = 500  # cut texts after this number of words (among top max_features most common words)
 n_out = 2
 
 

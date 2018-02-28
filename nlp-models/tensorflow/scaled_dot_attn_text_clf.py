@@ -5,8 +5,7 @@ import sklearn
 
 
 class OnlyAttentionClassifier:
-    def __init__(self, seq_len, vocab_size, n_out, sess=tf.Session(),
-                 embedding_dims=50):
+    def __init__(self, seq_len, vocab_size, n_out, sess=tf.Session(), embedding_dims=50):
         self.seq_len = seq_len
         self.vocab_size = vocab_size
         self.embedding_dims = embedding_dims
@@ -55,7 +54,6 @@ class OnlyAttentionClassifier:
         align = tf.where(tf.equal(k_masks, 0), paddings, align)
         # probability
         align = tf.nn.softmax(align)
-        align = tf.nn.dropout(align, 1.0-0.1)
         # query masking
         q_masks = tf.to_float(masks)
         q_masks = tf.tile(tf.expand_dims(q_masks, -1), [1, 1, self.seq_len]) 

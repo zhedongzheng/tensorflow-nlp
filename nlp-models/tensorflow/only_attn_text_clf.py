@@ -5,8 +5,7 @@ import sklearn
 
 
 class OnlyAttentionClassifier:
-    def __init__(self, seq_len, vocab_size, n_out, sess=tf.Session(),
-                 embedding_dims=50):
+    def __init__(self, seq_len, vocab_size, n_out, sess=tf.Session(), embedding_dims=50):
         self.seq_len = seq_len
         self.vocab_size = vocab_size
         self.embedding_dims = embedding_dims
@@ -52,12 +51,10 @@ class OnlyAttentionClassifier:
         align = tf.where(tf.equal(tf.sign(self.X), 0), paddings, align)
         # probability
         align = tf.expand_dims(tf.nn.softmax(align), -1)
-        # dropout
-        align = tf.nn.dropout(align, self.keep_prob)
         # weighted sum
         attention = tf.squeeze(tf.matmul(x, align, transpose_a=True), -1)
 
-        self._pointer = attention
+        self._pointer = tf.nn.dropout(attention, self.keep_prob)
     # end method add_self_attention
 
 
