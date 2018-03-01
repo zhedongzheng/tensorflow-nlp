@@ -292,7 +292,7 @@ class Model:
 
         
     def cross_entropy_fn(self, logits, labels):
-        return tf.reduce_sum(tf.nn.softmax_cross_entropy_with_logits(
+        return tf.reduce_sum(tf.nn.softmax_cross_entropy_with_logits_v2(
             logits=logits, labels=labels))
 
 
