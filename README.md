@@ -3,6 +3,9 @@
 * [TensorFlow >= r1.5](https://www.tensorflow.org/)
 * [Sklearn](http://scikit-learn.org/)
 * [SciPy](https://www.scipy.org/)
+```
+pip3 install tensorflow sklearn scipy
+```
 ---
 #### Contents
 * [Word Embedding（词向量）](https://github.com/zhedongzheng/finch#word-embedding%E8%AF%8D%E5%90%91%E9%87%8F)
