@@ -6,7 +6,7 @@ import tensorflow as tf
 
 def forward_pass(sources, targets, params, reuse=False):
     with tf.variable_scope('forward_pass', reuse=reuse):
-        pos_enc = _get_positional_encoder()
+        pos_enc = _get_position_encoder()
 
         # ENCODER
         en_masks = tf.sign(tf.abs(sources))     
@@ -15,7 +15,7 @@ def forward_pass(sources, targets, params, reuse=False):
             encoded = embed_seq(
                 sources, params['source_vocab_size'], args.hidden_units, zero_pad=True, scale=True)
         
-        with tf.variable_scope('encoder_positional_encoding', reuse=reuse):
+        with tf.variable_scope('encoder_position_encoding', reuse=reuse):
             encoded += pos_enc(sources, en_masks, args.hidden_units)
         
         with tf.variable_scope('encoder_dropout', reuse=reuse):
@@ -25,7 +25,7 @@ def forward_pass(sources, targets, params, reuse=False):
             with tf.variable_scope('encoder_attn_%d'%i, reuse=reuse):
                 encoded = multihead_attn(queries=encoded, keys=encoded, q_masks=en_masks, k_masks=en_masks,
                     num_units=args.hidden_units, num_heads=args.num_heads, dropout_rate=args.dropout_rate,
-                    future_binding=False, reuse=reuse, activation=params['activation'])
+                    future_binding=False, reuse=reuse, activation=None)
             
             with tf.variable_scope('encoder_feedforward_%d'%i, reuse=reuse):
                 encoded = pointwise_feedforward(encoded, num_units=[4*args.hidden_units, args.hidden_units],
@@ -44,7 +44,7 @@ def forward_pass(sources, targets, params, reuse=False):
                 decoded = embed_seq(
                     decoder_inputs, params['target_vocab_size'], args.hidden_units, zero_pad=True, scale=True)
         
-        with tf.variable_scope('decoder_positional_encoding', reuse=reuse):
+        with tf.variable_scope('decoder_position_encoding', reuse=reuse):
             decoded += pos_enc(decoder_inputs, de_masks, args.hidden_units)
                 
         with tf.variable_scope('decoder_dropout', reuse=reuse):
@@ -54,12 +54,12 @@ def forward_pass(sources, targets, params, reuse=False):
             with tf.variable_scope('decoder_self_attn_%d'%i, reuse=reuse):
                 decoded = multihead_attn(queries=decoded, keys=decoded, q_masks=de_masks, k_masks=de_masks,
                     num_units=args.hidden_units, num_heads=args.num_heads, dropout_rate=args.dropout_rate,
-                    future_binding=True, reuse=reuse, activation=params['activation'])
+                    future_binding=True, reuse=reuse, activation=None)
             
             with tf.variable_scope('decoder_attn_%d'%i, reuse=reuse):
                 decoded = multihead_attn(queries=decoded, keys=encoded, q_masks=de_masks, k_masks=en_masks,
                     num_units=args.hidden_units, num_heads=args.num_heads, dropout_rate=args.dropout_rate,
-                    future_binding=False, reuse=reuse, activation=params['activation'])
+                    future_binding=False, reuse=reuse, activation=None)
             
             with tf.variable_scope('decoder_feedforward_%d'%i, reuse=reuse):
                 decoded = pointwise_feedforward(decoded, num_units=[4*args.hidden_units, args.hidden_units],
@@ -145,13 +145,13 @@ def _shift_right(targets, start_symbol):
     return tf.concat([start_symbols, targets[:, :-1]], axis=-1)
 
 
-def _get_positional_encoder():
-    if args.positional_encoding == 'sinusoidal':
+def _get_position_encoder():
+    if args.position_encoding == 'non_param':
         pos_enc = sinusoidal_position_encoding
-    elif args.positional_encoding == 'learned':
+    elif args.position_encoding == 'param':
         pos_enc = learned_position_encoding
     else:
-        raise ValueError("positional encoding has to be either 'sinusoidal' or 'learned'")
+        raise ValueError("position encoding has to be either 'sinusoidal' or 'learned'")
     return pos_enc
 
 
