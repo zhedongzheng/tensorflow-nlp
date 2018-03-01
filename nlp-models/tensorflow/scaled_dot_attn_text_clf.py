@@ -46,7 +46,7 @@ class OnlyAttentionClassifier:
         masks = tf.sign(self.X)
         batch_size = tf.shape(self.X)[0]
         # scaled dot product
-        align = tf.matmul(x, x, transpose_b=True)
+        align = tf.matmul(x, tf.transpose(x, [0,2,1]))
         align = align / np.sqrt(self.embedding_dims)
         # key masking
         paddings = tf.fill(tf.shape(align), float('-inf'))
@@ -59,12 +59,12 @@ class OnlyAttentionClassifier:
         q_masks = tf.tile(tf.expand_dims(q_masks, -1), [1, 1, self.seq_len]) 
         align *= q_masks
         # weighted sum
-        attn = tf.matmul(align, x)
+        x = tf.matmul(align, x)
         # pooling for classification
-        max_attn = self.global_pooling(attn, tf.layers.max_pooling1d)
-        avg_attn = self.global_pooling(attn, tf.layers.average_pooling1d)
-        self._pointer = tf.concat([max_attn, avg_attn], -1)
-        self._pointer = tf.nn.dropout(self._pointer, self.keep_prob)
+        g_max = self.global_pooling(x, tf.layers.max_pooling1d)
+        g_avg = self.global_pooling(x, tf.layers.average_pooling1d)
+        x = tf.concat([g_max, g_avg], -1)
+        self._pointer = tf.nn.dropout(x, self.keep_prob)
     # end method add_self_attention
 
 

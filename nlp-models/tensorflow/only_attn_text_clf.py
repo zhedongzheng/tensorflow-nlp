@@ -52,7 +52,7 @@ class OnlyAttentionClassifier:
         # probability
         align = tf.expand_dims(tf.nn.softmax(align), -1)
         # weighted sum
-        attention = tf.squeeze(tf.matmul(x, align, transpose_a=True), -1)
+        attention = tf.squeeze(tf.matmul(tf.transpose(x, [0,2,1]), align), -1)
 
         self._pointer = tf.nn.dropout(attention, self.keep_prob)
     # end method add_self_attention
