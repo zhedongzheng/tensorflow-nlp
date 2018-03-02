@@ -7,7 +7,7 @@ import math
 
 class RNNTextClassifier:
     def __init__(self, vocab_size, n_out, embedding_dims=128, cell_size=128, grad_clip=5.0,
-                 attn_size=50, sess=tf.Session()):
+                 sess=tf.Session()):
         """
         Parameters:
         -----------
@@ -24,7 +24,6 @@ class RNNTextClassifier:
         self.embedding_dims = embedding_dims
         self.cell_size = cell_size
         self.grad_clip = grad_clip
-        self.attn_size = attn_size
         self.n_out = n_out
         self.sess = sess
         self._pointer = None
@@ -73,16 +72,12 @@ class RNNTextClassifier:
 
 
     def add_attention(self):
-        v = tf.get_variable("attention_v", [self.attn_size], tf.float32)
-        # (B, 1, D)
-        query = tf.layers.dense(tf.expand_dims(self.final_state.h, 1), self.attn_size)
-        # (B, T, D)
-        keys = tf.layers.dense(self._pointer, self.attn_size)                           
-        align = tf.reduce_sum(v * tf.tanh(keys + query), [2])
-        align = self.softmax(align)
-        # (batch, cell_size, seq_len) * (batch, seq_len, 1) = (batch, cell_size, 1)
-        self._pointer = tf.squeeze(tf.matmul(tf.transpose(self._pointer, [0, 2, 1]),
-                                             tf.expand_dims(align, 2)), 2)
+        query = tf.expand_dims(self.final_state.h, -1)
+        keys = self._pointer                       
+        align = tf.squeeze(tf.matmul(keys, query), -1)
+        align = tf.nn.softmax(align)
+        self._pointer = tf.squeeze(tf.matmul(tf.transpose(self._pointer, [0,2,1]),
+            tf.expand_dims(align, 2)), 2)
     # end method add_attention
 
 
@@ -209,9 +204,4 @@ class RNNTextClassifier:
     def list_avg(self, l):
         return sum(l) / len(l)
     # end method list_avg
-
-    def softmax(self, tensor):
-        exps = tf.exp(tensor)
-        return exps / tf.reduce_sum(exps, 1, keep_dims=True)
-    # end method softmax
 # end class
