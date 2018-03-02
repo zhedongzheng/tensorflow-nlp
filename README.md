@@ -81,7 +81,9 @@ $ pip3 install grpcio==1.9.1 tensorflow==1.6.0 sklearn scipy
 <img src="https://github.com/zhedongzheng/finch/blob/master/assets/dmn-details.png" height='150'>
 
 * Memory Network
+
    * [End-To-End Memory Network](https://github.com/zhedongzheng/finch/tree/master/nlp-models/tensorflow/dmn) 
+   
    * [Dynamic Memory Network](https://github.com/zhedongzheng/finch/tree/master/nlp-models/tensorflow/dmn) 
 
 ---
