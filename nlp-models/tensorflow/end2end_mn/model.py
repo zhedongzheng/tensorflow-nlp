@@ -36,7 +36,14 @@ class MemoryNetwork:
         question = self.quest_pipe(self.placeholders['questions'])
 
         match = tf.matmul(question, tf.transpose(memory_i, [0,2,1]))
-        match = tf.nn.softmax(match) # (batch, question_maxlen, story_maxlen)
+
+        match = self.pre_softmax_masking(
+            match, self.placeholders['inputs_len'], self.params['max_input_len'])
+
+        match = tf.nn.softmax(match) # (batch, question_maxlen, input_maxlen)
+
+        match = self.post_softmax_masking(
+            match, self.placeholders['questions_len'], self.params['max_quest_len'])
 
         response = tf.matmul(match, memory_o)
         answer = tf.layers.flatten(tf.concat([response, question], -1))
@@ -140,12 +147,28 @@ class MemoryNetwork:
         encoding = 1 + 4 * encoding / embedding_size / sentence_size
         return np.transpose(encoding)
 
-    def embed_seq(self, x, zero_pad=False):
+
+    def embed_seq(self, x, zero_pad=True):
         lookup_table = tf.get_variable('lookup_table',
             dtype=tf.float32, shape=[self.params['vocab_size'], args.hidden_dim])
         if zero_pad:
             lookup_table = tf.concat((tf.zeros([1, args.hidden_dim]), lookup_table[1:, :]), axis=0)
         return tf.nn.embedding_lookup(lookup_table, x)
+
+    
+    def pre_softmax_masking(self, x, seq_len, max_seq_len):
+        paddings = tf.fill(tf.shape(x), float('-inf'))
+        T = x.get_shape().as_list()[1]
+        masks = tf.sequence_mask(seq_len, max_seq_len, dtype=tf.float32)
+        masks = tf.tile(tf.expand_dims(masks, 1), [1, T, 1])
+        return tf.where(tf.equal(masks, 0), paddings, x)
+
+
+    def post_softmax_masking(self, x, seq_len, max_seq_len):
+        T = x.get_shape().as_list()[-1]
+        masks = tf.sequence_mask(seq_len, max_seq_len, dtype=tf.float32)
+        masks = tf.tile(tf.expand_dims(masks, -1), [1, 1, T])
+        return (x * masks)
 
 
     def train_session(self, sess, batch):
