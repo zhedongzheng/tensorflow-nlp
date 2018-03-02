@@ -4,8 +4,12 @@
 python train.py
 ```
 ```
-[10/10] | [150/156] | loss:0.262 | acc:0.883
-final testing accuracy: 0.928
+Data Shuffled
+[10/10] | [0/156] | loss:0.170 | acc:0.938
+[10/10] | [50/156] | loss:0.160 | acc:0.938
+[10/10] | [100/156] | loss:0.161 | acc:0.953
+[10/10] | [150/156] | loss:0.102 | acc:0.961
+final testing accuracy: 0.945
 
 [['Fred', 'picked', 'up', 'the', 'football', 'there', '<end>'],
  ['Fred', 'gave', 'the', 'football', 'to', 'Jeff', '<end>'],
