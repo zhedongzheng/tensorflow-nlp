@@ -9,7 +9,7 @@ def forward_pass(sources, targets, params, reuse=False):
         pos_enc = _get_position_encoder()
 
         # ENCODER
-        en_masks = tf.sign(tf.abs(sources))     
+        en_masks = tf.sign(sources)   
 
         with tf.variable_scope('encoder_embedding', reuse=reuse):
             encoded = embed_seq(
@@ -33,7 +33,7 @@ def forward_pass(sources, targets, params, reuse=False):
 
         # DECODER
         decoder_inputs = _shift_right(targets, params['start_symbol'])
-        de_masks = tf.sign(tf.abs(decoder_inputs))
+        de_masks = tf.sign(decoder_inputs)
             
         if args.tied_embedding:
             with tf.variable_scope('encoder_embedding', reuse=True):
