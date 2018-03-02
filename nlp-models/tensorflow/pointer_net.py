@@ -52,12 +52,9 @@ class PointerNetwork:
 
     def add_decoder_layer(self):
         def loop_fn(state, reuse=None):
-            num_units = state.get_shape().as_list()[1]
-            with tf.variable_scope('rnn_decoder', reuse=reuse):
-                v = tf.get_variable('attention_v', [self.rnn_size], tf.float32)
-                query = tf.expand_dims(state, 1)
-                keys = self.enc_rnn_out
-            align = tf.reduce_sum(v * tf.tanh(keys + query), [2])
+            query = tf.expand_dims(state, -1)
+            keys = self.enc_rnn_out
+            align = tf.squeeze(tf.matmul(keys, query), -1)
             return align
 
         def rnn_decoder(initial_state, cell, embedding):
