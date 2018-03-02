@@ -9,7 +9,7 @@ $ pip3 install grpcio==1.9.1 tensorflow==1.6.0 sklearn scipy
 * [Text Generation（文本生成）](https://github.com/zhedongzheng/finch#text-generation%E6%96%87%E6%9C%AC%E7%94%9F%E6%88%90)
 * [Sequence Labelling（序列标记）](https://github.com/zhedongzheng/finch#sequence-labelling%E5%BA%8F%E5%88%97%E6%A0%87%E8%AE%B0)
 * [Sequence to Sequence（序列到序列）](https://github.com/zhedongzheng/finch#sequence-to-sequence%E5%BA%8F%E5%88%97%E5%88%B0%E5%BA%8F%E5%88%97)
-* [Memory Networks（记忆网络）](https://github.com/zhedongzheng/finch#question-answering%E9%97%AE%E9%A2%98%E5%9B%9E%E7%AD%94)
+* [Memory Networks（记忆网络）](https://github.com/zhedongzheng/finch/blob/master/README.md#memory-networks%E8%AE%B0%E5%BF%86%E7%BD%91%E7%BB%9C)
 ---
 #### Word Embedding（词向量）
 <img src="https://github.com/zhedongzheng/finch/blob/master/assets/decoration_6.png" height='150'>
@@ -80,11 +80,9 @@ $ pip3 install grpcio==1.9.1 tensorflow==1.6.0 sklearn scipy
 #### Memory Networks（记忆网络）
 <img src="https://github.com/zhedongzheng/finch/blob/master/assets/dmn-details.png" height='150'>
 
-* Memory Network
+* [End-To-End Memory Network](https://github.com/zhedongzheng/finch/tree/master/nlp-models/tensorflow/end2end_mn) 
 
-   * [End-To-End Memory Network](https://github.com/zhedongzheng/finch/tree/master/nlp-models/tensorflow/end2end_mn) 
-   
-   * [Dynamic Memory Network](https://github.com/zhedongzheng/finch/tree/master/nlp-models/tensorflow/dmn) 
+* [Dynamic Memory Network](https://github.com/zhedongzheng/finch/tree/master/nlp-models/tensorflow/dmn) 
 
 ---
 #### How To Use
