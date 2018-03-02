@@ -90,7 +90,7 @@ def main():
         embedding_dim = 15)
     
     model.fit(X_train, X_train_len, Y_train, Y_train_len,
-        val_data=(X_test, X_test_len, Y_test, Y_test_len), batch_size=BATCH_SIZE, n_epoch=100)
+        val_data=(X_test, X_test_len, Y_test, Y_test_len), batch_size=BATCH_SIZE, n_epoch=200)
     model.infer('common', X_idx2char)
     model.infer('apple', X_idx2char)
     model.infer('zhedong', X_idx2char)
