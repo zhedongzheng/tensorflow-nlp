@@ -41,15 +41,17 @@ Some functions are adapted from [Kyubyong's](https://github.com/Kyubyong/transfo
     ``` python train_dialog.py```
     
     ```
-    INFO:tensorflow:loss = 3.48946, step = 7001 (19.987 sec)
-    INFO:tensorflow:lr = 0.000851138 (19.987 sec)
-    INFO:tensorflow:Saving checkpoints for 7092 into ./saved/model.ckpt.
-    INFO:tensorflow:Loss for final step: 3.32809.
+    INFO:tensorflow:Loss for final step: 4.581911.
+    INFO:tensorflow:Calling model_fn.
+    INFO:tensorflow:Done calling model_fn.
+    INFO:tensorflow:Graph was finalized.
     INFO:tensorflow:Restoring parameters from ./saved/model.ckpt-7092
+    INFO:tensorflow:Running local_init_op.
+    INFO:tensorflow:Done running local_init_op.
     你是谁 -> 我是小通
     你喜欢我吗 -> 我喜欢你
-    给我唱一首歌 -> = =========
-    我帅吗 -> = =========
+    给我唱一首歌 -> =。=========
+    我帅吗 -> 你是我的
     ```
 
 <img src="https://github.com/zhedongzheng/finch/blob/master/assets/transform20fps.gif" height='400'>
