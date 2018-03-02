@@ -31,14 +31,14 @@ class MemoryNetwork:
 
 
     def forward(self):
-        inputs_c = self.input_pipe(self.placeholders['inputs'], 'c')
-        inputs_m = self.input_pipe(self.placeholders['inputs'], 'm')
+        memory_o = self.input_pipe(self.placeholders['inputs'], 'memory_o')
+        memory_i = self.input_pipe(self.placeholders['inputs'], 'memory_i')
         question = self.quest_pipe(self.placeholders['questions'])
 
-        match = tf.matmul(question, tf.transpose(inputs_m, [0,2,1]))
+        match = tf.matmul(question, tf.transpose(memory_i, [0,2,1]))
         match = tf.nn.softmax(match) # (batch, question_maxlen, story_maxlen)
 
-        response = tf.matmul(match, inputs_c)
+        response = tf.matmul(match, memory_o)
         answer = tf.layers.flatten(tf.concat([response, question], -1))
         answer = tf.layers.dense(answer, args.hidden_dim)
         
@@ -48,8 +48,7 @@ class MemoryNetwork:
 
     def quest_pipe(self, x):
         with tf.variable_scope('question'):
-            x = tf.contrib.layers.embed_sequence(
-                x, self.params['vocab_size'], args.hidden_dim)
+            x = self.embed_seq(x)
             x = tf.layers.dropout(x, args.dropout_rate,
                 training=self.placeholders['is_training'],
                 noise_shape=[tf.shape(x)[0], 1, args.hidden_dim])
@@ -60,15 +59,10 @@ class MemoryNetwork:
 
     def input_pipe(self, x, name):
         with tf.variable_scope('input_'+name):
-            x = tf.layers.flatten(x)
-            x = tf.contrib.layers.embed_sequence(
-                x, self.params['vocab_size'], args.hidden_dim)
+            x = self.embed_seq(x)
             x = tf.layers.dropout(x, args.dropout_rate,
                 training=self.placeholders['is_training'],
-                noise_shape=[tf.shape(x)[0], 1, args.hidden_dim])
-            x = tf.reshape(x,
-                [tf.shape(x)[0], self.params['max_input_len'],
-                self.params['max_sent_len'], args.hidden_dim])
+                noise_shape=[tf.shape(x)[0], 1, 1, args.hidden_dim])
             pos = self.position_encoding(
                 self.params['max_sent_len'], args.hidden_dim)
             x = tf.reduce_sum(x * pos, 2)
@@ -90,8 +84,8 @@ class MemoryNetwork:
             answer, args.dropout_rate, training=self.placeholders['is_training'])
         answer_inputs = self.shift_right(self.placeholders['answers'])
 
-        with tf.variable_scope('input_c', reuse=True):
-            embedding = tf.get_variable('EmbedSequence/embeddings')
+        with tf.variable_scope('input_memory_o', reuse=True):
+            embedding = tf.get_variable('lookup_table')
         
         with tf.variable_scope('answer_module'):
             helper = tf.contrib.seq2seq.TrainingHelper(
@@ -136,10 +130,6 @@ class MemoryNetwork:
             args.hidden_dim, kernel_initializer=tf.orthogonal_initializer(), reuse=reuse)
 
 
-    def zero_index_pad(self, embedding):
-        return tf.concat((tf.zeros([1, args.embed_dim]), embedding[1:, :]), axis=0)
-
-
     def position_encoding(self, sentence_size, embedding_size):
         encoding = np.ones((embedding_size, sentence_size), dtype=np.float32)
         ls = sentence_size + 1
@@ -149,6 +139,13 @@ class MemoryNetwork:
                 encoding[i-1, j-1] = (i - (le-1)/2) * (j - (ls-1)/2)
         encoding = 1 + 4 * encoding / embedding_size / sentence_size
         return np.transpose(encoding)
+
+    def embed_seq(self, x, zero_pad=False):
+        lookup_table = tf.get_variable('lookup_table',
+            dtype=tf.float32, shape=[self.params['vocab_size'], args.hidden_dim])
+        if zero_pad:
+            lookup_table = tf.concat((tf.zeros([1, args.hidden_dim]), lookup_table[1:, :]), axis=0)
+        return tf.nn.embedding_lookup(lookup_table, x)
 
 
     def train_session(self, sess, batch):
