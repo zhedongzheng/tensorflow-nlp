@@ -1,5 +1,5 @@
 ```
-pip3 install tensorflow==1.5.0 sklearn scipy
+pip3 install grpcio==1.9.1 tensorflow==1.6.0 sklearn scipy
 ```
 ---
 #### Contents
