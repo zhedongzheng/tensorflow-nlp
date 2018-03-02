@@ -123,7 +123,7 @@ class AttentionGRUCell(RNNCell):
             bias_initializer=self._bias_initializer,
             kernel_initializer=self._kernel_initializer)
     c = self._activation(self._candidate_linear([inputs, r_state]))
-    new_h = (1-g) * state + g * c
+    new_h = (1 - g) * state + g * c
     return new_h, new_h
 
 
