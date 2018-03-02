@@ -67,7 +67,7 @@ class CBOW:
 
         # divided by modulus for cosine similarity
         """
-        norm = tf.sqrt(tf.reduce_sum(tf.square(self.embedding), 1, keep_dims=True))
+        norm = tf.sqrt(tf.reduce_sum(tf.square(self.embedding), 1, keepdims=True))
         normalized_embedding = self.embedding / norm
         """
         normalized_embedding = tf.nn.l2_normalize(self.embedding, -1)
