@@ -1,6 +1,3 @@
-#### Dependency
-* [Python 3](https://www.python.org/downloads/)
-* [TensorFlow r1.5](https://www.tensorflow.org/)
 ```
 pip3 install tensorflow==1.5.0 sklearn scipy
 ```
