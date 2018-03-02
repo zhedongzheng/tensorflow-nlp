@@ -12,8 +12,8 @@ tf.logging.set_verbosity(tf.logging.INFO)
 
 def main():
     dl = DataLoader(
-        source_path='temp/dialog_source.txt',
-        target_path='temp/dialog_target.txt')
+        source_path='../temp/dialog_source.txt',
+        target_path='../temp/dialog_target.txt')
     sources, targets = dl.load()
     print('Source Vocab Size:', len(dl.source_word2idx))
     print('Target Vocab Size:', len(dl.target_word2idx))

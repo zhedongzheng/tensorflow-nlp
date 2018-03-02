@@ -1,1 +1,0 @@
-![alt text](https://github.com/zhedongzheng/finch/blob/master/assets/lsa_test.png)

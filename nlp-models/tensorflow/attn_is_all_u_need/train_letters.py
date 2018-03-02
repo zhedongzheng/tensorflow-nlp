@@ -11,8 +11,8 @@ tf.logging.set_verbosity(tf.logging.INFO)
 
 def main():
     dl = DataLoader(
-        source_path='temp/letters_source.txt',
-        target_path='temp/letters_target.txt')
+        source_path='../temp/letters_source.txt',
+        target_path='../temp/letters_target.txt')
     sources, targets = dl.load()
     
     tf_estimator = tf.estimator.Estimator(
