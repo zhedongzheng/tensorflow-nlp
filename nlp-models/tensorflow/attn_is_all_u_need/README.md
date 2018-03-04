@@ -18,7 +18,7 @@ Some functions are adapted from [Kyubyong's](https://github.com/Kyubyong/transfo
 
     * added more activation choices (leaky relu / elu) for easier gradient propagation
 
-    * enhanced masking (mask positional encoding as well)
+    * enhanced masking
 
     * implemented decoding on graph and added start tokens
 
