@@ -51,20 +51,21 @@ class PointerNetwork:
 
 
     def add_decoder_layer(self):
-        def loop_fn(state, reuse=None):
+        def loop_fn(state, masks, reuse=None):
             query = tf.expand_dims(state, -1)
             keys = self.enc_rnn_out
             align = tf.squeeze(tf.matmul(keys, query), -1)
-            return align
+            return (align * masks)
 
         def rnn_decoder(initial_state, cell, embedding):
             state = initial_state
             outputs = []
             starts = tf.fill([self.batch_size], self._x_go)
             inp = tf.nn.embedding_lookup(embedding, starts)
+            masks = tf.to_float(tf.sign(self.X))
             for i in range(self.max_len):
                 _, state = cell(inp, state)
-                output = loop_fn(state, reuse=True) if i > 0 else loop_fn(state)
+                output = loop_fn(state, masks, reuse=True) if i > 0 else loop_fn(state, masks)
                 outputs.append(output)
                 idx = tf.argmax(output, -1)
                 inp = point(idx)
