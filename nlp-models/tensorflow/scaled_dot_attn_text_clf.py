@@ -60,6 +60,8 @@ class OnlyAttentionClassifier:
         align *= q_masks
         # weighted sum
         x = tf.matmul(align, x)
+        # masking final outputs
+        x *= tf.expand_dims(tf.to_float(masks), -1)
         # pooling for classification
         g_max = self.global_pooling(x, tf.layers.max_pooling1d)
         g_avg = self.global_pooling(x, tf.layers.average_pooling1d)

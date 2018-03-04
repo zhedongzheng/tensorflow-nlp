@@ -43,18 +43,19 @@ class OnlyAttentionClassifier:
 
     def add_self_attention(self):
         x = self._pointer
+        masks = tf.sign(self.X)
         
         # alignment
         align = tf.squeeze(tf.layers.dense(x, 1, tf.tanh), -1)
         # masking
         paddings = tf.fill(tf.shape(align), float('-inf'))
-        align = tf.where(tf.equal(tf.sign(self.X), 0), paddings, align)
+        align = tf.where(tf.equal(masks, 0), paddings, align)
         # probability
         align = tf.expand_dims(tf.nn.softmax(align), -1)
         # weighted sum
-        attention = tf.squeeze(tf.matmul(tf.transpose(x, [0,2,1]), align), -1)
+        x = tf.squeeze(tf.matmul(tf.transpose(x, [0,2,1]), align), -1)
 
-        self._pointer = tf.nn.dropout(attention, self.keep_prob)
+        self._pointer = tf.nn.dropout(x, self.keep_prob)
     # end method add_self_attention
 
 
