@@ -44,7 +44,6 @@ class RNNTextClassifier:
     def add_input_layer(self):
         self.X = tf.placeholder(tf.int32, [None, None])
         self.Y = tf.placeholder(tf.int64, [None])
-        self.X_seq_lens = tf.placeholder(tf.int32, [None])
         self.keep_prob = tf.placeholder(tf.float32)
         self.lr = tf.placeholder(tf.float32)
         self._pointer = self.X
@@ -65,9 +64,10 @@ class RNNTextClassifier:
 
 
     def add_dynamic_rnn(self):       
-        self._pointer, self.final_state = tf.nn.dynamic_rnn(self.lstm_cell(), self._pointer,
-                                                            sequence_length=self.X_seq_lens,
-                                                            dtype=tf.float32)
+        self._pointer, self.final_state = tf.nn.dynamic_rnn(
+            self.lstm_cell(), self._pointer,
+            sequence_length = tf.count_nonzero(self.X, 1),
+            dtype=tf.float32)
     # end method add_dynamic_rnn
 
 
@@ -75,6 +75,13 @@ class RNNTextClassifier:
         query = tf.expand_dims(self.final_state.h, -1)
         keys = self._pointer                       
         align = tf.squeeze(tf.matmul(keys, query), -1)
+
+        # masking
+        print("masking")
+        masks = tf.sign(self.X)
+        paddings = tf.fill(tf.shape(align), float('-inf'))
+        align = tf.where(tf.equal(masks, 0), paddings, align)
+
         align = tf.nn.softmax(align)
         self._pointer = tf.squeeze(tf.matmul(tf.transpose(self._pointer, [0,2,1]),
             tf.expand_dims(align, 2)), 2)
@@ -108,12 +115,12 @@ class RNNTextClassifier:
 
         self.sess.run(tf.global_variables_initializer()) # initialize all variables
         for epoch in range(n_epoch): # batch training
-            for local_step, ((X_batch, X_batch_lens), Y_batch) in enumerate(zip(self.next_batch(X, batch_size),
-                                                                                self.gen_batch(Y, batch_size))):
+            for local_step, (X_batch, Y_batch) in enumerate(zip(
+                self.next_batch(X, batch_size), self.gen_batch(Y, batch_size))):
+
                 lr = self.decrease_lr(en_exp_decay, global_step, n_epoch, len(X), batch_size)           
                 _, loss, acc = self.sess.run([self.train_op, self.loss, self.acc],
                                              {self.X :X_batch, self.Y: Y_batch,
-                                              self.X_seq_lens: X_batch_lens,
                                               self.lr: lr,
                                               self.keep_prob: keep_prob})
                 global_step += 1
@@ -123,11 +130,12 @@ class RNNTextClassifier:
 
             if val_data is not None: # go through testing data, average validation loss and ac 
                 val_loss_list, val_acc_list = [], []
-                for (X_test_batch, X_test_batch_lens), Y_test_batch in zip(self.next_batch(val_data[0], batch_size),
-                                                                           self.gen_batch(val_data[1], batch_size)):
+                for X_test_batch, Y_test_batch in zip(
+                    self.next_batch(val_data[0], batch_size),
+                    self.gen_batch(val_data[1], batch_size)):
+                    
                     v_loss, v_acc = self.sess.run([self.loss, self.acc],
                                                   {self.X: X_test_batch, self.Y: Y_test_batch,
-                                                   self.X_seq_lens: X_test_batch_lens,
                                                    self.keep_prob: 1.0})
                     val_loss_list.append(v_loss)
                     val_acc_list.append(v_acc)
@@ -155,10 +163,9 @@ class RNNTextClassifier:
 
     def predict(self, X_test, batch_size=128):
         batch_pred_list = []
-        for (X_test_batch, X_test_batch_lens) in self.next_batch(X_test, batch_size):
+        for X_test_batch in self.next_batch(X_test, batch_size):
             batch_pred = self.sess.run(self.logits,
                                       {self.X: X_test_batch,
-                                       self.X_seq_lens: X_test_batch_lens,
                                        self.keep_prob: 1.0})
             batch_pred_list.append(batch_pred)
         return np.argmax(np.vstack(batch_pred_list), 1)
@@ -168,18 +175,16 @@ class RNNTextClassifier:
     def pad_sentence_batch(self, sentence_batch, pad_int=0):
         max_seq_len = max([len(sentence) for sentence in sentence_batch])
         padded_seqs = []
-        seq_lens = []
         for sentence in sentence_batch:
             padded_seqs.append(sentence + [pad_int] * (max_seq_len - len(sentence)))
-            seq_lens.append(len(sentence))
-        return padded_seqs, seq_lens
+        return padded_seqs
     # end method pad_sentence_batc
 
 
     def next_batch(self, arr, batch_size):
         for i in range(0, len(arr), batch_size):
-            padded_seqs, seq_lens = self.pad_sentence_batch(arr[i : i+batch_size])
-            yield padded_seqs, seq_lens
+            padded_seqs = self.pad_sentence_batch(arr[i : i+batch_size])
+            yield padded_seqs
     # end method gen_batch
 
 
