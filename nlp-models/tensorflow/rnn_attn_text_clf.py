@@ -65,7 +65,7 @@ class RNNTextClassifier:
 
     def add_dynamic_rnn(self):       
         self._pointer, self.final_state = tf.nn.dynamic_rnn(
-            self.lstm_cell(), self._pointer,
+            cell=self.lstm_cell(), inputs=self._pointer,
             sequence_length = tf.count_nonzero(self.X, 1),
             dtype=tf.float32)
     # end method add_dynamic_rnn
@@ -77,7 +77,6 @@ class RNNTextClassifier:
         align = tf.squeeze(tf.matmul(keys, query), -1)
 
         # masking
-        print("masking")
         masks = tf.sign(self.X)
         paddings = tf.fill(tf.shape(align), float('-inf'))
         align = tf.where(tf.equal(masks, 0), paddings, align)
