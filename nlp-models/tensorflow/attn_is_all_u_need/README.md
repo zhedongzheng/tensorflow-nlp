@@ -20,7 +20,7 @@ Some functions are adapted from [Kyubyong's](https://github.com/Kyubyong/transfo
 
     * enhanced masking
 
-    * implemented decoding on graph and added start tokens
+    * decoding on graph
 
 * Small Task 1: learn sorting characters
 
