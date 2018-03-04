@@ -49,6 +49,8 @@ $ pip3 install tensorflow==1.6.0 sklearn scipy
 * [VAE](https://github.com/zhedongzheng/finch/tree/master/nlp-models/tensorflow/vae)
 
 #### Text Control（文本控制）
+<img src="https://github.com/zhedongzheng/finch/blob/master/assets/control-vae.png" height='150'>
+
 * [VAE + Discriminator + Wake-Sleep](https://github.com/zhedongzheng/finch/tree/master/nlp-models/tensorflow/toward-control)
 
 #### Sequence Labelling（序列标记）
