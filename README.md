@@ -36,8 +36,6 @@ $ pip3 install tensorflow==1.6.0 sklearn scipy
 
    * Scaled Dot-Product Attention &nbsp; &nbsp; [Model](https://github.com/zhedongzheng/finch/blob/master/nlp-models/tensorflow/scaled_dot_attn_text_clf.py) &nbsp; &nbsp; [IMDB Test](https://github.com/zhedongzheng/finch/blob/master/nlp-models/tensorflow/scaled_dot_attn_text_clf_imdb_test.py) &nbsp; &nbsp; [Result](https://github.com/zhedongzheng/finch/blob/master/nlp-models/tensorflow/scaled_dot_attn_text_clf_imdb_test.md)
 
-* [CTC](https://github.com/zhedongzheng/finch/tree/master/nlp-models/tensorflow/asr)
-
 #### Text Generation（文本生成）
 <img src="https://github.com/zhedongzheng/finch/blob/master/assets/decoration_5.png" height='150'>
 
@@ -47,6 +45,8 @@ $ pip3 install tensorflow==1.6.0 sklearn scipy
 * Character Aware CNN-RNN &nbsp; &nbsp;[Paper](https://arxiv.org/abs/1508.06615) &nbsp; &nbsp; [Model](https://github.com/zhedongzheng/finch/blob/master/nlp-models/tensorflow/cnn_rnn_text_gen.py) &nbsp; &nbsp; [PTB Test](https://github.com/zhedongzheng/finch/blob/master/nlp-models/tensorflow/cnn_rnn_text_gen_test.py)
 
 * Only-Attention &nbsp; &nbsp; [Model](https://github.com/zhedongzheng/finch/blob/master/nlp-models/tensorflow/self_attn_lm.py) &nbsp; | &nbsp; [English Story Test](https://github.com/zhedongzheng/finch/blob/master/nlp-models/tensorflow/self_attn_lm_test.py) &nbsp; &nbsp; [Result](https://github.com/zhedongzheng/finch/blob/master/nlp-models/tensorflow/self_attn_lm_test.md) &nbsp; | &nbsp; [Chinese Address Test](https://github.com/zhedongzheng/finch/blob/master/nlp-models/tensorflow/self_attn_lm_addr_test.py) &nbsp; &nbsp; [Result](https://github.com/zhedongzheng/finch/blob/master/nlp-models/tensorflow/self_attn_lm_addr_test.md)
+
+* [CTC](https://github.com/zhedongzheng/finch/tree/master/nlp-models/tensorflow/asr)
 
 #### Text Control（文本控制）
 <img src="https://github.com/zhedongzheng/finch/blob/master/assets/decoration_8.png" height='150'>
