@@ -36,6 +36,8 @@ $ pip3 install tensorflow==1.6.0 sklearn scipy
 
    * Scaled Dot-Product Attention &nbsp; &nbsp; [Model](https://github.com/zhedongzheng/finch/blob/master/nlp-models/tensorflow/scaled_dot_attn_text_clf.py) &nbsp; &nbsp; [IMDB Test](https://github.com/zhedongzheng/finch/blob/master/nlp-models/tensorflow/scaled_dot_attn_text_clf_imdb_test.py) &nbsp; &nbsp; [Result](https://github.com/zhedongzheng/finch/blob/master/nlp-models/tensorflow/scaled_dot_attn_text_clf_imdb_test.md)
 
+* [CTC](https://github.com/zhedongzheng/finch/tree/master/nlp-models/tensorflow/asr)
+
 #### Text Generation（文本生成）
 <img src="https://github.com/zhedongzheng/finch/blob/master/assets/decoration_5.png" height='150'>
 
@@ -74,8 +76,6 @@ $ pip3 install tensorflow==1.6.0 sklearn scipy
 * [Attention Is All You Need](https://github.com/zhedongzheng/finch/tree/master/nlp-models/tensorflow/attn_is_all_u_need)
 
 * Pointer Network &nbsp; &nbsp; [Model](https://github.com/zhedongzheng/finch/blob/master/nlp-models/tensorflow/pointer_net.py) &nbsp; &nbsp; [Sorting Test](https://github.com/zhedongzheng/finch/blob/master/nlp-models/tensorflow/pointer_net_test.py)
-
-* [CTC](https://github.com/zhedongzheng/finch/tree/master/nlp-models/tensorflow/asr)
 
 * [VAE](https://github.com/zhedongzheng/finch/tree/master/nlp-models/tensorflow/vae)
 
