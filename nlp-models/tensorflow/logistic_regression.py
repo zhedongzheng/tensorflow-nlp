@@ -39,7 +39,7 @@ class LogisticRegression:
         log = {'loss':[], 'acc':[], 'val_loss':[], 'val_acc':[]}
         global_step = 0
 
-        self.sess.run(tf.global_variables_initializer()) # initialize all variables
+        self.sess.run(tf.global_variables_initializer())
         for epoch in range(n_epoch):
             if en_shuffle:
                 X, Y = sklearn.utils.shuffle(X, Y)
@@ -56,7 +56,7 @@ class LogisticRegression:
                     print ("Epoch %d/%d | Step %d/%d | train_loss: %.4f | train_acc: %.4f | lr: %.4f"
                         %(epoch+1, n_epoch, local_step, int(len(X)/batch_size), loss, acc, lr))
 
-            if val_data is not None: # go through test dara, compute averaged validation loss and acc
+            if val_data is not None:
                 val_loss_list, val_acc_list = [], []
                 for X_test_batch, Y_test_batch in zip(self.gen_batch(val_data[0], batch_size),
                                                       self.gen_batch(val_data[1], batch_size)):
@@ -80,7 +80,6 @@ class LogisticRegression:
                 print ("Epoch %d/%d | train_loss: %.4f | train_acc: %.4f |" % (epoch+1, n_epoch, loss, acc),
                     "test_loss: %.4f | test_acc: %.4f |" % (val_loss, val_acc),
                     "lr: %.4f" % (lr) )
-        # end "for epoch in range(n_epoch):"
 
         return log
     # end method fit
