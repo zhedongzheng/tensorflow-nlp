@@ -24,13 +24,12 @@ def transform(X, tfidf):
 
 
 if __name__ == '__main__':
-    (X_train, y_train), (X_test, y_test) = tf.contrib.keras.datasets.imdb.load_data(
+    (X_train, y_train), (X_test, y_test) = tf.keras.datasets.imdb.load_data(
         num_words=VOCAB_SIZE)
     
     tfidf = TfidfTransformer()
     X_train = transform(X_train, tfidf)
     X_test = transform(X_test, tfidf)
-    print(X_train.shape, X_test.shape)
 
     model = LogisticRegression(VOCAB_SIZE, 2)
     model.fit(X_train, y_train, n_epoch=2, batch_size=32, val_data=(X_test, y_test))
