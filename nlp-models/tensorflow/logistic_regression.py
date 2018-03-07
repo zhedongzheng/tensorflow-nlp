@@ -3,6 +3,8 @@ import tensorflow as tf
 import sklearn
 import math
 
+from scipy.sparse import isspmatrix_csr
+
 
 class LogisticRegression:
     def __init__(self, vocab_size, n_out, sess=tf.Session()):
@@ -32,9 +34,9 @@ class LogisticRegression:
     def fit(self, X, Y, val_data=None, n_epoch=10, batch_size=128,
             en_exp_decay=False, en_shuffle=True):
         if val_data is None:
-            print("Train %d samples" % len(X))
+            print("Train %s" % X.shape)
         else:
-            print("Train %d samples | Test %d samples" % (len(X), len(val_data[0])))
+            print("Train %s | Test %s" % (X.shape, val_data[0].shape))
 
         log = {'loss':[], 'acc':[], 'val_loss':[], 'val_acc':[]}
         global_step = 0
@@ -47,14 +49,14 @@ class LogisticRegression:
             
             for X_batch, Y_batch in zip(self.gen_batch(X, batch_size),
                                         self.gen_batch(Y, batch_size)):
-                lr = self.decrease_lr(en_exp_decay, global_step, n_epoch, len(X), batch_size) 
+                lr = self.decrease_lr(en_exp_decay, global_step, n_epoch, X.shape[0], batch_size) 
                 _, loss, acc = self.sess.run([self.train_op, self.loss, self.acc],
                     {self.X:X_batch, self.Y:Y_batch, self.lr:lr})
                 local_step += 1
                 global_step += 1
                 if local_step % 50 == 0:
                     print ("Epoch %d/%d | Step %d/%d | train_loss: %.4f | train_acc: %.4f | lr: %.4f"
-                        %(epoch+1, n_epoch, local_step, int(len(X)/batch_size), loss, acc, lr))
+                        %(epoch+1, n_epoch, local_step, X.shape[0]//batch_size, loss, acc, lr))
 
             if val_data is not None:
                 val_loss_list, val_acc_list = [], []
@@ -96,8 +98,11 @@ class LogisticRegression:
 
 
     def gen_batch(self, arr, batch_size):
-        for i in range(0, len(arr), batch_size):
-            yield arr[i : i+batch_size]
+        for i in range(0, arr.shape[0], batch_size):
+            if isspmatrix_csr(arr):
+                yield arr[i : i+batch_size].toarray()
+            else:
+                yield arr[i : i+batch_size]
     # end method gen_batch
 
 

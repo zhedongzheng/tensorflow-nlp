@@ -18,7 +18,7 @@ def transform(X, tfidf):
     print("%.2f secs ==> Document-Term Matrix"%(time.time()-t0))
 
     t0 = time.time()
-    X = tfidf.fit_transform(count).toarray()
+    X = tfidf.fit_transform(count)
     print("%.2f secs ==> TF-IDF transform"%(time.time()-t0))
     return X
 
