@@ -53,7 +53,7 @@ $ pip3 install tensorflow==1.6.0 sklearn scipy
 #### Text Control（文本控制）
 <img src="https://github.com/zhedongzheng/finch/blob/master/assets/decoration_8.png" height='150'>
 
-* [Controllable VAE](https://github.com/zhedongzheng/finch/tree/master/nlp-models/tensorflow/toward-control)
+* ["Toward Controlled Generation of Text"](https://github.com/zhedongzheng/finch/tree/master/nlp-models/tensorflow/toward-control)
 
 #### Sequence Labelling（序列标记）
 <img src="https://github.com/zhedongzheng/finch/blob/master/assets/decoration_4.jpg" height='150'>
