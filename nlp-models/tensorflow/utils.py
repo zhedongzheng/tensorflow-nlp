@@ -48,7 +48,7 @@ def learned_positional_encoding(inputs, embed_dim, zero_pad=False, scale=False):
     return embed_seq(outputs, T, embed_dim, zero_pad=zero_pad, scale=scale)
 
 
-def sinusoidal_positional_encoding(inputs, num_units, zero_pad=True, scale=True):
+def sinusoidal_positional_encoding(inputs, num_units, zero_pad=False, scale=False):
     T = inputs.get_shape().as_list()[-1]
     position_idx = tf.tile(tf.expand_dims(tf.range(T), 0), [tf.shape(inputs)[0], 1])
 

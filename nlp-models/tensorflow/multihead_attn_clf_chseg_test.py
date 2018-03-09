@@ -4,7 +4,6 @@ import chseg
 import numpy as np
 import tensorflow as tf
 
-from birnn_crf_clf import BiRNN_CRF
 from collections import Counter
 from multihead_attn_clf import Tagger
 from sklearn.metrics import classification_report
@@ -43,7 +42,7 @@ if __name__ == '__main__':
     X_test, Y_test = to_test_seq(x_test, y_test)
     print('Vocab size: %d' % vocab_size)
 
-    clf = Tagger(vocab_size, N_CLASS, SEQ_LEN, num_blocks=2)
+    clf = Tagger(vocab_size, N_CLASS, SEQ_LEN)
     clf.fit(X_train, Y_train, n_epoch=N_EPOCH, batch_size=BATCH_SIZE)
 
     y_pred = clf.predict(X_test, batch_size=BATCH_SIZE)

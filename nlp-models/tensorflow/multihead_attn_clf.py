@@ -2,7 +2,7 @@ import tensorflow as tf
 import numpy as np
 import math
 from sklearn.utils import shuffle
-from utils import embed_seq, learned_positional_encoding, pointwise_feedforward, layer_norm
+from utils import *
 
 
 class Tagger:
@@ -43,22 +43,29 @@ class Tagger:
         with tf.variable_scope('encoder_embedding'):
             encoded = embed_seq(
                 self.X, self.vocab_size, self.hidden_units, zero_pad=False, scale=True)
+        
         with tf.variable_scope('encoder_positional_encoding'):
-            encoded += learned_positional_encoding(self.X, self.hidden_units, zero_pad=False, scale=False)
+            encoded += learned_positional_encoding(self.X, self.hidden_units)
+        
         with tf.variable_scope('encoder_dropout'):
             encoded = tf.layers.dropout(encoded, self.dropout_rate, training=self.is_training)
+        
         for i in range(self.num_blocks):
-            with tf.variable_scope('restricted_attn_%d'%i):
-                encoded = multihead_attn(queries=encoded, keys=encoded,
-                    num_units=self.hidden_units, num_heads=self.num_heads, dropout_rate=self.dropout_rate,
-                    is_training=self.is_training, restricted=True)
-            with tf.variable_scope('global_attn_%d'%i):
-                encoded = multihead_attn(queries=encoded, keys=encoded,
-                    num_units=self.hidden_units, num_heads=self.num_heads, dropout_rate=self.dropout_rate,
-                    is_training=self.is_training)
-            with tf.variable_scope('encoder_feedforward_%d'%i):
-                encoded = pointwise_feedforward(encoded, num_units=[4*self.hidden_units, self.hidden_units],
-                    activation=tf.nn.elu)
+
+            with tf.variable_scope('attn_masked_%d'%i):
+                encoded = multihead_attn(encoded,
+                    num_units=self.hidden_units, num_heads=self.num_heads,
+                    dropout_rate=self.dropout_rate, is_training=self.is_training, reverse=False)
+
+            with tf.variable_scope('attn_global_%d'%i):
+                encoded = multihead_attn(encoded,
+                    num_units=self.hidden_units, num_heads=self.num_heads,
+                    dropout_rate=self.dropout_rate, is_training=self.is_training, reverse=True)
+            
+            with tf.variable_scope('pointwise_%d'%i):
+                encoded = pointwise_feedforward(encoded,
+                    num_units=[4*self.hidden_units, self.hidden_units], activation=tf.nn.relu)
+        
         self.logits = tf.layers.dense(encoded, self.n_out)
     # end method add_forward_path
 
@@ -157,35 +164,25 @@ class Tagger:
 # end class
 
 
-def multihead_attn(queries, keys, num_units, num_heads, dropout_rate, is_training,
-                   restricted=False):
-    """
-    Args:
-      queries: A 3d tensor with shape of [N, T_q, C_q]
-      keys: A 3d tensor with shape of [N, T_k, C_k]
-    """
-    if num_units is None:
-        num_units = queries.get_shape().as_list[-1]
-    T_q = queries.get_shape().as_list()[1]                                         # max time length of query
-    T_k = keys.get_shape().as_list()[1]                                            # max time length of key
+def multihead_attn(inputs, num_units, num_heads, dropout_rate, is_training, reverse=False):
+    T_q = T_k = inputs.get_shape().as_list()[1]                  
 
-    Q = tf.layers.dense(queries, num_units)                                        # (N, T_q, C)
-    K = tf.layers.dense(keys, num_units)                                           # (N, T_k, C)
-    V = tf.layers.dense(keys, num_units)                                           # (N, T_k, C)
-
+    Q_K_V = tf.layers.dense(inputs, 3*num_units, tf.nn.relu)
+    Q, K, V = tf.split(Q_K_V, 3, -1)
+    
     Q_ = tf.concat(tf.split(Q, num_heads, axis=2), axis=0)                         # (h*N, T_q, C/h) 
     K_ = tf.concat(tf.split(K, num_heads, axis=2), axis=0)                         # (h*N, T_k, C/h) 
     V_ = tf.concat(tf.split(V, num_heads, axis=2), axis=0)                         # (h*N, T_k, C/h)
-
+    
     align = tf.matmul(Q_, tf.transpose(K_, [0,2,1]))                               # (h*N, T_q, T_k)
     align = align / (K_.get_shape().as_list()[-1] ** 0.5)                          # scale
     
-    if restricted:
-        paddings = tf.fill(tf.shape(align), float('-inf'))                         # exp(-large) -> 0
-        lower_tri = tf.ones([T_q, T_k])                                            # (T_q, T_k)
-        lower_tri = tf.linalg.LinearOperatorLowerTriangular(lower_tri).to_dense()  # (T_q, T_k)
-        masks = tf.tile(tf.expand_dims(lower_tri,0), [tf.shape(align)[0], 1, 1])   # (h*N, T_q, T_k)
-        align = tf.where(tf.equal(masks, 0), paddings, align)                      # (h*N, T_q, T_k)
+    paddings = tf.fill(tf.shape(align), float('-inf'))                             # exp(-large) -> 0
+    lower_tri = tf.ones([T_q, T_k])                                                # (T_q, T_k)
+    lower_tri = tf.linalg.LinearOperatorLowerTriangular(lower_tri).to_dense()      # (T_q, T_k)
+    lower_tri = tf.transpose(lower_tri) if reverse else lower_tri
+    masks = tf.tile(tf.expand_dims(lower_tri,0), [tf.shape(align)[0], 1, 1])       # (h*N, T_q, T_k)
+    align = tf.where(tf.equal(masks, 0), paddings, align)                          # (h*N, T_q, T_k)
 
     align = tf.nn.softmax(align)                                                   # (h*N, T_q, T_k)
 
@@ -193,10 +190,12 @@ def multihead_attn(queries, keys, num_units, num_heads, dropout_rate, is_trainin
 
     # Weighted sum
     outputs = tf.matmul(align, V_)                                                 # (h*N, T_q, C/h)
+    
     # Restore shape
     outputs = tf.concat(tf.split(outputs, num_heads, axis=0), axis=2)              # (N, T_q, C)
+    
     # Residual connection
-    outputs += queries                                                             # (N, T_q, C)   
+    outputs += inputs                                                              # (N, T_q, C)   
     # Normalize
     outputs = layer_norm(outputs)                                                  # (N, T_q, C)
     return outputs
