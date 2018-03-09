@@ -83,7 +83,7 @@ class Tagger:
     # end method add_backward_path
 
 
-    def fit(self, X, Y, val_data, n_epoch=10, batch_size=128, en_exp_decay=True, en_shuffle=True):
+    def fit(self, X, Y, val_data=None, n_epoch=10, batch_size=128, en_exp_decay=True, en_shuffle=True):
         global_step = 0
         self.sess.run(tf.global_variables_initializer()) # initialize all variables
         for epoch in range(n_epoch): # batch training
@@ -104,10 +104,11 @@ class Tagger:
             # verbose
             print ("Epoch %d/%d | train_loss: %.4f | train_acc: %.4f |" % (epoch+1, n_epoch, loss, acc),
                    "lr: %.4f" % (lr) )
-            X_test, Y_test = val_data
-            y_pred = self.predict(X_test, batch_size=batch_size)
-            final_acc = (y_pred == Y_test).astype(np.float32).mean()
-            print("final testing accuracy: %.4f" % final_acc)
+            if val_data is not None:
+                X_test, Y_test = val_data
+                y_pred = self.predict(X_test, batch_size=batch_size)
+                final_acc = (y_pred == Y_test).astype(np.float32).mean()
+                print("final testing accuracy: %.4f" % final_acc)
     # end method fit
 
 

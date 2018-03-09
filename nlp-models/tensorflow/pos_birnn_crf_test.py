@@ -1,11 +1,13 @@
 import pos
 import numpy as np
 import tensorflow as tf
+
 from birnn_crf_clf import BiRNN_CRF
+from sklearn.metrics import classification_report
 
 
 SEQ_LEN = 20
-BATCH_SIZE = 512
+BATCH_SIZE = 128
 sample = ['I', 'love', 'you']
 
 
@@ -38,8 +40,7 @@ if __name__ == '__main__':
     clf.fit(X_train, Y_train, keep_prob=0.8, n_epoch=1, batch_size=BATCH_SIZE)
     
     y_pred = clf.predict(X_test, batch_size=BATCH_SIZE)
-    final_acc = (y_pred == Y_test).astype(np.float32).mean()
-    print("final testing accuracy: %.4f" % final_acc)
+    print(classification_report(Y_test.ravel(), y_pred.ravel(), target_names=tag2idx.keys()))
     
     idx2tag = {idx : tag for tag, idx in tag2idx.items()}
     labels = clf.infer([word2idx[w] for w in sample])

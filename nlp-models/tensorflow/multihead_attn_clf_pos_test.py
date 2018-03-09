@@ -2,6 +2,7 @@ import pos
 import numpy as np
 import tensorflow as tf
 from multihead_attn_clf import Tagger
+from sklearn.metrics import classification_report
 
 
 SEQ_LEN = 10
@@ -36,8 +37,11 @@ if __name__ == '__main__':
     print(X_train.shape, Y_train.shape, X_test.shape, Y_test.shape)
 
     clf = Tagger(vocab_size, n_class, SEQ_LEN)
-    clf.fit(X_train, Y_train, val_data=(X_test, Y_test), n_epoch=NUM_EPOCH, batch_size=BATCH_SIZE)
+    clf.fit(X_train, Y_train, n_epoch=NUM_EPOCH, batch_size=BATCH_SIZE)
     
+    y_pred = clf.predict(X_test, batch_size=BATCH_SIZE)
+    print(classification_report(Y_test.ravel(), y_pred.ravel(), target_names=tag2idx.keys()))
+
     idx2tag = {idx : tag for tag, idx in tag2idx.items()}
     _test = [word2idx[w] for w in sample] + [0] * (SEQ_LEN-len(sample))
     labels = clf.infer(_test, len(sample))

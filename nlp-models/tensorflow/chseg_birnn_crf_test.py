@@ -3,14 +3,16 @@ import sys
 import chseg
 import numpy as np
 import tensorflow as tf
+
 from birnn_crf_clf import BiRNN_CRF
 from collections import Counter
+from sklearn.metrics import classification_report
 
 
 SEQ_LEN = 50
 N_CLASS = 4 # B: 0, M: 1, E: 2, S: 3
 N_EPOCH = 1
-BATCH_SIZE = 512
+BATCH_SIZE = 128
 sample = '我来到大学读书，希望学到知识'
 py = int(sys.version[0])
 
@@ -30,7 +32,7 @@ def to_test_seq(*args):
     return data
 
 
-def iter_seq(x, text_iter_step=5):
+def iter_seq(x, text_iter_step=10):
     return np.array([x[i : i+SEQ_LEN] for i in range(0, len(x)-SEQ_LEN, text_iter_step)])
 
 
@@ -42,6 +44,9 @@ if __name__ == '__main__':
 
     clf = BiRNN_CRF(vocab_size, N_CLASS)
     clf.fit(X_train, Y_train, n_epoch=N_EPOCH, batch_size=BATCH_SIZE)
+
+    y_pred = clf.predict(X_test, batch_size=BATCH_SIZE)
+    print(classification_report(Y_test.ravel(), y_pred.ravel(), target_names=['B', 'M', 'E', 'S']))
     
     chars = list(sample) if py == 3 else list(sample.decode('utf-8'))
     labels = clf.infer([char2idx[c] for c in chars])
