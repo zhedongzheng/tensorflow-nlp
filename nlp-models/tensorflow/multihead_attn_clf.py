@@ -47,24 +47,21 @@ class Tagger:
         with tf.variable_scope('encoder_positional_encoding'):
             encoded += learned_positional_encoding(self.X, self.hidden_units)
         
-        with tf.variable_scope('encoder_dropout'):
-            encoded = tf.layers.dropout(encoded, self.dropout_rate, training=self.is_training)
-        
         for i in range(self.num_blocks):
 
-            with tf.variable_scope('attn_masked_%d'%i):
+            with tf.variable_scope('attn_masked_1_%d'%i):
                 encoded = multihead_attn(encoded,
                     num_units=self.hidden_units, num_heads=self.num_heads,
-                    dropout_rate=self.dropout_rate, is_training=self.is_training, reverse=False)
+                    dropout_rate=self.dropout_rate, is_training=self.is_training, h_w=3)
 
-            with tf.variable_scope('attn_global_%d'%i):
+            with tf.variable_scope('attn_masked_2_%d'%i):
                 encoded = multihead_attn(encoded,
                     num_units=self.hidden_units, num_heads=self.num_heads,
-                    dropout_rate=self.dropout_rate, is_training=self.is_training, reverse=True)
+                    dropout_rate=self.dropout_rate, is_training=self.is_training, h_w=7)
             
             with tf.variable_scope('pointwise_%d'%i):
                 encoded = pointwise_feedforward(encoded,
-                    num_units=[4*self.hidden_units, self.hidden_units], activation=tf.nn.relu)
+                    num_units=[self.hidden_units, self.hidden_units], activation=tf.nn.relu)
         
         self.logits = tf.layers.dense(encoded, self.n_out)
     # end method add_forward_path
@@ -164,7 +161,7 @@ class Tagger:
 # end class
 
 
-def multihead_attn(inputs, num_units, num_heads, dropout_rate, is_training, reverse=False):
+def multihead_attn(inputs, num_units, num_heads, dropout_rate, is_training, seq_len=50, h_w=5):
     T_q = T_k = inputs.get_shape().as_list()[1]                  
 
     Q_K_V = tf.layers.dense(inputs, 3*num_units, tf.nn.relu)
@@ -178,10 +175,19 @@ def multihead_attn(inputs, num_units, num_heads, dropout_rate, is_training, reve
     align = align / (K_.get_shape().as_list()[-1] ** 0.5)                          # scale
     
     paddings = tf.fill(tf.shape(align), float('-inf'))                             # exp(-large) -> 0
-    lower_tri = tf.ones([T_q, T_k])                                                # (T_q, T_k)
-    lower_tri = tf.linalg.LinearOperatorLowerTriangular(lower_tri).to_dense()      # (T_q, T_k)
-    lower_tri = tf.transpose(lower_tri) if reverse else lower_tri
-    masks = tf.tile(tf.expand_dims(lower_tri,0), [tf.shape(align)[0], 1, 1])       # (h*N, T_q, T_k)
+    
+    # fixed window masking
+    masks = np.zeros([T_q, T_k])
+    for i in range(seq_len):
+        if i < h_w:
+            masks[i, :i+h_w] = 1.
+        elif i > seq_len-h_w-1:
+            masks[i, i-h_w:] = 1.
+        else:                                                             
+            masks[i, i-h_w:i+h_w] = 1.
+    masks = tf.convert_to_tensor(masks)
+    
+    masks = tf.tile(tf.expand_dims(masks,0), [tf.shape(align)[0], 1, 1])           # (h*N, T_q, T_k)
     align = tf.where(tf.equal(masks, 0), paddings, align)                          # (h*N, T_q, T_k)
 
     align = tf.nn.softmax(align)                                                   # (h*N, T_q, T_k)
