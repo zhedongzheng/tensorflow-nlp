@@ -43,21 +43,23 @@ class Tagger:
         with tf.variable_scope('encoder_embedding'):
             encoded = embed_seq(
                 self.X, self.vocab_size, self.hidden_units, zero_pad=False, scale=True)
-        
+        """
         with tf.variable_scope('encoder_positional_encoding'):
             encoded += learned_positional_encoding(self.X, self.hidden_units)
-        
+        """
+        encoded = tf.layers.dropout(encoded, self.dropout_rate, training=self.is_training) 
+
         for i in range(self.num_blocks):
 
             with tf.variable_scope('attn_masked_1_%d'%i):
                 encoded = multihead_attn(encoded,
                     num_units=self.hidden_units, num_heads=self.num_heads,
-                    dropout_rate=self.dropout_rate, is_training=self.is_training, h_w=3)
+                    dropout_rate=self.dropout_rate, h_w=3)
 
             with tf.variable_scope('attn_masked_2_%d'%i):
                 encoded = multihead_attn(encoded,
                     num_units=self.hidden_units, num_heads=self.num_heads,
-                    dropout_rate=self.dropout_rate, is_training=self.is_training, h_w=7)
+                    dropout_rate=self.dropout_rate,  h_w=7)
             
             with tf.variable_scope('pointwise_%d'%i):
                 encoded = pointwise_feedforward(encoded,
@@ -161,7 +163,7 @@ class Tagger:
 # end class
 
 
-def multihead_attn(inputs, num_units, num_heads, dropout_rate, is_training, seq_len=50, h_w=5):
+def multihead_attn(inputs, num_units, num_heads, dropout_rate, seq_len=50, h_w=5):
     T_q = T_k = inputs.get_shape().as_list()[1]                  
 
     Q_K_V = tf.layers.dense(inputs, 3*num_units, tf.nn.relu)
@@ -191,8 +193,6 @@ def multihead_attn(inputs, num_units, num_heads, dropout_rate, is_training, seq_
     align = tf.where(tf.equal(masks, 0), paddings, align)                          # (h*N, T_q, T_k)
 
     align = tf.nn.softmax(align)                                                   # (h*N, T_q, T_k)
-
-    align = tf.layers.dropout(align, dropout_rate, training=is_training)           # (h*N, T_q, T_k)
 
     # Weighted sum
     outputs = tf.matmul(align, V_)                                                 # (h*N, T_q, C/h)
