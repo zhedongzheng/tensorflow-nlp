@@ -58,21 +58,22 @@ class RNNTextClassifier:
     # end method add_word_embedding_layer
 
 
-    def lstm_cell(self):
-        return tf.nn.rnn_cell.LSTMCell(self.cell_size, initializer=tf.orthogonal_initializer())
+    def rnn_cell(self):
+        return tf.nn.rnn_cell.GRUCell(self.cell_size//2, kernel_initializer=tf.orthogonal_initializer())
     # end method lstm_cell
 
 
-    def add_dynamic_rnn(self):       
-        self._pointer, self.final_state = tf.nn.dynamic_rnn(
-            cell=self.lstm_cell(), inputs=self._pointer,
-            sequence_length = tf.count_nonzero(self.X, 1),
-            dtype=tf.float32)
+    def add_dynamic_rnn(self):
+        (out_fw, out_bw), (state_fw, state_bw) = tf.nn.bidirectional_dynamic_rnn(
+            self.rnn_cell(), self.rnn_cell(), self._pointer,
+            sequence_length=tf.count_nonzero(self.X, 1), dtype=tf.float32)
+        self._pointer = tf.concat([out_fw, out_bw], -1)
+        self.final_state = tf.concat([state_fw, state_bw], -1)
     # end method add_dynamic_rnn
 
 
     def add_attention(self):
-        query = tf.expand_dims(self.final_state.h, -1)
+        query = tf.expand_dims(self.final_state, -1)
         keys = self._pointer                       
         align = tf.squeeze(tf.matmul(keys, query), -1)
 
@@ -88,7 +89,7 @@ class RNNTextClassifier:
 
 
     def add_output_layer(self):
-        self.logits = tf.layers.dense(self._pointer, self.n_out)
+        self.logits = tf.layers.dense(tf.concat([self._pointer, self.final_state], -1), self.n_out)
     # end method add_output_layer
 
 

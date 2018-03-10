@@ -58,20 +58,21 @@ class RNNTextClassifier:
     # end method add_word_embedding_layer
 
 
-    def lstm_cell(self):
-        return tf.nn.rnn_cell.LSTMCell(self.cell_size, initializer=tf.orthogonal_initializer())
+    def rnn_cell(self):
+        return tf.nn.rnn_cell.GRUCell(self.cell_size//2, kernel_initializer=tf.orthogonal_initializer())
     # end method lstm_cell
 
 
     def add_dynamic_rnn(self):       
-        _, self._pointer = tf.nn.dynamic_rnn(self.lstm_cell(), self._pointer,
-                                             sequence_length=self.X_seq_lens,
-                                             dtype=tf.float32)
+        _, (state_fw, state_bw) = tf.nn.bidirectional_dynamic_rnn(
+            self.rnn_cell(), self.rnn_cell(), self._pointer,
+            sequence_length=self.X_seq_lens, dtype=tf.float32)
+        self._pointer = tf.concat([state_fw, state_bw], -1)
     # end method add_dynamic_rnn
 
 
     def add_output_layer(self):
-        self.logits = tf.layers.dense(self._pointer.h, self.n_out)
+        self.logits = tf.layers.dense(self._pointer, self.n_out)
     # end method add_output_layer
 
 
