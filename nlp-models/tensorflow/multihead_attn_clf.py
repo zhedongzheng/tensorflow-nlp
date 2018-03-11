@@ -48,20 +48,13 @@ class Tagger:
 
         for i in range(self.num_blocks):
 
-            with tf.variable_scope('attn_1_masked_%d'%i):
+            with tf.variable_scope('attn_masked_%d'%i):
                 encoded = multihead_attn(encoded,
-                    num_units=self.hidden_units, num_heads=self.num_heads, h_w=3)
-
-            with tf.variable_scope('position_encoding'):
-                encoded += learned_positional_encoding(self.X, self.hidden_units)
-
-            with tf.variable_scope('attn_2_masked_%d'%i):
-                encoded = multihead_attn(encoded,
-                    num_units=self.hidden_units, num_heads=self.num_heads, h_w=12)
+                    num_units=self.hidden_units, num_heads=self.num_heads, h_w=2)
             
             with tf.variable_scope('pointwise_%d'%i):
                 encoded = pointwise_feedforward(encoded,
-                    num_units=[self.hidden_units, self.hidden_units], activation=tf.nn.relu)
+                    num_units=[2*self.hidden_units, self.hidden_units], activation=tf.nn.relu)
         
         self.logits = tf.layers.dense(encoded, self.n_out)
     # end method add_forward_path
@@ -180,12 +173,11 @@ def multihead_attn(inputs, num_units, num_heads, seq_len=50, h_w=5):
     masks = np.zeros([T_q, T_k])
     for i in range(seq_len):
         if i < h_w:
-            masks[i, :i+h_w] = 1.
+            masks[i, :i+h_w+1] = 1.
         elif i > seq_len-h_w-1:
             masks[i, i-h_w:] = 1.
         else:                                                             
-            masks[i, i-h_w:i+h_w] = 1.
-        masks[i, i] = 0.
+            masks[i, i-h_w:i+h_w+1] = 1.
     masks = tf.convert_to_tensor(masks)
     
     masks = tf.tile(tf.expand_dims(masks,0), [tf.shape(align)[0], 1, 1])           # (h*N, T_q, T_k)
