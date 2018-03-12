@@ -40,9 +40,8 @@ class Tagger:
 
 
     def add_forward_path(self):
-        with tf.variable_scope('encoder_embedding'):
-            encoded = embed_seq(
-                self.X, self.vocab_size, self.hidden_units, zero_pad=False, scale=True)
+        encoded = embed_seq(
+            self.X, self.vocab_size, self.hidden_units, zero_pad=True, scale=True)
         
         encoded = tf.layers.dropout(encoded, self.dropout_rate, training=self.is_training) 
 
@@ -51,10 +50,19 @@ class Tagger:
             with tf.variable_scope('attn_masked_%d'%i):
                 encoded = multihead_attn(encoded,
                     num_units=self.hidden_units, num_heads=self.num_heads, h_w=2)
+
+            with tf.variable_scope('attn_masked_%d'%i, reuse=True):
+                encoded = multihead_attn(encoded,
+                    num_units=self.hidden_units, num_heads=self.num_heads, h_w=3)
+
+            with tf.variable_scope('attn_masked_%d'%i, reuse=True):
+                encoded = multihead_attn(encoded,
+                    num_units=self.hidden_units, num_heads=self.num_heads, h_w=5)
             
             with tf.variable_scope('pointwise_%d'%i):
                 encoded = pointwise_feedforward(encoded,
-                    num_units=[2*self.hidden_units, self.hidden_units], activation=tf.nn.relu)
+                    num_units=[2*self.hidden_units, self.hidden_units],
+                        activation=tf.nn.relu)
         
         self.logits = tf.layers.dense(encoded, self.n_out)
     # end method add_forward_path
