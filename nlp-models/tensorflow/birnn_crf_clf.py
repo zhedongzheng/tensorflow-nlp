@@ -5,7 +5,9 @@ from sklearn.utils import shuffle
 
 
 class BiRNN_CRF:
-    def __init__(self, vocab_size, n_out, embedding_dims=128, cell_size=128, n_layer=1, sess=tf.Session()):
+    def __init__(
+        self, vocab_size, n_out, embedding_dims=128, cell_size=128, n_layer=1,
+        grad_clip=5.0, sess=tf.Session()):
         """
         Parameters:
         -----------
@@ -25,6 +27,7 @@ class BiRNN_CRF:
         self.cell_size = cell_size
         self.n_layer = n_layer
         self.n_out = n_out
+        self.grad_clip = grad_clip
         self.sess = sess
         self._pointer = None
         self.build_graph()
@@ -98,8 +101,14 @@ class BiRNN_CRF:
 
     def add_backward_path(self):
         self.loss = tf.reduce_mean(-self.log_likelihood)
-        self.acc = tf.reduce_mean(tf.cast(tf.equal(self.viterbi_sequence, self.Y), tf.float32))
-        self.train_op = tf.train.AdamOptimizer(self.lr).minimize(self.loss)
+        self.acc = tf.reduce_mean(tf.cast(tf.equal(self.viterbi_sequence, self.Y),
+            tf.float32))
+
+        params = tf.trainable_variables()
+        gradients = tf.gradients(self.loss, params)
+        clipped_gradients, _ = tf.clip_by_global_norm(gradients, self.grad_clip)
+        self.train_op = tf.train.AdamOptimizer(self.lr).apply_gradients(
+            zip(clipped_gradients, params))
     # end method add_backward_path
 
 
