@@ -1,6 +1,6 @@
 #### CPU Installation
-```
 Python 3 is required
+```
 $ pip3 install tensorflow==1.6.0 sklearn scipy
 ```
 ---
