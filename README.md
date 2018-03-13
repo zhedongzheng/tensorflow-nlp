@@ -3,6 +3,10 @@
 $ pip3 install tensorflow==1.6.0 sklearn scipy
 ```
 ---
+#### Issues Have Been Asked
+* [Is the function "add_encoder_layer" in "seq2seq_ultimate.py" correct?](https://github.com/zhedongzheng/finch/issues/1)
+* [in vae code,how to use LSTMcell?](https://github.com/zhedongzheng/finch/issues/2)
+---
 #### Contents
 * [Word Embedding（词向量）](https://github.com/zhedongzheng/finch#word-embedding%E8%AF%8D%E5%90%91%E9%87%8F)
 * [Text Classification（文本分类）](https://github.com/zhedongzheng/finch#text-classification%E6%96%87%E6%9C%AC%E5%88%86%E7%B1%BB)
@@ -116,8 +120,4 @@ $ pip3 install tensorflow==1.6.0 sklearn scipy
    cd finch/nlp-models/tensorflow
    python rnn_attn_estimator_imdb_test.py
    ```
----
-#### Questions Have Been Asked
-* [Is the function "add_encoder_layer" in "seq2seq_ultimate.py" correct?](https://github.com/zhedongzheng/finch/issues/1)
-* [in vae code,how to use LSTMcell?](https://github.com/zhedongzheng/finch/issues/2)
 ---
