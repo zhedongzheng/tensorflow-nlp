@@ -5,7 +5,7 @@ $ pip3 install tensorflow==1.6.0 sklearn scipy
 ---
 #### Issues Have Been Asked
 * [Is the function "add_encoder_layer" in "seq2seq_ultimate.py" correct?](https://github.com/zhedongzheng/finch/issues/1)
-* [in vae code,how to use LSTMcell?](https://github.com/zhedongzheng/finch/issues/2)
+* [in vae code, how to use LSTMcell?](https://github.com/zhedongzheng/finch/issues/2)
 ---
 #### Contents
 * [Word Embedding（词向量）](https://github.com/zhedongzheng/finch#word-embedding%E8%AF%8D%E5%90%91%E9%87%8F)
