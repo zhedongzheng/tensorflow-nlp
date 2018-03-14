@@ -45,7 +45,7 @@ $ pip3 install tensorflow==1.6.0 sklearn scipy
 
 * Only-Attention &nbsp; &nbsp; [Model](https://github.com/zhedongzheng/finch/blob/master/nlp-models/tensorflow/self_attn_lm.py) &nbsp; | &nbsp; [English Story Test](https://github.com/zhedongzheng/finch/blob/master/nlp-models/tensorflow/self_attn_lm_test.py) &nbsp; &nbsp; [Result](https://github.com/zhedongzheng/finch/blob/master/nlp-models/tensorflow/self_attn_lm_test.md) &nbsp; | &nbsp; [Chinese Address Test](https://github.com/zhedongzheng/finch/blob/master/nlp-models/tensorflow/self_attn_lm_addr_test.py) &nbsp; &nbsp; [Result](https://github.com/zhedongzheng/finch/blob/master/nlp-models/tensorflow/self_attn_lm_addr_test.md)
 
-* [CTC](https://github.com/zhedongzheng/finch/tree/master/nlp-models/tensorflow/asr)
+* [Connectionist Temporal Classification (CTC)](https://github.com/zhedongzheng/finch/tree/master/nlp-models/tensorflow/asr)
 
 #### Text Control（文本控制）
 <img src="https://github.com/zhedongzheng/finch/blob/master/assets/decoration_8.png" height='150'>
@@ -87,7 +87,7 @@ $ pip3 install tensorflow==1.6.0 sklearn scipy
 #### Question Answering（问题回答）
 <img src="https://github.com/zhedongzheng/finch/blob/master/assets/dmn-details.png" height='150'>
 
-* [Facebook bAbI QA](https://research.fb.com/downloads/babi/)
+* [Facebook bAbI](https://research.fb.com/downloads/babi/)
 
    * [End-To-End Memory Network](https://github.com/zhedongzheng/finch/tree/master/nlp-models/tensorflow/end2end_mn) 
 
