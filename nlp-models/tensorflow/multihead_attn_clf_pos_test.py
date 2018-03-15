@@ -5,7 +5,7 @@ from multihead_attn_clf import Tagger
 from sklearn.metrics import classification_report
 
 
-SEQ_LEN = 10
+SEQ_LEN = 20
 BATCH_SIZE = 128
 NUM_EPOCH = 1
 sample = ['I', 'love', 'you']
