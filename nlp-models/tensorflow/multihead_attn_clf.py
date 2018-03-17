@@ -7,14 +7,13 @@ from utils import *
 
 class Tagger:
     def __init__(self, vocab_size, n_out, seq_len,
-                 dropout_rate=0.1, hidden_units=128, num_heads=8, num_blocks=1, sess=tf.Session()):
+                 dropout_rate=0.1, hidden_units=128, num_heads=8, sess=tf.Session()):
         self.vocab_size = vocab_size
         self.n_out = n_out
         self.seq_len = seq_len
         self.dropout_rate = dropout_rate
         self.hidden_units = hidden_units
         self.num_heads = num_heads
-        self.num_blocks = num_blocks
         self.sess = sess
         self._pointer = None
         self.build_graph()
@@ -43,62 +42,57 @@ class Tagger:
         with tf.variable_scope('word_embedding'):
             encoded = embed_seq(
                 self.X, self.vocab_size, self.hidden_units, zero_pad=False, scale=True)
-        
+
+        with tf.variable_scope('dropout'):
+            encoded = tf.layers.dropout(
+                encoded, self.dropout_rate, training=self.is_training)
+
+        win_size = 3
+        with tf.variable_scope('attn_masked_window_%d'%(win_size)):
+            masks = self.window_mask(win_size)
+            encoded = multihead_attn(encoded,
+                num_units=self.hidden_units, num_heads=self.num_heads, seq_len=self.seq_len, masks=masks)
+
+        win_size = 2
+        with tf.variable_scope('attn_masked_window_%d'%(win_size)):
+            masks = self.window_mask(win_size)
+            encoded = multihead_attn(encoded,
+                num_units=self.hidden_units, num_heads=self.num_heads, seq_len=self.seq_len, masks=masks)
+
         with tf.variable_scope('position_embedding'):
             encoded += learned_positional_encoding(
                 self.X, self.hidden_units, zero_pad=False, scale=False)
-        
-        with tf.variable_scope('dropout'):
-            encoded = tf.layers.dropout(
-                encoded, self.dropout_rate, training=self.is_training) 
 
-        for i in range(self.num_blocks):
+        win_size = 10
 
-            with tf.variable_scope('attn_masked_fw_%d'%i):
-                lower_tri = tf.ones([self.seq_len, self.seq_len])                          
-                lower_tri = tf.linalg.LinearOperatorLowerTriangular(lower_tri).to_dense()
-                masks = tf.tile(tf.expand_dims(lower_tri,0), [tf.shape(self.X)[0]*self.num_heads, 1, 1])
-                encoded = multihead_attn(encoded,
-                    num_units=self.hidden_units, num_heads=self.num_heads,
-                    seq_len=self.seq_len, masks=masks)
+        with tf.variable_scope('attn_masked_fw'):
+            masks = np.zeros([self.seq_len, self.seq_len])
+            for i in range(self.seq_len):
+                if i < win_size:
+                    masks[i, :i+1] = 1.
+                else:                                                             
+                    masks[i, i-win_size:i+1] = 1.
+            masks = tf.convert_to_tensor(masks)
+            masks = tf.tile(tf.expand_dims(masks,0), [tf.shape(self.X)[0]*self.num_heads, 1, 1])
+            encoded = multihead_attn(encoded,
+                num_units=self.hidden_units, num_heads=self.num_heads, seq_len=self.seq_len, masks=masks)
 
-            with tf.variable_scope('attn_masked_bw_%d'%i):
-                lower_tri = tf.transpose(lower_tri)
-                masks = tf.tile(tf.expand_dims(lower_tri,0), [tf.shape(self.X)[0]*self.num_heads, 1, 1])
-                encoded = multihead_attn(encoded,
-                    num_units=self.hidden_units, num_heads=self.num_heads,
-                    seq_len=self.seq_len, masks=masks)
-            
-            def window_mask(h_w):
-                masks = np.zeros([self.seq_len, self.seq_len])
-                for i in range(self.seq_len):
-                    if i < h_w:
-                        masks[i, :i+h_w+1] = 1.
-                    elif i > self.seq_len - h_w - 1:
-                        masks[i, i-h_w:] = 1.
-                    else:                                                             
-                        masks[i, i-h_w:i+h_w+1] = 1.
-                masks = tf.convert_to_tensor(masks)
-                masks = tf.tile(tf.expand_dims(masks,0), [tf.shape(self.X)[0]*self.num_heads, 1, 1])
-                return masks
+        with tf.variable_scope('attn_masked_bw'):
+            masks = np.zeros([self.seq_len, self.seq_len])
+            for i in range(self.seq_len):
+                if i > self.seq_len - win_size - 1:
+                    masks[i, i:] = 1.
+                else:                                                             
+                    masks[i, i:i+win_size+1] = 1.
+            masks = tf.convert_to_tensor(masks)
+            masks = tf.tile(tf.expand_dims(masks,0), [tf.shape(self.X)[0]*self.num_heads, 1, 1])
+            encoded = multihead_attn(encoded,
+                num_units=self.hidden_units, num_heads=self.num_heads, seq_len=self.seq_len, masks=masks)
 
-            with tf.variable_scope('attn_masked_window_1_%d'%i):
-                masks = window_mask(3)
-                encoded = multihead_attn(encoded,
-                    num_units=self.hidden_units, num_heads=self.num_heads,
-                    seq_len=self.seq_len, masks=masks)
+        with tf.variable_scope('pointwise'):
+            encoded = pointwise_feedforward(encoded,
+                num_units=[4*self.hidden_units, self.hidden_units], activation=tf.nn.relu)
 
-            with tf.variable_scope('attn_masked_window_2_%d'%i):
-                masks = window_mask(2)
-                encoded = multihead_attn(encoded,
-                    num_units=self.hidden_units, num_heads=self.num_heads,
-                    seq_len=self.seq_len, masks=masks)
-
-            with tf.variable_scope('pointwise_%d'%i):
-                encoded = pointwise_feedforward(encoded,
-                    num_units=[4*self.hidden_units, self.hidden_units],
-                        activation=tf.nn.relu)
-        
         with tf.variable_scope('output_layer'):
             self.logits = tf.layers.dense(encoded, self.n_out)
     # end method add_forward_path
@@ -195,6 +189,20 @@ class Tagger:
     def list_avg(self, l):
         return sum(l) / len(l)
     # end method list_avg
+
+
+    def window_mask(self, h_w):
+        masks = np.zeros([self.seq_len, self.seq_len])
+        for i in range(self.seq_len):
+            if i < h_w:
+                masks[i, :i+h_w+1] = 1.
+            elif i > self.seq_len - h_w - 1:
+                masks[i, i-h_w:] = 1.
+            else:                                                             
+                masks[i, i-h_w:i+h_w+1] = 1.
+        masks = tf.convert_to_tensor(masks)
+        masks = tf.tile(tf.expand_dims(masks,0), [tf.shape(self.X)[0]*self.num_heads, 1, 1])
+        return masks
 # end class
 
 
@@ -227,3 +235,5 @@ def multihead_attn(inputs, num_units, num_heads, seq_len, masks):
     # Normalize
     outputs = layer_norm(outputs)                                                  # (N, T_q, C)
     return outputs
+
+
