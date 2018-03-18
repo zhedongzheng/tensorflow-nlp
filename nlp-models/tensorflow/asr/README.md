@@ -2,7 +2,7 @@
 
 Please additionally install these packages
 ```
-pip3 install bs4 tqdm python_speech_features
+pip3 install bs4 python_speech_features
 ```
 Download data
 ```
