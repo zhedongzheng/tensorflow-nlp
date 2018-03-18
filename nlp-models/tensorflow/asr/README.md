@@ -1,5 +1,3 @@
-<img src="https://github.com/zhedongzheng/finch/blob/master/assets/decoration_7.png" height='150'>
-
 Please additionally install these packages
 ```
 pip3 install bs4 python_speech_features
