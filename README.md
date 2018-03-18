@@ -96,7 +96,7 @@ $ pip3 install tensorflow==1.6.0 sklearn scipy
 #### Recommendation System (推荐系统)
 <img src="https://github.com/zhedongzheng/finch/blob/master/assets/movielens.png" height='150'>
 
-* [DNN](https://github.com/zhedongzheng/finch/tree/master/nlp-models/tensorflow/movielens)
+* [Deep Neural Network](https://github.com/zhedongzheng/finch/tree/master/nlp-models/tensorflow/movielens)
 
 ---
 #### How To Use
