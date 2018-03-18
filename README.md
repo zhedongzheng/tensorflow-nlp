@@ -46,12 +46,15 @@ $ pip3 install tensorflow==1.6.0 sklearn scipy tqdm
 
 * Only-Attention &nbsp; &nbsp; [Model](https://github.com/zhedongzheng/finch/blob/master/nlp-models/tensorflow/self_attn_lm.py) &nbsp; | &nbsp; [English Story Test](https://github.com/zhedongzheng/finch/blob/master/nlp-models/tensorflow/self_attn_lm_test.py) &nbsp; &nbsp; [Result](https://github.com/zhedongzheng/finch/blob/master/nlp-models/tensorflow/self_attn_lm_test.md) &nbsp; | &nbsp; [Chinese Address Test](https://github.com/zhedongzheng/finch/blob/master/nlp-models/tensorflow/self_attn_lm_addr_test.py) &nbsp; &nbsp; [Result](https://github.com/zhedongzheng/finch/blob/master/nlp-models/tensorflow/self_attn_lm_addr_test.md)
 
-* [Connectionist Temporal Classification (CTC)](https://github.com/zhedongzheng/finch/tree/master/nlp-models/tensorflow/asr)
-
 #### Text Style（文本风格）
 <img src="https://github.com/zhedongzheng/finch/blob/master/assets/decoration_8.png" height='150'>
 
 * ["Toward Controlled Generation of Text"](https://github.com/zhedongzheng/finch/tree/master/nlp-models/tensorflow/toward-control)
+
+#### Speech (语音)
+<img src="https://github.com/zhedongzheng/finch/blob/master/assets/decoration_7.png" height='150'>
+
+* [CTC](https://github.com/zhedongzheng/finch/tree/master/nlp-models/tensorflow/asr)
 
 #### Sequence Labelling（序列标记）
 <img src="https://github.com/zhedongzheng/finch/blob/master/assets/decoration_4.jpg" height='150'>
