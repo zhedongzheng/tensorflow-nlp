@@ -93,6 +93,11 @@ $ pip3 install tensorflow==1.6.0 sklearn scipy
 
    * [Dynamic Memory Network](https://github.com/zhedongzheng/finch/tree/master/nlp-models/tensorflow/dmn) 
 
+#### Recommendation System (推荐系统)
+<img src="https://github.com/zhedongzheng/finch/blob/master/assets/decoration_9.png" height='150'>
+
+* [DNN](https://github.com/zhedongzheng/finch/tree/master/nlp-models/tensorflow/movielens)
+
 ---
 #### How To Use
 1. The following command clones all the files (it is large due to historical reasons, sorry)
