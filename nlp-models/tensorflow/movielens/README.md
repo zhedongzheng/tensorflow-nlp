@@ -3,7 +3,7 @@
 You need Python 2 for this sub-project, because we need to use [PaddlePaddle](http://www.paddlepaddle.org/) for pre-processed Movielens dataset
 
 ```
-pip install paddlepaddle
+pip install paddlepaddle tensorflow pandas tqdm
 ```
 
 ```
