@@ -1,6 +1,6 @@
 Please additionally install these packages
 ```
-pip3 install bs4 python_speech_features tensorflow tqdm scipy
+pip3 install tensorflow bs4 python_speech_features tqdm scipy
 ```
 Download data
 ```
