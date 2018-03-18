@@ -85,7 +85,7 @@ $ pip3 install tensorflow==1.6.0 sklearn scipy
 * [Variational Autoencoder (VAE)](https://github.com/zhedongzheng/finch/tree/master/nlp-models/tensorflow/vae)
 
 #### Question Answering（问题回答）
-<img src="https://github.com/zhedongzheng/finch/blob/master/assets/dmn-details.png" height='200'>
+<img src="https://github.com/zhedongzheng/finch/blob/master/assets/dmn-details.png" height='150'>
 
 * [Facebook bAbI](https://research.fb.com/downloads/babi/)
 
@@ -94,7 +94,7 @@ $ pip3 install tensorflow==1.6.0 sklearn scipy
    * [Dynamic Memory Network](https://github.com/zhedongzheng/finch/tree/master/nlp-models/tensorflow/dmn) 
 
 #### Recommendation System (推荐系统)
-<img src="https://github.com/zhedongzheng/finch/blob/master/assets/movielens.png" height='150'>
+<img src="https://github.com/zhedongzheng/finch/blob/master/assets/movielens.png" height='200'>
 
 * [Hybrid Neural Network](https://github.com/zhedongzheng/finch/tree/master/nlp-models/tensorflow/movielens)
 
