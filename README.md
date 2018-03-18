@@ -12,7 +12,7 @@ $ pip3 install tensorflow==1.6.0 sklearn scipy
 * [Word Embedding（词向量）](https://github.com/zhedongzheng/finch#word-embedding%E8%AF%8D%E5%90%91%E9%87%8F)
 * [Text Classification（文本分类）](https://github.com/zhedongzheng/finch#text-classification%E6%96%87%E6%9C%AC%E5%88%86%E7%B1%BB)
 * [Text Generation（文本生成）](https://github.com/zhedongzheng/finch#text-generation%E6%96%87%E6%9C%AC%E7%94%9F%E6%88%90)
-* [Text Control（文本控制）](https://github.com/zhedongzheng/finch/blob/master/README.md#text-control%E6%96%87%E6%9C%AC%E6%8E%A7%E5%88%B6)
+* [Text Style（文本风格）](https://github.com/zhedongzheng/finch/blob/master/README.md#text-control%E6%96%87%E6%9C%AC%E6%8E%A7%E5%88%B6)
 * [Sequence Labelling（序列标记）](https://github.com/zhedongzheng/finch#sequence-labelling%E5%BA%8F%E5%88%97%E6%A0%87%E8%AE%B0)
 * [Sequence to Sequence（序列到序列）](https://github.com/zhedongzheng/finch#sequence-to-sequence%E5%BA%8F%E5%88%97%E5%88%B0%E5%BA%8F%E5%88%97)
 * [Question Answering（问题回答）](https://github.com/zhedongzheng/finch/blob/master/README.md#question-answering%E9%97%AE%E9%A2%98%E5%9B%9E%E7%AD%94)
@@ -48,7 +48,7 @@ $ pip3 install tensorflow==1.6.0 sklearn scipy
 
 * [Connectionist Temporal Classification (CTC)](https://github.com/zhedongzheng/finch/tree/master/nlp-models/tensorflow/asr)
 
-#### Text Control（文本控制）
+#### Text Style（文本风格）
 <img src="https://github.com/zhedongzheng/finch/blob/master/assets/decoration_8.png" height='150'>
 
 * ["Toward Controlled Generation of Text"](https://github.com/zhedongzheng/finch/tree/master/nlp-models/tensorflow/toward-control)
