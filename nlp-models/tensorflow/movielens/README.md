@@ -1,6 +1,9 @@
 <img src="https://github.com/zhedongzheng/finch/blob/master/assets/movielens.png">
-You need Python 2 for this sub-project, because we need to use [PaddlePaddle](http://www.paddlepaddle.org/) for their dataset
 
+You need Python 2 for this sub-project, because we need to use [PaddlePaddle](http://www.paddlepaddle.org/) for preprocessed Movielens dataset
+```
+pip install paddlepaddle
+```
 
 ```
 cd ./data
