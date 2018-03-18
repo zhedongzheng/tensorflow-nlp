@@ -85,7 +85,7 @@ $ pip3 install tensorflow==1.6.0 sklearn scipy
 * [Variational Autoencoder (VAE)](https://github.com/zhedongzheng/finch/tree/master/nlp-models/tensorflow/vae)
 
 #### Question Answering（问题回答）
-<img src="https://github.com/zhedongzheng/finch/blob/master/assets/dmn-details.png" height='150'>
+<img src="https://github.com/zhedongzheng/finch/blob/master/assets/dmn-details.png" height='200'>
 
 * [Facebook bAbI](https://research.fb.com/downloads/babi/)
 
