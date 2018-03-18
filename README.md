@@ -95,7 +95,7 @@ $ pip3 install tensorflow==1.6.0 sklearn scipy tqdm
    * [Dynamic Memory Network](https://github.com/zhedongzheng/finch/tree/master/nlp-models/tensorflow/dmn) 
 
 #### Recommender System（推荐系统）
-<img src="https://github.com/zhedongzheng/finch/blob/master/assets/movielens.png" height='200'>
+<img src="https://github.com/zhedongzheng/finch/blob/master/assets/decoration_9.png" height='150'>
 
 * [Hybrid Neural Network](https://github.com/zhedongzheng/finch/tree/master/nlp-models/tensorflow/movielens)
 
