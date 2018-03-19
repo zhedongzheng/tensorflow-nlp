@@ -7,5 +7,5 @@ if __name__ == '__main__':
     with open('./temp/beijing.txt', encoding='utf-8') as f:
         text = f.read()
     
-    model = RNNTextGen(text)
+    model = RNNTextGen(text, seq_len=100)
     log = model.fit()

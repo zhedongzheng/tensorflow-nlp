@@ -145,7 +145,7 @@ class RNNTextGen:
 
 
     def _rnn_cell(self, reuse=False):
-        return tf.nn.rnn_cell.LSTMCell(self.rnn_size, initializer=tf.orthogonal_initializer(),
-                                      reuse=reuse)
+        return tf.nn.rnn_cell.GRUCell(self.rnn_size,
+            kernel_initializer=tf.orthogonal_initializer(), reuse=reuse)
     # end method
 # end class

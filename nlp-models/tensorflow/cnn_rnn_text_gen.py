@@ -30,7 +30,7 @@ class ConvRNNTextGen:
         self.add_concat_conv()
         for i in range(2):
             self.add_highway(i)
-        self.add_lstm_cells()
+        self.add_rnn_cells()
         self.add_dynamic_rnn()
         self.add_output_layer()
         self.add_backward_path()
@@ -88,9 +88,10 @@ class ConvRNNTextGen:
     # end method
 
 
-    def add_lstm_cells(self):
+    def add_rnn_cells(self):
         def cell():
-            cell = tf.nn.rnn_cell.LSTMCell(self.cell_size, initializer=tf.orthogonal_initializer())
+            cell = tf.nn.rnn_cell.GRUCell(self.cell_size,
+                kernel_initializer=tf.orthogonal_initializer())
             return cell
         self.cells = tf.nn.rnn_cell.MultiRNNCell([cell() for _ in range(self.n_layer)])
     # end method

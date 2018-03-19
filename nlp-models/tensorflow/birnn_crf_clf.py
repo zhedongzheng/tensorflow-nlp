@@ -62,8 +62,8 @@ class BiRNN_CRF:
     # end method add_word_embedding_layer
 
 
-    def lstm_cell(self):
-        return tf.nn.rnn_cell.LSTMCell(self.cell_size, initializer=tf.orthogonal_initializer())
+    def rnn_cell(self):
+        return tf.nn.rnn_cell.GRUCell(self.cell_size, kernel_initializer=tf.orthogonal_initializer())
     # end method lstm_cell
 
 
@@ -71,7 +71,7 @@ class BiRNN_CRF:
         birnn_out = self._pointer
         for n in range(self.n_layer):
             (out_fw, out_bw), _ = tf.nn.bidirectional_dynamic_rnn(
-                cell_fw = self.lstm_cell(), cell_bw = self.lstm_cell(),
+                cell_fw = self.rnn_cell(), cell_bw = self.rnn_cell(),
                 inputs = birnn_out,
                 dtype = tf.float32,
                 scope = 'birnn%d'%n)
