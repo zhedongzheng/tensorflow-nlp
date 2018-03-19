@@ -47,45 +47,33 @@ class Tagger:
             encoded = tf.layers.dropout(
                 encoded, self.dropout_rate, training=self.is_training)
 
-        win_size = 3
-        with tf.variable_scope('attn_masked_window_%d'%(win_size)):
-            masks = self.window_mask(win_size)
-            encoded = multihead_attn(encoded,
-                num_units=self.hidden_units, num_heads=self.num_heads, seq_len=self.seq_len, masks=masks)
-
         win_size = 2
         with tf.variable_scope('attn_masked_window_%d'%(win_size)):
             masks = self.window_mask(win_size)
             encoded = multihead_attn(encoded,
                 num_units=self.hidden_units, num_heads=self.num_heads, seq_len=self.seq_len, masks=masks)
 
-        with tf.variable_scope('position_embedding'):
-            encoded += learned_positional_encoding(
-                self.X, self.hidden_units, zero_pad=False, scale=False)
-
-        win_size = 10
-
-        with tf.variable_scope('attn_masked_fw'):
-            masks = np.zeros([self.seq_len, self.seq_len])
-            for i in range(self.seq_len):
-                if i < win_size:
-                    masks[i, :i+1] = 1.
-                else:                                                             
-                    masks[i, i-win_size:i+1] = 1.
-            masks = tf.convert_to_tensor(masks)
-            masks = tf.tile(tf.expand_dims(masks,0), [tf.shape(self.X)[0]*self.num_heads, 1, 1])
+        win_size = 3
+        with tf.variable_scope('attn_masked_window_%d'%(win_size)):
+            masks = self.window_mask(win_size)
+            encoded = multihead_attn(encoded,
+                num_units=self.hidden_units, num_heads=self.num_heads, seq_len=self.seq_len, masks=masks)
+        
+        win_size = 4
+        with tf.variable_scope('attn_masked_window_%d'%(win_size)):
+            masks = self.window_mask(win_size)
             encoded = multihead_attn(encoded,
                 num_units=self.hidden_units, num_heads=self.num_heads, seq_len=self.seq_len, masks=masks)
 
-        with tf.variable_scope('attn_masked_bw'):
-            masks = np.zeros([self.seq_len, self.seq_len])
-            for i in range(self.seq_len):
-                if i > self.seq_len - win_size - 1:
-                    masks[i, i:] = 1.
-                else:                                                             
-                    masks[i, i:i+win_size+1] = 1.
-            masks = tf.convert_to_tensor(masks)
-            masks = tf.tile(tf.expand_dims(masks,0), [tf.shape(self.X)[0]*self.num_heads, 1, 1])
+        win_size = 5
+        with tf.variable_scope('attn_masked_window_%d'%(win_size)):
+            masks = self.window_mask(win_size)
+            encoded = multihead_attn(encoded,
+                num_units=self.hidden_units, num_heads=self.num_heads, seq_len=self.seq_len, masks=masks)
+
+        win_size = 6
+        with tf.variable_scope('attn_masked_window_%d'%(win_size)):
+            masks = self.window_mask(win_size)
             encoded = multihead_attn(encoded,
                 num_units=self.hidden_units, num_heads=self.num_heads, seq_len=self.seq_len, masks=masks)
 
