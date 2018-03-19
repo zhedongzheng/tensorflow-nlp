@@ -3,7 +3,7 @@ import tensorflow as tf
 import numpy as np
 
 
-vocab_size = 5000
+vocab_size = 10000
 seq_len = 500  # cut texts after this number of words (among top max_features most common words)
 n_out = 2
 

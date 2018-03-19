@@ -55,17 +55,8 @@ class OnlyAttentionClassifier:
         # weighted sum
         x = tf.squeeze(tf.matmul(tf.transpose(x, [0,2,1]), align), -1)
 
-        self._pointer = tf.nn.dropout(x, self.keep_prob)
+        self._pointer = x
     # end method add_self_attention
-
-
-    def global_pooling(self, x, fn):
-        batch_size = tf.shape(self.X)[0]
-        num_units = x.get_shape().as_list()[-1]
-        x = fn(x, x.get_shape().as_list()[1], 1)
-        x = tf.reshape(x, [batch_size, num_units])
-        return x
-    # end method global_pooling
 
 
     def add_output_layer(self):
