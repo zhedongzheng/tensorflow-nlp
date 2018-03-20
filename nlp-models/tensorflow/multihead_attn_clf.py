@@ -46,36 +46,15 @@ class Tagger:
         with tf.variable_scope('dropout'):
             encoded = tf.layers.dropout(
                 encoded, self.dropout_rate, training=self.is_training)
-
-        win_size = 2
-        with tf.variable_scope('attn_masked_window_%d'%(win_size)):
-            masks = self.window_mask(win_size)
-            encoded = multihead_attn(encoded,
-                num_units=self.hidden_units, num_heads=self.num_heads, seq_len=self.seq_len, masks=masks)
-
-        win_size = 3
-        with tf.variable_scope('attn_masked_window_%d'%(win_size)):
-            masks = self.window_mask(win_size)
-            encoded = multihead_attn(encoded,
-                num_units=self.hidden_units, num_heads=self.num_heads, seq_len=self.seq_len, masks=masks)
         
-        win_size = 4
-        with tf.variable_scope('attn_masked_window_%d'%(win_size)):
-            masks = self.window_mask(win_size)
-            encoded = multihead_attn(encoded,
-                num_units=self.hidden_units, num_heads=self.num_heads, seq_len=self.seq_len, masks=masks)
-
-        win_size = 5
-        with tf.variable_scope('attn_masked_window_%d'%(win_size)):
-            masks = self.window_mask(win_size)
-            encoded = multihead_attn(encoded,
-                num_units=self.hidden_units, num_heads=self.num_heads, seq_len=self.seq_len, masks=masks)
-
-        win_size = 6
-        with tf.variable_scope('attn_masked_window_%d'%(win_size)):
-            masks = self.window_mask(win_size)
-            encoded = multihead_attn(encoded,
-                num_units=self.hidden_units, num_heads=self.num_heads, seq_len=self.seq_len, masks=masks)
+        parallel = []
+        for i, win_size in enumerate(range(2, 9)):
+            with tf.variable_scope('attn_masked_window%d'%win_size):
+                masks = self.window_mask(win_size)
+                parallel.append(self.multihead_attn(encoded, masks))
+        for p in parallel:
+            encoded += p
+        encoded = layer_norm(encoded)
 
         with tf.variable_scope('pointwise'):
             encoded = pointwise_feedforward(encoded,
@@ -191,37 +170,35 @@ class Tagger:
         masks = tf.convert_to_tensor(masks)
         masks = tf.tile(tf.expand_dims(masks,0), [tf.shape(self.X)[0]*self.num_heads, 1, 1])
         return masks
-# end class
-
-
-def multihead_attn(inputs, num_units, num_heads, seq_len, masks):
-    T_q = T_k = inputs.get_shape().as_list()[1]           
-
-    Q_K_V = tf.layers.dense(inputs, 3*num_units, tf.nn.relu)
-    Q, K, V = tf.split(Q_K_V, 3, -1)
     
-    Q_ = tf.concat(tf.split(Q, num_heads, axis=2), axis=0)                         # (h*N, T_q, C/h) 
-    K_ = tf.concat(tf.split(K, num_heads, axis=2), axis=0)                         # (h*N, T_k, C/h) 
-    V_ = tf.concat(tf.split(V, num_heads, axis=2), axis=0)                         # (h*N, T_k, C/h)
-    
-    align = tf.matmul(Q_, tf.transpose(K_, [0,2,1]))                               # (h*N, T_q, T_k)
-    align = align / (K_.get_shape().as_list()[-1] ** 0.5)                          # scale
-    
-    paddings = tf.fill(tf.shape(align), float('-inf'))                             # exp(-large) -> 0
-    align = tf.where(tf.equal(masks, 0), paddings, align)                          # (h*N, T_q, T_k)
 
-    align = tf.nn.softmax(align)                                                   # (h*N, T_q, T_k)
+    def multihead_attn(self, inputs, masks):
+        num_units = self.hidden_units
+        num_heads = self.num_heads
+        seq_len = self.seq_len
+        T_q = T_k = inputs.get_shape().as_list()[1]           
 
-    # Weighted sum
-    outputs = tf.matmul(align, V_)                                                 # (h*N, T_q, C/h)
-    
-    # Restore shape
-    outputs = tf.concat(tf.split(outputs, num_heads, axis=0), axis=2)              # (N, T_q, C)
-    
-    # Residual connection
-    outputs += inputs                                                              # (N, T_q, C)   
-    # Normalize
-    outputs = layer_norm(outputs)                                                  # (N, T_q, C)
-    return outputs
+        Q_K_V = tf.layers.dense(inputs, 3*num_units, tf.nn.relu)
+        Q, K, V = tf.split(Q_K_V, 3, -1)
+        
+        Q_ = tf.concat(tf.split(Q, num_heads, axis=2), axis=0)                         # (h*N, T_q, C/h) 
+        K_ = tf.concat(tf.split(K, num_heads, axis=2), axis=0)                         # (h*N, T_k, C/h) 
+        V_ = tf.concat(tf.split(V, num_heads, axis=2), axis=0)                         # (h*N, T_k, C/h)
+        
+        align = tf.matmul(Q_, tf.transpose(K_, [0,2,1]))                               # (h*N, T_q, T_k)
+        align = align / np.sqrt(K_.get_shape().as_list()[-1])                          # scale
+        
+        paddings = tf.fill(tf.shape(align), float('-inf'))                             # exp(-large) -> 0
+        align = tf.where(tf.equal(masks, 0), paddings, align)                          # (h*N, T_q, T_k)
+
+        align = tf.nn.softmax(align)                                                   # (h*N, T_q, T_k)
+
+        # Weighted sum
+        outputs = tf.matmul(align, V_)                                                 # (h*N, T_q, C/h)
+        
+        # Restore shape
+        outputs = tf.concat(tf.split(outputs, num_heads, axis=0), axis=2)              # (N, T_q, C)
+        
+        return outputs
 
 
