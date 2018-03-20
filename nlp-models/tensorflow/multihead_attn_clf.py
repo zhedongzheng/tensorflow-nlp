@@ -47,14 +47,9 @@ class Tagger:
             encoded = tf.layers.dropout(
                 encoded, self.dropout_rate, training=self.is_training)
         
-        parallel = []
-        for i, win_size in enumerate(range(1, 8)):
+        for i, win_size in enumerate([1, 2, 3, 4, 5, 10]):
             with tf.variable_scope('attn_masked_window%d'%win_size):
-                masks = self.window_mask(win_size)
-                parallel.append(self.multihead_attn(encoded, masks))
-        for p in parallel:
-            encoded += p
-        encoded = layer_norm(encoded)
+                encoded = self.multihead_attn(encoded, self.window_mask(win_size))
 
         with tf.variable_scope('pointwise'):
             encoded = pointwise_feedforward(encoded,
@@ -195,10 +190,12 @@ class Tagger:
 
         # Weighted sum
         outputs = tf.matmul(align, V_)                                                 # (h*N, T_q, C/h)
-        
         # Restore shape
         outputs = tf.concat(tf.split(outputs, num_heads, axis=0), axis=2)              # (N, T_q, C)
-        
+        # Residual connection
+        outputs += inputs                                                              # (N, T_q, C)   
+        # Normalize
+        outputs = layer_norm(outputs)                                                  # (N, T_q, C)
         return outputs
 
 
