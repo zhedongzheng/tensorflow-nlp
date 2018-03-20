@@ -48,7 +48,7 @@ class Tagger:
                 encoded, self.dropout_rate, training=self.is_training)
         
         parallel = []
-        for i, win_size in enumerate(range(2, 9)):
+        for i, win_size in enumerate(range(1, 8)):
             with tf.variable_scope('attn_masked_window%d'%win_size):
                 masks = self.window_mask(win_size)
                 parallel.append(self.multihead_attn(encoded, masks))
