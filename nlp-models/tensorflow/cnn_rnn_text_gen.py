@@ -4,8 +4,8 @@ import sys
 
 
 class ConvRNNTextGen:
-    def __init__(self, text, seq_len=50, embedding_dims=15, cell_size=128, n_layer=2, grad_clip=5.0,
-                 n_filters=[8, 16, 32, 64, 128], kernel_sizes=[1, 2, 3, 4, 5], sess=tf.Session()):
+    def __init__(self, text, seq_len=50, embedding_dims=15, cell_size=256, n_layer=2, grad_clip=5.0,
+                 n_filters=[100]*5, kernel_sizes=[2, 3, 4, 5, 7], sess=tf.Session()):
         self.sess = sess
         self.text = text
         self.seq_len = seq_len

@@ -172,13 +172,12 @@ class RNNTextGen:
                 {self.X: np.atleast_2d(self.char2idx[char]),
                  self.init_state: next_state,
                  self.is_training: False})
-            """
+            
             probas = softmax_out[0].astype(np.float64)
             probas = probas / np.sum(probas)
             actions = np.random.multinomial(1, probas, 1)
             char = self.idx2char[np.argmax(actions)]
-            """
-            char = self.idx2char[np.argmax(softmax_out[0])]
+            
             out_sentence = out_sentence + char
         return out_sentence
     # end method infer
