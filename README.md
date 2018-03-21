@@ -1,7 +1,7 @@
 <img src="https://github.com/zhedongzheng/finch/blob/master/assets/tf.png" height='150'>
 
-#### CPU Installation
 Python 3 is required
+#### CPU Installation
 ```
 $ pip3 install tensorflow==1.6.0 sklearn scipy tqdm
 ```
