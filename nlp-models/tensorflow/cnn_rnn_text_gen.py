@@ -4,8 +4,8 @@ import sys
 
 
 class ConvRNNTextGen:
-    def __init__(self, text, seq_len=50, embedding_dims=15, cell_size=256, n_layer=2, grad_clip=5.0,
-                 n_filters=[100]*5, kernel_sizes=[2, 3, 4, 5, 7], sess=tf.Session()):
+    def __init__(self, text, seq_len=50, embedding_dims=15, cell_size=128, n_layer=2, grad_clip=5.0,
+                 n_filters=[8, 16, 32, 64, 128], kernel_sizes=[1, 2, 3, 4, 5], sess=tf.Session()):
         self.sess = sess
         self.text = text
         self.seq_len = seq_len
@@ -47,8 +47,8 @@ class ConvRNNTextGen:
 
     def add_word_embedding(self):
         # (batch_size, seq_len, max_word_len) -> (batch_size, seq_len, max_word_len, embedding_dims)
-        embedding = tf.get_variable('encoder', [self.vocab_char, self.embedding_dims], tf.float32,
-                                     tf.random_uniform_initializer(-1.0, 1.0))
+        embedding = tf.get_variable(
+            'lookup_table', [self.vocab_char, self.embedding_dims], tf.float32)
         self._pointer = tf.nn.embedding_lookup(embedding, self._pointer)
     # end method
 
