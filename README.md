@@ -1,4 +1,4 @@
-<img src="https://github.com/zhedongzheng/finch/blob/master/assets/tf.png" height='150'>
+<img src="https://github.com/zhedongzheng/finch/blob/master/assets/tensorflow.jpg" height='150'>
 
 Python 3 is required
 #### CPU Installation
