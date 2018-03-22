@@ -4,8 +4,8 @@ import sys
 
 
 class ConvRNNTextGen:
-    def __init__(self, text, seq_len=50, embedding_dims=15, cell_size=128, n_layer=2, grad_clip=5.0,
-                 n_filters=[8, 16, 32, 64, 128], kernel_sizes=[1, 2, 3, 4, 5], sess=tf.Session()):
+    def __init__(self, text, seq_len=50, embedding_dims=15, cell_size=128, n_layer=2,
+                 grad_clip=5.0, kernel_sizes=range(1,7), sess=tf.Session()):
         self.sess = sess
         self.text = text
         self.seq_len = seq_len
@@ -13,8 +13,9 @@ class ConvRNNTextGen:
         self.cell_size = cell_size
         self.n_layer = n_layer
         self.grad_clip = grad_clip
-        self.n_filters = n_filters
+        
         self.kernel_sizes = kernel_sizes
+        self.n_filters = [25 * k for k in self.kernel_sizes]
 
         self._pointer = None
         self.preprocessing()
@@ -28,7 +29,7 @@ class ConvRNNTextGen:
         self.add_input_layer()       
         self.add_word_embedding()
         self.add_concat_conv()
-        for i in range(2):
+        for i in range(1):
             self.add_highway(i)
         self.add_rnn_cells()
         self.add_dynamic_rnn()
@@ -86,8 +87,7 @@ class ConvRNNTextGen:
 
     def add_rnn_cells(self):
         def cell():
-            cell = tf.nn.rnn_cell.GRUCell(self.cell_size,
-                kernel_initializer=tf.orthogonal_initializer())
+            cell = tf.nn.rnn_cell.LSTMCell(self.cell_size, initializer=tf.orthogonal_initializer())
             return cell
         self.cells = tf.nn.rnn_cell.MultiRNNCell([cell() for _ in range(self.n_layer)])
     # end method
