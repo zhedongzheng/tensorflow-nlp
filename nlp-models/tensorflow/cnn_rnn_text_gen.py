@@ -61,16 +61,12 @@ class ConvRNNTextGen:
             conv_out = tf.layers.conv1d(inputs = reshaped,
                                         filters = n_filter,
                                         kernel_size  = kernel_size,
-                                        padding = 'valid',
-                                        use_bias = True,
                                         activation = tf.tanh,
                                         name = 'conv1d'+str(i))
-            reduced_len = self.max_word_len - kernel_size + 1
             pool_out = tf.layers.max_pooling1d(inputs = conv_out,
-                                               pool_size = reduced_len,
-                                               strides = 1,
-                                               padding = 'valid')
-            parallels.append(tf.reshape(pool_out, [self.batch_size, -1, n_filter])) # [batch_size, seq_len, n_filter]
+                                               pool_size = conv_out.get_shape().as_list()[1],
+                                               strides = 1)
+            parallels.append(tf.reshape(pool_out, [self.batch_size, tf.shape(self.X)[1], n_filter])) # [batch_size, seq_len, n_filter]
         self._pointer = tf.concat(parallels, 2)
     # end method
 
@@ -84,7 +80,7 @@ class ConvRNNTextGen:
         C = tf.subtract(1.0, T)
         highway_out = tf.add(tf.multiply(H, T), tf.multiply(reshaped, C))
         
-        self._pointer = tf.reshape(highway_out, [self.batch_size, -1, size]) # [batch_size, seq_len, size]
+        self._pointer = tf.reshape(highway_out, [self.batch_size, tf.shape(self.X)[1], size]) # [batch_size, seq_len, size]
     # end method
 
 
