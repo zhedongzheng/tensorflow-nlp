@@ -47,9 +47,12 @@ class Tagger:
             encoded = tf.layers.dropout(
                 encoded, self.dropout_rate, training=self.is_training)
         
-        for i, win_size in enumerate([1, 2, 3, 4, 5, 10]):
+        for i, win_size in enumerate([1, 2, 3, 4, 5]):
             with tf.variable_scope('attn_masked_window%d'%win_size):
                 encoded = self.multihead_attn(encoded, self.window_mask(win_size))
+        
+        with tf.variable_scope('very_long_attn'):
+            encoded = self.multihead_attn(encoded, None)
 
         with tf.variable_scope('pointwise'):
             encoded = pointwise_feedforward(encoded,
@@ -183,8 +186,9 @@ class Tagger:
         align = tf.matmul(Q_, tf.transpose(K_, [0,2,1]))                               # (h*N, T_q, T_k)
         align = align / np.sqrt(K_.get_shape().as_list()[-1])                          # scale
         
-        paddings = tf.fill(tf.shape(align), float('-inf'))                             # exp(-large) -> 0
-        align = tf.where(tf.equal(masks, 0), paddings, align)                          # (h*N, T_q, T_k)
+        if masks is not None:
+            paddings = tf.fill(tf.shape(align), float('-inf'))                         # exp(-large) -> 0
+            align = tf.where(tf.equal(masks, 0), paddings, align)                      # (h*N, T_q, T_k)
 
         align = tf.nn.softmax(align)                                                   # (h*N, T_q, T_k)
 
