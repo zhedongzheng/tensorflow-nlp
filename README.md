@@ -109,7 +109,7 @@ $ pip3 install tensorflow==1.6.0 sklearn scipy tqdm
 
 #### Reinforcement Learning（强化学习）
 ```pip3 install gym ```
-* Policy Gradient &nbsp; &nbsp; [Model](https://github.com/zhedongzheng/finch/blob/master/nlp-models/rl-models/pg.py) &nbsp; &nbsp; [CartPole Test](https://github.com/zhedongzheng/finch/blob/master/nlp-models/rl-models/pg_cartpole_test.py)
+* Policy Gradient &nbsp; &nbsp; [Model](https://github.com/zhedongzheng/finch/blob/master/nlp-models/tensorflow/rl-models/pg.py) &nbsp; &nbsp; [CartPole Test](https://github.com/zhedongzheng/finch/blob/master/nlp-models/tensorflow/rl-models/pg_cartpole_test.py)
 
 ---
 #### How To Use
