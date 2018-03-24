@@ -54,6 +54,9 @@ class OnlyAttentionClassifier:
         for i, win_size in enumerate([1, 2]):
             with tf.variable_scope('attn_masked_window%d'%win_size):
                 x = self.multihead_attn(x, self.window_mask(win_size))
+    
+        with tf.variable_scope('very_long_attention'):
+                x = self.multihead_attn(x, None)
         
         x = self.global_pooling(x, tf.layers.max_pooling1d)
 
