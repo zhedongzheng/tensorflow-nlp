@@ -49,8 +49,9 @@ class PolicyGradient:
 
     def learn(self, n_games_per_update=10, n_max_steps=1000, n_iterations=500, discount_rate=0.95):
         self.sess.run(tf.global_variables_initializer())
+        step = 0
         for iteration in range(n_iterations):
-            print("[%d / %d]" % (iteration, n_iterations))
+            print("[%d / %d] Step: %d" % (iteration, n_iterations, step))
             ep_rewards = []            # rewards in one eposide
             ep_gradients = []          # gradients in one eposide
             for game in range(n_games_per_update):

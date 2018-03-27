@@ -5,7 +5,7 @@ import gym
 
 def main():
     model = PolicyGradient(gym.make('CartPole-v1'),
-        n_in = 4, hidden_net = lambda x : tf.layers.dense(x, 10, tf.nn.relu), n_out = 2)
+        n_in = 4, hidden_net = lambda x : tf.layers.dense(x, 10, tf.nn.leaky_relu), n_out = 2)
     model.learn()
     model.play()
 
