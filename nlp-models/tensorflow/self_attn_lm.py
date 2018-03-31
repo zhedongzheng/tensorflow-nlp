@@ -44,8 +44,7 @@ class LM:
             encoded = tf.layers.dropout(encoded, self.dropout_rate, training=self.is_training)
             for i in range(self.n_layers):
                 with tf.variable_scope('attn%d'%i, reuse=reuse):
-                    encoded = self_multihead_attn(
-                        queries=encoded, keys=encoded,
+                    encoded = self_multihead_attn(encoded,
                         num_units=self.hidden_units, num_heads=self.num_heads,
                         dropout_rate=self.dropout_rate, is_training=self.is_training)
                 with tf.variable_scope('feedforward%d'%i, reuse=reuse):
@@ -138,7 +137,7 @@ class LM:
 # end class
 
 
-def self_multihead_attn(queries, keys, num_units, num_heads, dropout_rate, is_training):
+def self_multihead_attn(inputs, num_units, num_heads, dropout_rate, is_training):
     """
     Args:
       queries: A 3d tensor with shape of [N, T_q, C_q]
@@ -146,12 +145,10 @@ def self_multihead_attn(queries, keys, num_units, num_heads, dropout_rate, is_tr
     """
     if num_units is None:
         num_units = queries.get_shape().as_list[-1]
-    T_q = queries.get_shape().as_list()[1]                                         # max time length of query
-    T_k = keys.get_shape().as_list()[1]                                            # max time length of key
+    T_q = T_k = inputs.get_shape().as_list()[1]                                    # max time length of query
 
-    Q = tf.layers.dense(queries, num_units)                                        # (N, T_q, C)
-    K = tf.layers.dense(keys, num_units)                                           # (N, T_k, C)
-    V = tf.layers.dense(keys, num_units)                                           # (N, T_k, C)
+    Q_K_V = tf.layers.dense(inputs, 3*num_units, tf.nn.relu)
+    Q, K, V = tf.split(Q_K_V, 3, -1)
 
     Q_ = tf.concat(tf.split(Q, num_heads, axis=2), axis=0)                         # (h*N, T_q, C/h) 
     K_ = tf.concat(tf.split(K, num_heads, axis=2), axis=0)                         # (h*N, T_k, C/h) 
@@ -178,7 +175,7 @@ def self_multihead_attn(queries, keys, num_units, num_heads, dropout_rate, is_tr
     # Restore shape
     outputs = tf.concat(tf.split(outputs, num_heads, axis=0), axis=2)              # (N, T_q, C)
     # Residual connection
-    outputs += queries                                                             # (N, T_q, C)   
+    outputs += inputs                                                              # (N, T_q, C)   
     # Normalize
     outputs = layer_norm(outputs)                                                  # (N, T_q, C)
     return outputs
