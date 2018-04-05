@@ -112,35 +112,3 @@ $ pip3 install tensorflow-gpu==1.6.0 sklearn scipy tqdm
 #### Reinforcement Learning（强化学习）
 ```pip3 install gym ```
 * Policy Gradient &nbsp; &nbsp; [Model](https://github.com/zhedongzheng/finch/blob/master/nlp-models/tensorflow/rl-models/pg.py) &nbsp; &nbsp; [CartPole Test](https://github.com/zhedongzheng/finch/blob/master/nlp-models/tensorflow/rl-models/pg_cartpole_test.py)
-
----
-#### How To Use
-1. The following command clones all the files (it is large due to historical reasons, sorry)
-
-   下面命令会拿下所有文件（因为历史原因，所以体积比较大，不好意思） 
-
-   ```
-   git clone https://github.com/zhedongzheng/finch.git
-   ```
-
-2. Use [contents](https://github.com/zhedongzheng/finch#contents) to find the model and test that may interest you, click on that test
-
-   用[目录](https://github.com/zhedongzheng/finch#contents)找到感兴趣的模型和测试文件，点击它
-
-   <img src="https://github.com/zhedongzheng/finch/blob/master/assets/addr_0.png" width="600">
-
-3. Find the test file path
-
-   发现测试文件的路径
-
-   <img src="https://github.com/zhedongzheng/finch/blob/master/assets/addr.png" width="600">
-
-4. run on command line
-
-   在命令行运行它
-
-   ```
-   cd finch/nlp-models/tensorflow
-   python rnn_attn_estimator_imdb_test.py
-   ```
----
