@@ -1,9 +1,14 @@
 <img src="https://github.com/zhedongzheng/finch/blob/master/assets/tensorflow.jpg" height='100'>
 
 Python 3 is required
-#### CPU Installation
+#### Installation
+CPU
 ```
 $ pip3 install tensorflow==1.6.0 sklearn scipy tqdm
+```
+GPU
+```
+$ pip3 install tensorflow-gpu==1.6.0 sklearn scipy tqdm
 ```
 ---
 #### Issues Have Been Asked
@@ -32,7 +37,7 @@ $ pip3 install tensorflow==1.6.0 sklearn scipy tqdm
 #### Text Classification（文本分类）
 <img src="https://github.com/zhedongzheng/finch/blob/master/assets/decoration_2.png" height='100'>
 
-* CNN &nbsp; &nbsp; [Model](https://github.com/zhedongzheng/finch/blob/master/nlp-models/tensorflow/concat_conv_1d_text_clf.py) &nbsp; &nbsp; [IMDB Test](https://github.com/zhedongzheng/finch/blob/master/nlp-models/tensorflow/concat_conv_1d_text_clf_imdb_test.py) &nbsp; &nbsp; [Result](https://github.com/zhedongzheng/finch/blob/master/nlp-models/tensorflow/concat_conv_1d_text_clf_imdb_test.md)
+* CNN &nbsp; &nbsp; [Model](https://github.com/zhedongzheng/finch/blob/master/nlp-models/tensorflow/concat_conv_1d_text_clf.py) &nbsp; &nbsp; [IMDB Test](https://nbviewer.jupyter.org/github/zhedongzheng/finch/blob/master/nlp-models/tensorflow/concat_conv_1d_text_clf_imdb_test.ipynb) &nbsp; &nbsp;
 
 * Bi-RNN &nbsp; &nbsp; [Model](https://github.com/zhedongzheng/finch/blob/master/nlp-models/tensorflow/rnn_text_clf.py) &nbsp; &nbsp; [IMDB Test](https://github.com/zhedongzheng/finch/blob/master/nlp-models/tensorflow/rnn_text_clf_imdb_test.py) &nbsp; &nbsp; [Result](https://github.com/zhedongzheng/finch/blob/master/nlp-models/tensorflow/rnn_text_clf_imdb_test.md)
 
