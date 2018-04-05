@@ -1,7 +1,6 @@
 <img src="https://github.com/zhedongzheng/finch/blob/master/assets/tensorflow.jpg" height='100'>
 
-#### Installation
-Python 3 is required
+#### Installation (Python 3 is required)
 
 CPU
 ```
