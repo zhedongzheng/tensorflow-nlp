@@ -2,14 +2,11 @@
 
 #### Installation
 Python 3 is required
-CPU
-```
-$ pip3 install tensorflow==1.6.0 sklearn scipy tqdm
-```
-GPU
-```
-$ pip3 install tensorflow-gpu==1.6.0 sklearn scipy tqdm
-```
+
+CPU ``` $ pip3 install tensorflow==1.6.0 sklearn scipy tqdm ```
+
+GPU ``` $ pip3 install tensorflow-gpu==1.6.0 sklearn scipy tqdm ```
+
 ---
 #### Issues Have Been Asked
 * [Is the function "add_encoder_layer" in "seq2seq_ultimate.py" correct?](https://github.com/zhedongzheng/finch/issues/1)
