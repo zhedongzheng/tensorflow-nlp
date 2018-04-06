@@ -211,30 +211,21 @@ class Seq2Seq:
     # end method
 
 
-    def infer(self, sentences):
-        X_idx2word = {i: c for c, i in self.X_word2idx.items()}
-        Y_idx2word = {i: c for c, i in self.Y_word2idx.items()}
-
-        Y_idx2word[-1] = '-1'
-        maxlen = max([len(st) for st in sentences])
-
-        input_indices = []
-        for st in sentences:
-            if len(st) < maxlen:
-                input_indices.append(
-                    [self.X_word2idx.get(char, self._x_unk) for char in st] + \
-                        [self.X_word2idx['<PAD>']] * (maxlen - len(st)))
-            else:
-                input_indices.append([self.X_word2idx.get(char, self._x_unk) for char in st])
-        
+    def infer(self, input_word, X_idx2word, Y_idx2word, batch_size=128):        
+        input_indices = [self.X_word2idx.get(char, self._x_unk) for char in input_word]
         out_indices = self.sess.run(self.predicting_ids, {
-            self.X: np.atleast_2d(input_indices),
-            self.X_seq_len: [len(st) for st in sentences]})
+            self.X: [input_indices] * batch_size,
+            self.X_seq_len: [len(input_indices)] * batch_size,
+            self.batch_size: batch_size})[0]
         
-        for st, out_idx in zip(sentences, out_indices):
-            print('IN: {}'.format(st))
-            print('OUT: {}'.format(''.join([Y_idx2word[c] for c in out_idx])))
-    # end method
+        print('\nSource')
+        print('Word: {}'.format([i for i in input_indices]))
+        print('IN: {}'.format(' '.join([X_idx2word[i] for i in input_indices])))
+        
+        print('\nTarget')
+        print('Word: {}'.format([i for i in out_indices]))
+        print('OUT: {}'.format(' '.join([Y_idx2word[i] for i in out_indices])))
+    # end method infer
 
 
     def register_symbols(self):
