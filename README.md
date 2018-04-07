@@ -1,7 +1,7 @@
 <img src="https://github.com/zhedongzheng/finch/blob/master/assets/tensorflow.jpg" height='100'>
 
 #### Installation 
-Python 3 is required
+Python 3 and Jupyter Notebook are required
 
 CPU
 ```
