@@ -115,4 +115,4 @@ $ pip3 install tensorflow-gpu==1.6.0 sklearn scipy tqdm
 * Policy Gradient &nbsp; &nbsp; [Model](https://github.com/zhedongzheng/finch/blob/master/nlp-models/tensorflow/rl-models/pg.py) &nbsp; &nbsp; [CartPole Test](https://github.com/zhedongzheng/finch/blob/master/nlp-models/tensorflow/rl-models/pg_cartpole_test.py)
 
 #### Data Argumentation（数据增强）
-* [Bi-Translation]()
+* [Bi-Translation](https://github.com/zhedongzheng/finch/blob/master/nlp-models/other/bi_translation.ipynb)
