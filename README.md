@@ -29,6 +29,7 @@ $ pip3 install tensorflow-gpu==1.6.0 sklearn scipy tqdm
 * [Question Answering（问题回答）](https://github.com/zhedongzheng/finch/blob/master/README.md#question-answering%E9%97%AE%E9%A2%98%E5%9B%9E%E7%AD%94)
 * [Recommender System（推荐系统）](https://github.com/zhedongzheng/finch/blob/master/README.md#recommender-system%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F)
 * [Reinforcement Learning（强化学习）](https://github.com/zhedongzheng/finch/blob/master/README.md#reinforcement-learning%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0)
+* [Reinforcement Learning（强化学习）](https://github.com/zhedongzheng/finch/blob/master/README.md#reinforcement-learning%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0)
 ---
 #### Word Embedding（词向量）
 <img src="https://github.com/zhedongzheng/finch/blob/master/assets/decoration_6.png" height='100'>
@@ -112,3 +113,6 @@ $ pip3 install tensorflow-gpu==1.6.0 sklearn scipy tqdm
 #### Reinforcement Learning（强化学习）
 ```pip3 install gym ```
 * Policy Gradient &nbsp; &nbsp; [Model](https://github.com/zhedongzheng/finch/blob/master/nlp-models/tensorflow/rl-models/pg.py) &nbsp; &nbsp; [CartPole Test](https://github.com/zhedongzheng/finch/blob/master/nlp-models/tensorflow/rl-models/pg_cartpole_test.py)
+
+#### Data Argumentation（数据增强）
+* [Bi-Translation]()
