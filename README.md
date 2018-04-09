@@ -1,4 +1,4 @@
-<img src="https://github.com/zhedongzheng/finch/blob/master/assets/tensorflow.jpg" height='100'>
+<img src="https://github.com/zhedongzheng/finch/blob/master/assets/tensorflow_nlp.png">
 
 #### Installation 
 Python 3 and Jupyter Notebook are required
