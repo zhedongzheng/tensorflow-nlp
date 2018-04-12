@@ -65,7 +65,7 @@ $ pip3 install tensorflow-gpu==1.6.0 sklearn scipy tqdm
 #### Text Style（文本风格）
 <img src="https://github.com/zhedongzheng/finch/blob/master/assets/decoration_8.png" height='100'>
 
-* ["Toward Controlled Generation of Text"](https://github.com/zhedongzheng/finch/tree/master/nlp-models/tensorflow/toward-control)
+* [Controllable VAE](https://github.com/zhedongzheng/finch/tree/master/nlp-models/tensorflow/toward-control)
 
 #### Speech (语音)
 <img src="https://github.com/zhedongzheng/finch/blob/master/assets/decoration_7.png" height='100'>
