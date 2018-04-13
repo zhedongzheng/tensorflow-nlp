@@ -23,6 +23,7 @@ $ pip3 install tensorflow-gpu==1.6.0 sklearn scipy tqdm
 * [Text Classification（文本分类）](https://github.com/zhedongzheng/finch#text-classification%E6%96%87%E6%9C%AC%E5%88%86%E7%B1%BB)
 * [Text Generation（文本生成）](https://github.com/zhedongzheng/finch#text-generation%E6%96%87%E6%9C%AC%E7%94%9F%E6%88%90)
 * [Text Style（文本风格）](https://github.com/zhedongzheng/finch/blob/master/README.md#text-style%E6%96%87%E6%9C%AC%E9%A3%8E%E6%A0%BC)
+* [Text Matching（文本匹配）](https://github.com/zhedongzheng/finch/blob/master/README.md#text-matching%E6%96%87%E6%9C%AC%E5%8C%B9%E9%85%8D)
 * [Speech（语音）](https://github.com/zhedongzheng/finch#speech-%E8%AF%AD%E9%9F%B3)
 * [Sequence Labelling（序列标记）](https://github.com/zhedongzheng/finch#sequence-labelling%E5%BA%8F%E5%88%97%E6%A0%87%E8%AE%B0)
 * [Sequence to Sequence（序列到序列）](https://github.com/zhedongzheng/finch#sequence-to-sequence%E5%BA%8F%E5%88%97%E5%88%B0%E5%BA%8F%E5%88%97)
@@ -68,7 +69,7 @@ $ pip3 install tensorflow-gpu==1.6.0 sklearn scipy tqdm
 * [Controllable VAE](https://github.com/zhedongzheng/finch/tree/master/nlp-models/tensorflow/toward-control)
 
 #### Text Matching（文本匹配）
-<img src="https://github.com/zhedongzheng/finch/blob/master/assets/decoration_10.png" height='100'>
+<img src="https://github.com/zhedongzheng/finch/blob/master/assets/decoration_10.png" height='200'>
 
 * [Fake News Challenge](http://www.fakenewschallenge.org/)
 
