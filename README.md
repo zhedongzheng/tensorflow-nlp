@@ -69,6 +69,7 @@ $ pip3 install tensorflow-gpu==1.6.0 sklearn scipy tqdm
 
 #### Text Matching（文本匹配）
 * [Fake News Challenge](http://www.fakenewschallenge.org/)
+
  * [Feature Engineering + Gradient Descent from Scratch](https://nbviewer.jupyter.org/github/zhedongzheng/finch/blob/master/nlp-models/numpy/fnc_1.ipynb)
 
 #### Speech (语音)
