@@ -69,7 +69,7 @@ $ pip3 install tensorflow-gpu==1.6.0 sklearn scipy tqdm
 * [Controllable VAE](https://github.com/zhedongzheng/finch/tree/master/nlp-models/tensorflow/toward-control)
 
 #### Text Matching（文本匹配）
-<img src="https://github.com/zhedongzheng/finch/blob/master/assets/decoration_10.png" height='200'>
+<img src="https://github.com/zhedongzheng/finch/blob/master/assets/decoration_10.jpeg" height='200'>
 
 * [Fake News Challenge](http://www.fakenewschallenge.org/)
 
