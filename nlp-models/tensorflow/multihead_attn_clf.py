@@ -7,13 +7,15 @@ from utils import *
 
 class Tagger:
     def __init__(self, vocab_size, n_out, seq_len,
-                 dropout_rate=0.1, hidden_units=128, num_heads=8, sess=tf.Session()):
+                 dropout_rate=0.1, hidden_units=128, num_heads=8,
+                 attn_windows=range(1, 6), sess=tf.Session()):
         self.vocab_size = vocab_size
         self.n_out = n_out
         self.seq_len = seq_len
         self.dropout_rate = dropout_rate
         self.hidden_units = hidden_units
         self.num_heads = num_heads
+        self.attn_windows = attn_windows
         self.sess = sess
         self._pointer = None
         self.build_graph()
@@ -47,11 +49,12 @@ class Tagger:
             encoded = tf.layers.dropout(
                 encoded, self.dropout_rate, training=self.is_training)
         
-        for i, win_size in enumerate([1, 2, 3, 4, 5]):
+        for i, win_size in enumerate(self.attn_windows):
             with tf.variable_scope('attn_masked_window%d'%win_size):
                 encoded = self.multihead_attn(encoded, self.window_mask(win_size))
         
         with tf.variable_scope('very_long_attn'):
+            encoded += learned_positional_encoding(encoded, self.hidden_units)
             encoded = self.multihead_attn(encoded, None)
 
         with tf.variable_scope('pointwise'):
