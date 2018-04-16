@@ -20,12 +20,11 @@ class MemoryNetwork:
 
     def build_placeholders(self):
         self.placeholders = {
-            'inputs': tf.placeholder(
-                tf.int64, [None, self.params['max_input_len'], self.params['max_sent_len']]),
-            'questions': tf.placeholder(tf.int64, [None, self.params['max_quest_len']]),
-            'answers': tf.placeholder(tf.int64, [None, self.params['max_answer_len']]),
+            'inputs': tf.placeholder(tf.int64, [None, None, None]),
+            'questions': tf.placeholder(tf.int64, [None, None]),
+            'answers': tf.placeholder(tf.int64, [None, None]),
             'inputs_len': tf.placeholder(tf.int32, [None]),
-            'inputs_sent_len': tf.placeholder(tf.int32, [None, self.params['max_input_len']]),
+            'inputs_sent_len': tf.placeholder(tf.int32, [None, None]),
             'questions_len': tf.placeholder(tf.int32, [None]),
             'answers_len': tf.placeholder(tf.int32, [None]),
             'is_training': tf.placeholder(tf.bool)}
@@ -93,33 +92,32 @@ class MemoryNetwork:
 
 
     def gen_episode(self, memory, q_vec, fact_vecs, i):
-        # Gates (attentions) are activated if sentence relevant to the question or memory
-        attentions = [self.gen_attention(memory, q_vec, fact_vec, bool(i) or bool(j))
-            for j, fact_vec in enumerate(tf.unstack(fact_vecs, axis=1))]         # n_fact list of (B,)
-        attentions = tf.transpose(tf.stack(attentions))                          # (B, n_fact)
-        attentions = tf.nn.softmax(attentions)                                   # (B, n_fact)
-        attentions = tf.expand_dims(attentions, -1)                              # (B, n_fact, 1)
+        def gen_attn(fact_vec, _reuse=tf.AUTO_REUSE):
+            with tf.variable_scope('attention', reuse=_reuse):
+                features = [fact_vec * q_vec,
+                            fact_vec * memory,
+                            tf.abs(fact_vec - q_vec),
+                            tf.abs(fact_vec - memory)]
+                feature_vec = tf.concat(features, 1)
+                attention = tf.layers.dense(feature_vec, args.embed_dim, tf.tanh, reuse=_reuse, name='fc1')
+                attention = tf.layers.dense(attention, 1, reuse=_reuse, name='fc2')
+            return tf.squeeze(attention, 1)
+
+        # Gates (attentions) are activated, if sentence relevant to the question or memory
+        attns = tf.map_fn(gen_attn, tf.transpose(fact_vecs, [1,0,2]))
+        attns = tf.transpose(attns)                                    # (B, n_fact)
+        attns = tf.nn.softmax(attns)                                   # (B, n_fact)
+        attns = tf.expand_dims(attns, -1)                              # (B, n_fact, 1)
+        
         # The relevant facts are summarized in another GRU
         reuse = i > 0
         with tf.variable_scope('attention_gru', reuse=reuse):
             _, episode = tf.nn.dynamic_rnn(
                 AttentionGRUCell(args.hidden_size, reuse=reuse),
-                tf.concat([fact_vecs, attentions], 2),                           # (B, n_fact, D+1)
+                tf.concat([fact_vecs, attns], 2),                      # (B, n_fact, D+1)
                 self.placeholders['inputs_len'],
                 dtype=np.float32)
         return episode                                                           # (B, D)
-
-
-    def gen_attention(self, memory, q_vec, fact_vec, reuse):
-        with tf.variable_scope('attention', reuse=reuse):
-            features = [fact_vec * q_vec,
-                        fact_vec * memory,
-                        tf.abs(fact_vec - q_vec),
-                        tf.abs(fact_vec - memory)]
-            feature_vec = tf.concat(features, 1)
-            attention = tf.layers.dense(feature_vec, args.embed_dim, tf.tanh, reuse=reuse, name='fc1')
-            attention = tf.layers.dense(attention, 1, reuse=reuse, name='fc2')
-        return tf.squeeze(attention, 1)
 
 
     def answer_module(self, memory, q_vec, embedding):

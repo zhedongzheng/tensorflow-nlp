@@ -1,6 +1,7 @@
 from config import args
 from data import DataLoader
 from model import MemoryNetwork
+from sklearn.metrics import classification_report
 
 import tensorflow as tf
 import numpy as np
@@ -31,8 +32,7 @@ def main():
     for i, batch in enumerate(test_dl.next_batch()):
         predicted_ids.append(model.predict_session(sess, batch))
     predicted_ids = np.concatenate(predicted_ids, axis=0)
-    final_acc = (predicted_ids == test_dl.data['val']['answers']).mean()
-    print("final testing accuracy: %.3f" % final_acc)
+    print(classification_report(test_dl.data['val']['answers'][:, 0], predicted_ids[:, 0]))
 
     demo_idx = 3
     model.demo_session(sess,
