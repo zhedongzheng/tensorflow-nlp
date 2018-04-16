@@ -1,10 +1,19 @@
 <img src="https://github.com/zhedongzheng/finch/blob/master/assets/dmn-details.png">
 
+---
+
+Implementing the idea of ["
+Dynamic Memory Networks for Visual and Textual Question Answering"](https://arxiv.org/abs/1603.01417)
+
+---
+
 * Many functions are adapted from [Alex Barron's](https://github.com/barronalex/Dynamic-Memory-Networks-in-TensorFlow) work, thanks for him!
 * Based on that:
     * We have used ```tf.map_fn``` to replace the Python for loop, which makes the model independent of sequence length
     * We have added a decoder in the answer module for "talking"
-    * We have reproduced ```AttentionGRUCell``` from official ```GRUCell``` from TF 1.4
+    * We have reproduced ```AttentionGRUCell``` from new official ```GRUCell```
+
+---
 
 ```
 python train.py
