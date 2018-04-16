@@ -19,6 +19,8 @@ class LogisticRegression:
         self.X = tf.placeholder(tf.float32, [None, self.vocab_size])
         self.Y = tf.placeholder(tf.int64, [None])
         self.lr = tf.placeholder(tf.float32)
+
+        
         self.logits = tf.layers.dense(self.X, self.n_out)
 
         self.loss = tf.reduce_mean(tf.nn.sparse_softmax_cross_entropy_with_logits(
