@@ -2,8 +2,8 @@
 
 * Many functions are adapted from [Alex Barron's](https://github.com/barronalex/Dynamic-Memory-Networks-in-TensorFlow) work, thanks for him!
 * Based on that:
-
-    * We have added a decoder in the answer module for talking
+    * We have replace the nasty ```for``` loop for ```tf.map_fn``` 
+    * We have added a decoder in the answer module for "talking"
     * We have reproduced ```AttentionGRUCell``` from official ```GRUCell``` from TF 1.4
 
 ```
