@@ -3,6 +3,8 @@ import numpy as np
 import math
 import sklearn
 
+from utils import learned_positional_encoding, sinusoidal_positional_encoding
+
 
 class OnlyAttentionClassifier:
     def __init__(self, seq_len, vocab_size, n_out, sess=tf.Session(), embedding_dims=50):
@@ -43,6 +45,7 @@ class OnlyAttentionClassifier:
 
     def add_self_attention(self):
         x = self._pointer
+        x += sinusoidal_positional_encoding(x, self.embedding_dims)
         masks = tf.sign(self.X)
         
         # alignment
