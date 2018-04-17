@@ -7,12 +7,14 @@ from utils import embed_seq
 
 
 class Tagger:
-    def __init__(self, vocab_size, n_out, seq_len, dropout_rate=0.1, hidden_units=128, sess=tf.Session()):
+    def __init__(self, vocab_size, n_out, seq_len, dropout_rate=0.1, hidden_units=128,
+                 kernels=[3, 5], sess=tf.Session()):
         self.vocab_size = vocab_size
         self.n_out = n_out
         self.seq_len = seq_len
         self.dropout_rate = dropout_rate
         self.hidden_units = hidden_units
+        self.kernels = kernels
         self.sess = sess
         self._pointer = None
         self.build_graph()
@@ -46,11 +48,10 @@ class Tagger:
         
         pad = tf.zeros([tf.shape(x)[0], 1, self.hidden_units])
 
-        _x = tf.concat([pad]*1 + [x] + [pad]*1, 1)
-        x = tf.layers.conv1d(_x, self.hidden_units, 3, activation=tf.nn.relu)
-
-        _x = tf.concat([pad]*2 + [x] + [pad]*2, 1)
-        x += tf.layers.conv1d(_x, self.hidden_units, 5, activation=tf.nn.relu)
+        for k in self.kernels:
+            n = (k - 1) // 2
+            _x = tf.concat([pad]*n + [x] + [pad]*n, 1)
+            x += tf.layers.conv1d(_x, self.hidden_units, k, activation=tf.nn.relu)
 
         with tf.variable_scope('output_layer'):
             self.logits = tf.layers.dense(x, self.n_out)
