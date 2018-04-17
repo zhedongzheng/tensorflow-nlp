@@ -1,21 +1,18 @@
 import tensorflow as tf
 import numpy as np
 import math
+
 from sklearn.utils import shuffle
-from utils import *
+from utils import embed_seq
 
 
 class Tagger:
-    def __init__(self, vocab_size, n_out, seq_len,
-                 dropout_rate=0.1, hidden_units=128, num_heads=8,
-                 attn_windows=range(1, 6), sess=tf.Session()):
+    def __init__(self, vocab_size, n_out, seq_len, dropout_rate=0.1, hidden_units=128, sess=tf.Session()):
         self.vocab_size = vocab_size
         self.n_out = n_out
         self.seq_len = seq_len
         self.dropout_rate = dropout_rate
         self.hidden_units = hidden_units
-        self.num_heads = num_heads
-        self.attn_windows = attn_windows
         self.sess = sess
         self._pointer = None
         self.build_graph()
@@ -42,23 +39,21 @@ class Tagger:
 
     def add_forward_path(self):
         with tf.variable_scope('word_embedding'):
-            encoded = embed_seq(
-                self.X, self.vocab_size, self.hidden_units, zero_pad=False, scale=True)
+            x = embed_seq(self.X, self.vocab_size, self.hidden_units, zero_pad=False, scale=True)
 
         with tf.variable_scope('dropout'):
-            encoded = tf.layers.dropout(
-                encoded, self.dropout_rate, training=self.is_training)
+            x = tf.layers.dropout(x, self.dropout_rate, training=self.is_training)
         
-        padding = tf.zeros([tf.shape(encoded)[0], 1, self.hidden_units])
+        pad = tf.zeros([tf.shape(x)[0], 1, self.hidden_units])
 
-        _encoded = tf.concat([padding]*1+[encoded]+[padding]*1, 1)
-        encoded = tf.layers.conv1d(_encoded, self.hidden_units, 3, activation=tf.nn.relu)
+        _x = tf.concat([pad]*1 + [x] + [pad]*1, 1)
+        x = tf.layers.conv1d(_x, self.hidden_units, 3, activation=tf.nn.relu)
 
-        _encoded = tf.concat([padding]*2+[encoded]+[padding]*2, 1)
-        encoded += tf.layers.conv1d(_encoded, self.hidden_units, 5, activation=tf.nn.relu)
+        _x = tf.concat([pad]*2 + [x] + [pad]*2, 1)
+        x += tf.layers.conv1d(_x, self.hidden_units, 5, activation=tf.nn.relu)
 
         with tf.variable_scope('output_layer'):
-            self.logits = tf.layers.dense(encoded, self.n_out)
+            self.logits = tf.layers.dense(x, self.n_out)
     # end method add_forward_path
 
 
@@ -153,52 +148,3 @@ class Tagger:
     def list_avg(self, l):
         return sum(l) / len(l)
     # end method list_avg
-
-
-    def window_mask(self, h_w):
-        masks = np.zeros([self.seq_len, self.seq_len])
-        for i in range(self.seq_len):
-            if i < h_w:
-                masks[i, :i+h_w+1] = 1.
-            elif i > self.seq_len - h_w - 1:
-                masks[i, i-h_w:] = 1.
-            else:                                                             
-                masks[i, i-h_w:i+h_w+1] = 1.
-        masks = tf.convert_to_tensor(masks)
-        masks = tf.tile(tf.expand_dims(masks,0), [tf.shape(self.X)[0]*self.num_heads, 1, 1])
-        return masks
-    
-
-    def multihead_attn(self, inputs, masks):
-        num_units = self.hidden_units
-        num_heads = self.num_heads
-        seq_len = self.seq_len
-        T_q = T_k = inputs.get_shape().as_list()[1]           
-
-        Q_K_V = tf.layers.dense(inputs, 3*num_units, tf.nn.relu)
-        Q, K, V = tf.split(Q_K_V, 3, -1)
-        
-        Q_ = tf.concat(tf.split(Q, num_heads, axis=2), axis=0)                         # (h*N, T_q, C/h) 
-        K_ = tf.concat(tf.split(K, num_heads, axis=2), axis=0)                         # (h*N, T_k, C/h) 
-        V_ = tf.concat(tf.split(V, num_heads, axis=2), axis=0)                         # (h*N, T_k, C/h)
-        
-        align = tf.matmul(Q_, tf.transpose(K_, [0,2,1]))                               # (h*N, T_q, T_k)
-        align = align / np.sqrt(K_.get_shape().as_list()[-1])                          # scale
-        
-        if masks is not None:
-            paddings = tf.fill(tf.shape(align), float('-inf'))                         # exp(-large) -> 0
-            align = tf.where(tf.equal(masks, 0), paddings, align)                      # (h*N, T_q, T_k)
-
-        align = tf.nn.softmax(align)                                                   # (h*N, T_q, T_k)
-
-        # Weighted sum
-        outputs = tf.matmul(align, V_)                                                 # (h*N, T_q, C/h)
-        # Restore shape
-        outputs = tf.concat(tf.split(outputs, num_heads, axis=0), axis=2)              # (N, T_q, C)
-        # Residual connection
-        outputs += inputs                                                              # (N, T_q, C)   
-        # Normalize
-        outputs = layer_norm(outputs)                                                  # (N, T_q, C)
-        return outputs
-
-
