@@ -22,7 +22,6 @@ $ pip3 install tensorflow-gpu==1.6.0 sklearn scipy tqdm
 * [Word Embedding（词向量）](https://github.com/zhedongzheng/finch#word-embedding%E8%AF%8D%E5%90%91%E9%87%8F)
 * [Text Classification（文本分类）](https://github.com/zhedongzheng/finch#text-classification%E6%96%87%E6%9C%AC%E5%88%86%E7%B1%BB)
 * [Text Generation（文本生成）](https://github.com/zhedongzheng/finch#text-generation%E6%96%87%E6%9C%AC%E7%94%9F%E6%88%90)
-* [Text Style（文本风格）](https://github.com/zhedongzheng/finch/blob/master/README.md#text-style%E6%96%87%E6%9C%AC%E9%A3%8E%E6%A0%BC)
 * [Text Matching（文本匹配）](https://github.com/zhedongzheng/finch/blob/master/README.md#text-matching%E6%96%87%E6%9C%AC%E5%8C%B9%E9%85%8D)
 * [Speech（语音）](https://github.com/zhedongzheng/finch#speech-%E8%AF%AD%E9%9F%B3)
 * [Sequence Labelling（序列标记）](https://github.com/zhedongzheng/finch#sequence-labelling%E5%BA%8F%E5%88%97%E6%A0%87%E8%AE%B0)
@@ -63,10 +62,7 @@ $ pip3 install tensorflow-gpu==1.6.0 sklearn scipy tqdm
 
 * [VAE](https://github.com/zhedongzheng/finch/tree/master/nlp-models/tensorflow/vae)
 
-#### Text Style（文本风格）
-<img src="https://github.com/zhedongzheng/finch/blob/master/assets/decoration_8.png" height='100'>
-
-* [Controllable VAE](https://github.com/zhedongzheng/finch/tree/master/nlp-models/tensorflow/toward-control)
+    * [Controllable VAE](https://github.com/zhedongzheng/finch/tree/master/nlp-models/tensorflow/toward-control)
 
 #### Text Matching（文本匹配）
 <img src="https://github.com/zhedongzheng/finch/blob/master/assets/decoration_10.jpeg" height='200'>
