@@ -45,7 +45,8 @@ class OnlyAttentionClassifier:
 
     def add_self_attention(self):
         x = self._pointer
-        x += sinusoidal_positional_encoding(x, self.embedding_dims)
+        position = sinusoidal_positional_encoding(x, 20)
+        x = tf.concat((x, position), -1)
         masks = tf.sign(self.X)
         
         # alignment
