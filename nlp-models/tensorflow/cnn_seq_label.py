@@ -40,21 +40,17 @@ class Tagger:
 
 
     def add_forward_path(self):
-        with tf.variable_scope('word_embedding'):
-            x = embed_seq(self.X, self.vocab_size, self.hidden_units, zero_pad=False, scale=True)
+        x = tf.contrib.layers.embed_sequence(self.X, self.vocab_size, self.hidden_units)
 
-        with tf.variable_scope('dropout'):
-            x = tf.layers.dropout(x, self.dropout_rate, training=self.is_training)
+        x = tf.layers.dropout(x, self.dropout_rate, training=self.is_training)
         
         pad = tf.zeros([tf.shape(x)[0], 1, self.hidden_units])
-
         for k in self.kernels:
             n = (k - 1) // 2
             _x = tf.concat([pad]*n + [x] + [pad]*n, 1)
             x += tf.layers.conv1d(_x, self.hidden_units, k, activation=tf.nn.relu)
 
-        with tf.variable_scope('output_layer'):
-            self.logits = tf.layers.dense(x, self.n_out)
+        self.logits = tf.layers.dense(x, self.n_out)
     # end method add_forward_path
 
 
