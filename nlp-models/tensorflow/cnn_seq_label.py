@@ -3,12 +3,11 @@ import numpy as np
 import math
 
 from sklearn.utils import shuffle
-from utils import embed_seq
 
 
 class Tagger:
     def __init__(self, vocab_size, n_out, seq_len, dropout_rate=0.1, hidden_units=128,
-                 kernels=[3, 5], sess=tf.Session()):
+                 kernels=[3, 5, 7], sess=tf.Session()):
         self.vocab_size = vocab_size
         self.n_out = n_out
         self.seq_len = seq_len
