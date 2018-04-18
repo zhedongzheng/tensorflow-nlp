@@ -28,7 +28,6 @@ $ pip3 install tensorflow-gpu==1.6.0 sklearn scipy tqdm
 * [Sequence to Sequence（序列到序列）](https://github.com/zhedongzheng/finch#sequence-to-sequence%E5%BA%8F%E5%88%97%E5%88%B0%E5%BA%8F%E5%88%97)
 * [Question Answering（问题回答）](https://github.com/zhedongzheng/finch/blob/master/README.md#question-answering%E9%97%AE%E9%A2%98%E5%9B%9E%E7%AD%94)
 * [Recommender System（推荐系统）](https://github.com/zhedongzheng/finch/blob/master/README.md#recommender-system%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F)
-* [Reinforcement Learning（强化学习）](https://github.com/zhedongzheng/finch/blob/master/README.md#reinforcement-learning%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0)
 * [Data Argumentation（数据增强）](https://github.com/zhedongzheng/finch/blob/master/README.md#data-argumentation%E6%95%B0%E6%8D%AE%E5%A2%9E%E5%BC%BA)
 ---
 #### Word Embedding（词向量）
@@ -111,10 +110,6 @@ $ pip3 install tensorflow-gpu==1.6.0 sklearn scipy tqdm
 <img src="https://github.com/zhedongzheng/finch/blob/master/assets/decoration_9.png" height='100'>
 
 * [Hybrid Neural Network](https://github.com/zhedongzheng/finch/tree/master/nlp-models/tensorflow/movielens)
-
-#### Reinforcement Learning（强化学习）
-```pip3 install gym ```
-* Policy Gradient &nbsp; &nbsp; [Model](https://github.com/zhedongzheng/finch/blob/master/nlp-models/tensorflow/rl-models/pg.py) &nbsp; &nbsp; [CartPole Test](https://github.com/zhedongzheng/finch/blob/master/nlp-models/tensorflow/rl-models/pg_cartpole_test.py)
 
 #### Data Argumentation（数据增强）
 * [Bi-Translation](https://nbviewer.jupyter.org/github/zhedongzheng/finch/blob/master/nlp-models/other/bi_translation.ipynb)
