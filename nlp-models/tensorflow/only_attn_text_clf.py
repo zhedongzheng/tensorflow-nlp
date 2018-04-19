@@ -7,10 +7,11 @@ from utils import learned_positional_encoding, sinusoidal_positional_encoding
 
 
 class OnlyAttentionClassifier:
-    def __init__(self, seq_len, vocab_size, n_out, sess=tf.Session(), embedding_dims=50):
+    def __init__(self, seq_len, vocab_size, n_out, sess=tf.Session(), model_dim=50, pos_dim=20):
         self.seq_len = seq_len
         self.vocab_size = vocab_size
-        self.embedding_dims = embedding_dims
+        self.model_dim = model_dim
+        self.pos_dim = pos_dim
         self.n_out = n_out
         self.sess = sess
         self._pointer = None
@@ -37,7 +38,7 @@ class OnlyAttentionClassifier:
 
 
     def add_word_embedding(self):
-        embedding = tf.get_variable('encoder', [self.vocab_size,self.embedding_dims], tf.float32)
+        embedding = tf.get_variable('encoder', [self.vocab_size, self.model_dim], tf.float32)
         embedded = tf.nn.embedding_lookup(embedding, self._pointer)
         self._pointer = tf.nn.dropout(embedded, self.keep_prob)
     # end method add_word_embedding_layer
@@ -45,7 +46,7 @@ class OnlyAttentionClassifier:
 
     def add_self_attention(self):
         x = self._pointer
-        position = sinusoidal_positional_encoding(x, 20)
+        position = learned_positional_encoding(x, self.pos_dim)
         x = tf.concat((x, position), -1)
         masks = tf.sign(self.X)
         
