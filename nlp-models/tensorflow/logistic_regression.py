@@ -20,7 +20,7 @@ class LogisticRegression:
         self.Y = tf.placeholder(tf.int64, [None])
         self.lr = tf.placeholder(tf.float32)
 
-        self.logits = tf.layers.dense(self.X, self.n_out, name='xw+b')
+        self.logits = tf.layers.dense(self.X, self.n_out)
 
         self.loss = tf.reduce_mean(tf.nn.sparse_softmax_cross_entropy_with_logits(
             logits=self.logits, labels=self.Y))
