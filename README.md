@@ -1,7 +1,9 @@
 <img src="https://github.com/zhedongzheng/finch/blob/master/assets/tensorflow_nlp.png" height='100'>
 
 #### Installation 
-Python 3 and Jupyter Notebook are required
+* Python 3 and Jupyter Notebook are required
+
+* We have used light-weight datasets, friendly to people who have not GPU
 
 CPU
 ```
