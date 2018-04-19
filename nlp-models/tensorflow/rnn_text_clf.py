@@ -1,11 +1,11 @@
-from __future__ import print_function
+from base_text_clf import BaseTextClassifier
+
 import tensorflow as tf
 import sklearn
 import numpy as np
-import math
 
 
-class RNNTextClassifier:
+class RNNTextClassifier(BaseTextClassifier):
     def __init__(self, vocab_size, n_out, embedding_dims=128, cell_size=128, grad_clip=5.0,
                  sess=tf.Session()):
         """
@@ -77,8 +77,8 @@ class RNNTextClassifier:
 
 
     def add_backward_path(self):
-        self.loss = tf.reduce_mean(tf.nn.sparse_softmax_cross_entropy_with_logits(logits=self.logits,
-                                                                                  labels=self.Y))
+        self.loss = tf.reduce_mean(tf.nn.sparse_softmax_cross_entropy_with_logits(
+            logits=self.logits, labels=self.Y))
         self.acc = tf.reduce_mean(tf.cast(tf.equal(tf.argmax(self.logits,1), self.Y), tf.float32))
         # gradient clipping
         params = tf.trainable_variables()
@@ -175,27 +175,4 @@ class RNNTextClassifier:
             padded_seqs, seq_lens = self.pad_sentence_batch(arr[i : i+batch_size])
             yield padded_seqs, seq_lens
     # end method gen_batch
-
-
-    def gen_batch(self, arr, batch_size):
-        for i in range(0, len(arr), batch_size):
-            yield arr[i : i+batch_size]
-    # end method gen_batch
-
-
-    def decrease_lr(self, en_exp_decay, global_step, n_epoch, len_X, batch_size):
-        if en_exp_decay:
-            max_lr = 0.005
-            min_lr = 0.001
-            decay_rate = math.log(min_lr/max_lr) / (-n_epoch*len_X/batch_size)
-            lr = max_lr*math.exp(-decay_rate*global_step)
-        else:
-            lr = 0.001
-        return lr
-    # end method adjust_lr
-
-
-    def list_avg(self, l):
-        return sum(l) / len(l)
-    # end method list_avg
 # end class
