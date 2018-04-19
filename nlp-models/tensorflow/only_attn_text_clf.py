@@ -39,15 +39,15 @@ class OnlyAttentionClassifier:
 
     def add_word_embedding(self):
         embedding = tf.get_variable('encoder', [self.vocab_size, self.model_dim], tf.float32)
-        embedded = tf.nn.embedding_lookup(embedding, self._pointer)
-        self._pointer = tf.nn.dropout(embedded, self.keep_prob)
+        x = tf.nn.embedding_lookup(embedding, self._pointer)
+        position = learned_positional_encoding(x, self.pos_dim)
+        x = tf.concat((x, position), -1)
+        self._pointer = tf.nn.dropout(x, self.keep_prob)
     # end method add_word_embedding_layer
 
 
     def add_self_attention(self):
         x = self._pointer
-        position = learned_positional_encoding(x, self.pos_dim)
-        x = tf.concat((x, position), -1)
         masks = tf.sign(self.X)
         
         # alignment
