@@ -3,7 +3,7 @@
 #### Installation 
 * Python 3 and Jupyter Notebook are required
 
-* We have used light-weight datasets, friendly to people who have not GPU
+* We have used light-weight datasets, friendly to students who only have CPU
 
 CPU
 ```
