@@ -1,0 +1,5 @@
+neutral	this church choir sings to the masses as they sing joyous songs from the book at a church	the church has cracks in the ceiling
+entailment	this church choir sings to the masses as they sing joyous songs from the book at a church	the church is filled with song
+contradiction	this church choir sings to the masses as they sing joyous songs from the book at a church	a choir singing at a baseball game
+neutral	a woman with a green headscarf blue shirt and a very big grin	the woman is young
+entailment	a woman with a green headscarf blue shirt and a very big grin	the woman is very happy

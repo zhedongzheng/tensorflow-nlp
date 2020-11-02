@@ -1,0 +1,20 @@
+BOS i want to fly from boston at 838 am and arrive in denver at 1110 in the morning EOS	 O O O O O O B-fromloc.city_name O B-depart_time.time I-depart_time.time O O O B-toloc.city_name O B-arrive_time.time O O B-arrive_time.period_of_day atis_flight
+BOS what flights are available from pittsburgh to baltimore on thursday morning EOS	O O O O O O B-fromloc.city_name O B-toloc.city_name O B-depart_date.day_name B-depart_time.period_of_day atis_flight
+BOS what is the arrival time in san francisco for the 755 am flight leaving washington EOS	O O O O B-flight_time I-flight_time O B-fromloc.city_name I-fromloc.city_name O O B-depart_time.time I-depart_time.time O O B-fromloc.city_name atis_flight_time
+BOS cheapest airfare from tacoma to orlando EOS	O B-cost_relative O O B-fromloc.city_name O B-toloc.city_name atis_airfare
+BOS round trip fares from pittsburgh to philadelphia under 1000 dollars EOS	O B-round_trip I-round_trip O O B-fromloc.city_name O B-toloc.city_name B-cost_relative B-fare_amount I-fare_amount atis_airfare
+BOS i need a flight tomorrow from columbus to minneapolis EOS	O O O O O B-depart_date.today_relative O B-fromloc.city_name O B-toloc.city_name atis_flight
+BOS what kind of aircraft is used on a flight from cleveland to dallas EOS	O O O O O O O O O O O B-fromloc.city_name O B-toloc.city_name atis_aircraft
+BOS show me the flights from pittsburgh to los angeles on thursday EOS	O O O O O O B-fromloc.city_name O B-toloc.city_name I-toloc.city_name O B-depart_date.day_name atis_flight
+BOS all flights from boston to washington EOS	O O O O B-fromloc.city_name O B-toloc.city_name atis_flight
+BOS what kind of ground transportation is available in denver EOS	O O O O O O O O O B-city_name atis_ground_service
+BOS show me the flights from dallas to san francisco EOS	O O O O O O B-fromloc.city_name O B-toloc.city_name I-toloc.city_name atis_flight
+BOS show me the flights from san diego to newark by way of houston EOS	O O O O O O B-fromloc.city_name I-fromloc.city_name O B-toloc.city_name O O O B-stoploc.city_name atis_flight
+BOS what's the airport at orlando EOS	O O O O O B-city_name atis_airport
+BOS what is the cheapest flight from boston to bwi EOS	O O O O B-cost_relative O O B-fromloc.city_name O B-toloc.airport_code atis_flight
+BOS all flights to baltimore after 6 pm EOS	O O O O B-toloc.city_name B-depart_time.time_relative B-depart_time.time I-depart_time.time atis_flight
+BOS show me the first class fares from boston to denver EOS	O O O O B-class_type I-class_type O O B-fromloc.city_name O B-toloc.city_name atis_airfare
+BOS show me the ground transportation in denver EOS	O O O O O O O B-city_name atis_ground_service
+BOS all flights from denver to pittsburgh leaving after 6 pm and before 7 pm EOS	O O O O B-fromloc.city_name O B-toloc.city_name O B-depart_time.time_relative B-depart_time.time I-depart_time.time O B-depart_time.time_relative B-depart_time.time I-depart_time.time atis_flight
+BOS i need information on flights for tuesday leaving baltimore for dallas dallas to boston and boston to baltimore EOS	O O O O O O O B-depart_date.day_name O B-fromloc.city_name O B-toloc.city_name B-fromloc.city_name O B-toloc.city_name O B-fromloc.city_name O B-toloc.city_name atis_flight
+BOS please give me the flights from boston to pittsburgh on thursday of next week EOS	O O O O O O O B-fromloc.city_name O B-toloc.city_name O B-depart_date.day_name O B-depart_date.date_relative O atis_flight

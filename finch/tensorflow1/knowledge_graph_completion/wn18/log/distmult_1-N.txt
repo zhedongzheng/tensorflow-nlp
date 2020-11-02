@@ -1,0 +1,1689 @@
+Using config: {'_model_dir': '../model/distmult_1-N', '_tf_random_seed': None, '_save_summary_steps': 100, '_save_checkpoints_steps': 1105, '_save_checkpoints_secs': None, '_session_config': allow_soft_placement: true
+graph_options {
+  rewrite_options {
+    meta_optimizer_iterations: ONE
+  }
+}
+, '_keep_checkpoint_max': 7, '_keep_checkpoint_every_n_hours': 10000, '_log_step_count_steps': 100, '_train_distribute': None, '_device_fn': None, '_protocol': None, '_eval_distribute': None, '_experimental_distribute': None, '_service': None, '_cluster_spec': <tensorflow.python.training.server_lib.ClusterSpec object at 0x7ff90e4c2a90>, '_task_type': 'worker', '_task_id': 0, '_global_id_in_cluster': 0, '_master': '', '_evaluation_master': '', '_is_chief': True, '_num_ps_replicas': 0, '_num_worker_replicas': 1}
+Not using Distribute Coordinator.
+Running training and evaluation locally (non-distributed).
+Start train and evaluate loop. The evaluate will happen after every checkpoint. Checkpoint frequency is determined based on RunConfig arguments: save_checkpoints_steps 1105 or save_checkpoints_secs None.
+From /usr/local/lib/python3.6/dist-packages/tensorflow/python/framework/op_def_library.py:263: colocate_with (from tensorflow.python.framework.ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Colocations handled automatically by placer.
+From /usr/local/lib/python3.6/dist-packages/tensorflow/python/data/ops/dataset_ops.py:429: py_func (from tensorflow.python.ops.script_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+tf.py_func is deprecated in TF V2. Instead, use
+    tf.py_function, which takes a python function which manipulates tf eager
+    tensors instead of numpy arrays. It's easy to convert a tf eager tensor to
+    an ndarray (just call tensor.numpy()) but having access to eager tensors
+    means `tf.py_function`s can use accelerators such as GPUs as well as
+    being differentiable using a gradient tape.
+    
+From /usr/local/lib/python3.6/dist-packages/tensorflow_estimator/python/estimator/util.py:104: DatasetV1.make_initializable_iterator (from tensorflow.python.data.ops.dataset_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use `for ... in dataset:` to iterate over a dataset. If using `tf.estimator`, return the `Dataset` object directly from your input function. As a last resort, you can use `tf.compat.v1.data.make_initializable_iterator(dataset)`.
+Calling model_fn.
+From <ipython-input-9-58445c576d9f>:16: to_float (from tensorflow.python.ops.math_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use tf.cast instead.
+
+[<tf.Variable 'e_embed:0' shape=(40943, 300) dtype=float32_ref>,
+ <tf.Variable 'r_embed:0' shape=(18, 300) dtype=float32_ref>,
+ <tf.Variable 'bias:0' shape=(40943,) dtype=float32_ref>]
+From /usr/local/lib/python3.6/dist-packages/tensorflow/python/ops/array_grad.py:425: to_int32 (from tensorflow.python.ops.math_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use tf.cast instead.
+Done calling model_fn.
+Create CheckpointSaverHook.
+Graph was finalized.
+Running local_init_op.
+Done running local_init_op.
+Saving checkpoints for 0 into ../model/distmult_1-N/model.ckpt.
+loss = 9.527763, step = 0
+global_step/sec: 19.4921
+loss = 8.308205, step = 100 (5.133 sec)
+global_step/sec: 19.8659
+loss = 7.6373787, step = 200 (5.033 sec)
+global_step/sec: 19.931
+loss = 6.792019, step = 300 (5.021 sec)
+global_step/sec: 19.8354
+loss = 6.499347, step = 400 (5.043 sec)
+global_step/sec: 19.7114
+loss = 5.5301023, step = 500 (5.066 sec)
+global_step/sec: 19.7012
+loss = 5.458112, step = 600 (5.079 sec)
+global_step/sec: 19.7203
+loss = 5.569914, step = 700 (5.069 sec)
+global_step/sec: 19.7246
+loss = 5.2415137, step = 800 (5.073 sec)
+global_step/sec: 19.8212
+loss = 4.746397, step = 900 (5.043 sec)
+global_step/sec: 19.7125
+loss = 4.479981, step = 1000 (5.077 sec)
+global_step/sec: 19.6849
+loss = 3.977213, step = 1100 (5.074 sec)
+Saving checkpoints for 1105 into ../model/distmult_1-N/model.ckpt.
+Calling model_fn.
+Done calling model_fn.
+Starting evaluation at 2019-02-14T03:05:11Z
+Graph was finalized.
+From /usr/local/lib/python3.6/dist-packages/tensorflow/python/training/saver.py:1266: checkpoint_exists (from tensorflow.python.training.checkpoint_management) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use standard file APIs to check for files with this prefix.
+Restoring parameters from ../model/distmult_1-N/model.ckpt-1105
+Running local_init_op.
+Done running local_init_op.
+Finished evaluation at 2019-02-14-03:05:13
+Saving dict for global step 1105: Hits1 = 0.0, Hits10 = 0.0, Hits3 = 0.0, MRR = 0.00020874914, global_step = 1105, loss = 4.2770977
+Saving 'checkpoint_path' summary for global step 1105: ../model/distmult_1-N/model.ckpt-1105
+From /usr/local/lib/python3.6/dist-packages/tensorflow/python/summary/summary_iterator.py:68: tf_record_iterator (from tensorflow.python.lib.io.tf_record) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use eager execution and: 
+`tf.data.TFRecordDataset(path)`
+global_step/sec: 11.091
+loss = 3.4116294, step = 1200 (9.024 sec)
+global_step/sec: 17.8871
+loss = 3.1651394, step = 1300 (5.589 sec)
+global_step/sec: 19.5226
+loss = 3.0118384, step = 1400 (5.123 sec)
+global_step/sec: 19.5203
+loss = 2.6385603, step = 1500 (5.122 sec)
+global_step/sec: 19.4747
+loss = 2.8419375, step = 1600 (5.136 sec)
+global_step/sec: 19.4223
+loss = 2.5681052, step = 1700 (5.145 sec)
+global_step/sec: 19.4456
+loss = 2.6123562, step = 1800 (5.146 sec)
+global_step/sec: 19.4721
+loss = 2.173819, step = 1900 (5.134 sec)
+global_step/sec: 19.5663
+loss = 2.092387, step = 2000 (5.107 sec)
+global_step/sec: 19.486
+loss = 2.0418396, step = 2100 (5.137 sec)
+global_step/sec: 19.341
+loss = 2.0755203, step = 2200 (5.170 sec)
+Saving checkpoints for 2210 into ../model/distmult_1-N/model.ckpt.
+Calling model_fn.
+Done calling model_fn.
+Starting evaluation at 2019-02-14T03:06:12Z
+Graph was finalized.
+Restoring parameters from ../model/distmult_1-N/model.ckpt-2210
+Running local_init_op.
+Done running local_init_op.
+Finished evaluation at 2019-02-14-03:06:14
+Saving dict for global step 2210: Hits1 = 0.0, Hits10 = 0.0008, Hits3 = 0.0, MRR = 0.0005793608, global_step = 2210, loss = 2.361449
+Saving 'checkpoint_path' summary for global step 2210: ../model/distmult_1-N/model.ckpt-2210
+global_step/sec: 11.1986
+loss = 1.8117818, step = 2300 (8.929 sec)
+global_step/sec: 18.2317
+loss = 1.6533265, step = 2400 (5.486 sec)
+global_step/sec: 19.5378
+loss = 1.7025877, step = 2500 (5.120 sec)
+global_step/sec: 19.5811
+loss = 1.4208965, step = 2600 (5.103 sec)
+global_step/sec: 19.5845
+loss = 1.3962617, step = 2700 (5.109 sec)
+global_step/sec: 19.5163
+loss = 1.4171739, step = 2800 (5.121 sec)
+global_step/sec: 19.5946
+loss = 1.2380434, step = 2900 (5.108 sec)
+global_step/sec: 19.6457
+loss = 1.3775043, step = 3000 (5.084 sec)
+global_step/sec: 19.7024
+loss = 1.239369, step = 3100 (5.081 sec)
+global_step/sec: 19.5904
+loss = 1.2080418, step = 3200 (5.106 sec)
+global_step/sec: 19.5837
+loss = 1.2247895, step = 3300 (5.097 sec)
+Saving checkpoints for 3315 into ../model/distmult_1-N/model.ckpt.
+Calling model_fn.
+Done calling model_fn.
+Starting evaluation at 2019-02-14T03:07:12Z
+Graph was finalized.
+Restoring parameters from ../model/distmult_1-N/model.ckpt-3315
+Running local_init_op.
+Done running local_init_op.
+Finished evaluation at 2019-02-14-03:07:15
+Saving dict for global step 3315: Hits1 = 0.0116, Hits10 = 0.0178, Hits3 = 0.0148, MRR = 0.014403738, global_step = 3315, loss = 1.5967926
+Saving 'checkpoint_path' summary for global step 3315: ../model/distmult_1-N/model.ckpt-3315
+global_step/sec: 11.1511
+loss = 1.1792992, step = 3400 (8.968 sec)
+global_step/sec: 18.5148
+loss = 1.2284762, step = 3500 (5.408 sec)
+global_step/sec: 19.584
+loss = 1.1737909, step = 3600 (5.107 sec)
+global_step/sec: 19.5474
+loss = 1.1540146, step = 3700 (5.111 sec)
+global_step/sec: 19.5106
+loss = 1.0772489, step = 3800 (5.129 sec)
+global_step/sec: 19.2849
+loss = 1.1548803, step = 3900 (5.183 sec)
+global_step/sec: 19.3604
+loss = 1.0602779, step = 4000 (5.164 sec)
+global_step/sec: 19.3867
+loss = 1.0619487, step = 4100 (5.161 sec)
+global_step/sec: 19.573
+loss = 1.0212109, step = 4200 (5.105 sec)
+global_step/sec: 19.3684
+loss = 1.0212001, step = 4300 (5.167 sec)
+global_step/sec: 19.3908
+loss = 0.93197364, step = 4400 (5.155 sec)
+Saving checkpoints for 4420 into ../model/distmult_1-N/model.ckpt.
+Calling model_fn.
+Done calling model_fn.
+Starting evaluation at 2019-02-14T03:08:13Z
+Graph was finalized.
+Restoring parameters from ../model/distmult_1-N/model.ckpt-4420
+Running local_init_op.
+Done running local_init_op.
+Finished evaluation at 2019-02-14-03:08:16
+Saving dict for global step 4420: Hits1 = 0.0222, Hits10 = 0.0348, Hits3 = 0.0286, MRR = 0.027653411, global_step = 4420, loss = 1.2170032
+Saving 'checkpoint_path' summary for global step 4420: ../model/distmult_1-N/model.ckpt-4420
+global_step/sec: 10.9847
+loss = 0.89092267, step = 4500 (9.103 sec)
+global_step/sec: 19.0157
+loss = 0.88024443, step = 4600 (5.267 sec)
+global_step/sec: 19.5055
+loss = 0.92836803, step = 4700 (5.122 sec)
+global_step/sec: 19.4103
+loss = 0.85976887, step = 4800 (5.152 sec)
+global_step/sec: 19.5967
+loss = 0.880751, step = 4900 (5.103 sec)
+global_step/sec: 19.5361
+loss = 0.8477171, step = 5000 (5.116 sec)
+global_step/sec: 19.4652
+loss = 0.80862916, step = 5100 (5.136 sec)
+global_step/sec: 19.5273
+loss = 0.82231224, step = 5200 (5.126 sec)
+global_step/sec: 19.4375
+loss = 0.8003622, step = 5300 (5.144 sec)
+global_step/sec: 19.573
+loss = 0.78658897, step = 5400 (5.107 sec)
+global_step/sec: 19.4773
+loss = 0.79411423, step = 5500 (5.136 sec)
+Saving checkpoints for 5525 into ../model/distmult_1-N/model.ckpt.
+Calling model_fn.
+Done calling model_fn.
+Starting evaluation at 2019-02-14T03:09:14Z
+Graph was finalized.
+Restoring parameters from ../model/distmult_1-N/model.ckpt-5525
+Running local_init_op.
+Done running local_init_op.
+Finished evaluation at 2019-02-14-03:09:17
+Saving dict for global step 5525: Hits1 = 0.0356, Hits10 = 0.0544, Hits3 = 0.043, MRR = 0.043076225, global_step = 5525, loss = 0.9638108
+Saving 'checkpoint_path' summary for global step 5525: ../model/distmult_1-N/model.ckpt-5525
+global_step/sec: 11.1729
+loss = 0.74176365, step = 5600 (8.945 sec)
+global_step/sec: 17.8713
+loss = 0.7390606, step = 5700 (5.602 sec)
+global_step/sec: 19.2754
+loss = 0.731463, step = 5800 (5.183 sec)
+global_step/sec: 19.4165
+loss = 0.7129829, step = 5900 (5.155 sec)
+global_step/sec: 19.5325
+loss = 0.7067275, step = 6000 (5.113 sec)
+global_step/sec: 19.4736
+loss = 0.7144483, step = 6100 (5.143 sec)
+global_step/sec: 19.5006
+loss = 0.70301133, step = 6200 (5.127 sec)
+global_step/sec: 19.5024
+loss = 0.69225436, step = 6300 (5.126 sec)
+global_step/sec: 19.5769
+loss = 0.68158585, step = 6400 (5.107 sec)
+global_step/sec: 19.5392
+loss = 0.6722414, step = 6500 (5.119 sec)
+global_step/sec: 19.4488
+loss = 0.6628297, step = 6600 (5.140 sec)
+Saving checkpoints for 6630 into ../model/distmult_1-N/model.ckpt.
+Calling model_fn.
+Done calling model_fn.
+Starting evaluation at 2019-02-14T03:10:15Z
+Graph was finalized.
+Restoring parameters from ../model/distmult_1-N/model.ckpt-6630
+Running local_init_op.
+Done running local_init_op.
+Finished evaluation at 2019-02-14-03:10:18
+Saving dict for global step 6630: Hits1 = 0.0554, Hits10 = 0.094, Hits3 = 0.0696, MRR = 0.069109716, global_step = 6630, loss = 0.80058324
+Saving 'checkpoint_path' summary for global step 6630: ../model/distmult_1-N/model.ckpt-6630
+global_step/sec: 11.3723
+loss = 0.63741577, step = 6700 (8.796 sec)
+global_step/sec: 17.9061
+loss = 0.61861897, step = 6800 (5.584 sec)
+global_step/sec: 19.5133
+loss = 0.6218573, step = 6900 (5.130 sec)
+global_step/sec: 19.517
+loss = 0.6137496, step = 7000 (5.118 sec)
+global_step/sec: 19.6056
+loss = 0.62477493, step = 7100 (5.103 sec)
+global_step/sec: 19.6186
+loss = 0.6070767, step = 7200 (5.100 sec)
+global_step/sec: 19.6706
+loss = 0.6107668, step = 7300 (5.077 sec)
+global_step/sec: 19.5891
+loss = 0.59647185, step = 7400 (5.108 sec)
+global_step/sec: 19.5542
+loss = 0.5909357, step = 7500 (5.116 sec)
+global_step/sec: 19.5112
+loss = 0.5830885, step = 7600 (5.118 sec)
+global_step/sec: 19.5593
+loss = 0.57024306, step = 7700 (5.118 sec)
+Saving checkpoints for 7735 into ../model/distmult_1-N/model.ckpt.
+From /usr/local/lib/python3.6/dist-packages/tensorflow/python/training/saver.py:966: remove_checkpoint (from tensorflow.python.training.checkpoint_management) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use standard file APIs to delete files with this prefix.
+Calling model_fn.
+Done calling model_fn.
+Starting evaluation at 2019-02-14T03:11:16Z
+Graph was finalized.
+Restoring parameters from ../model/distmult_1-N/model.ckpt-7735
+Running local_init_op.
+Done running local_init_op.
+Finished evaluation at 2019-02-14-03:11:18
+Saving dict for global step 7735: Hits1 = 0.0862, Hits10 = 0.1476, Hits3 = 0.1116, MRR = 0.10803556, global_step = 7735, loss = 0.69048274
+Saving 'checkpoint_path' summary for global step 7735: ../model/distmult_1-N/model.ckpt-7735
+global_step/sec: 11.3215
+loss = 0.56826395, step = 7800 (8.833 sec)
+global_step/sec: 18.0095
+loss = 0.55107605, step = 7900 (5.550 sec)
+global_step/sec: 19.4228
+loss = 0.5497223, step = 8000 (5.144 sec)
+global_step/sec: 19.5546
+loss = 0.5491137, step = 8100 (5.116 sec)
+global_step/sec: 19.6338
+loss = 0.5380691, step = 8200 (5.098 sec)
+global_step/sec: 19.5765
+loss = 0.52206665, step = 8300 (5.104 sec)
+global_step/sec: 19.4359
+loss = 0.5438996, step = 8400 (5.146 sec)
+global_step/sec: 19.526
+loss = 0.53082705, step = 8500 (5.124 sec)
+global_step/sec: 19.4214
+loss = 0.5302825, step = 8600 (5.150 sec)
+global_step/sec: 19.4774
+loss = 0.50597537, step = 8700 (5.132 sec)
+global_step/sec: 19.3992
+loss = 0.505517, step = 8800 (5.151 sec)
+Saving checkpoints for 8840 into ../model/distmult_1-N/model.ckpt.
+Calling model_fn.
+Done calling model_fn.
+Starting evaluation at 2019-02-14T03:12:16Z
+Graph was finalized.
+Restoring parameters from ../model/distmult_1-N/model.ckpt-8840
+Running local_init_op.
+Done running local_init_op.
+Finished evaluation at 2019-02-14-03:12:19
+Saving dict for global step 8840: Hits1 = 0.1166, Hits10 = 0.2028, Hits3 = 0.1536, MRR = 0.14677446, global_step = 8840, loss = 0.6050683
+Saving 'checkpoint_path' summary for global step 8840: ../model/distmult_1-N/model.ckpt-8840
+global_step/sec: 11.295
+loss = 0.49198052, step = 8900 (8.860 sec)
+global_step/sec: 18.0898
+loss = 0.493896, step = 9000 (5.525 sec)
+global_step/sec: 19.4575
+loss = 0.4751109, step = 9100 (5.136 sec)
+global_step/sec: 19.5318
+loss = 0.4824302, step = 9200 (5.122 sec)
+global_step/sec: 19.4934
+loss = 0.46028388, step = 9300 (5.132 sec)
+global_step/sec: 19.4528
+loss = 0.47397202, step = 9400 (5.135 sec)
+global_step/sec: 19.5673
+loss = 0.46678576, step = 9500 (5.118 sec)
+global_step/sec: 19.4971
+loss = 0.46114948, step = 9600 (5.130 sec)
+global_step/sec: 19.4354
+loss = 0.46405706, step = 9700 (5.143 sec)
+global_step/sec: 19.375
+loss = 0.45140496, step = 9800 (5.157 sec)
+global_step/sec: 19.4481
+loss = 0.44429156, step = 9900 (5.146 sec)
+Saving checkpoints for 9945 into ../model/distmult_1-N/model.ckpt.
+Calling model_fn.
+Done calling model_fn.
+Starting evaluation at 2019-02-14T03:13:17Z
+Graph was finalized.
+Restoring parameters from ../model/distmult_1-N/model.ckpt-9945
+Running local_init_op.
+Done running local_init_op.
+Finished evaluation at 2019-02-14-03:13:20
+Saving dict for global step 9945: Hits1 = 0.1498, Hits10 = 0.2572, Hits3 = 0.1964, MRR = 0.188079, global_step = 9945, loss = 0.5348891
+Saving 'checkpoint_path' summary for global step 9945: ../model/distmult_1-N/model.ckpt-9945
+global_step/sec: 11.1156
+loss = 0.4343654, step = 10000 (9.000 sec)
+global_step/sec: 17.7749
+loss = 0.423406, step = 10100 (5.620 sec)
+global_step/sec: 19.3883
+loss = 0.41787276, step = 10200 (5.157 sec)
+global_step/sec: 19.4693
+loss = 0.42503718, step = 10300 (5.141 sec)
+global_step/sec: 19.5424
+loss = 0.41456968, step = 10400 (5.114 sec)
+global_step/sec: 19.4407
+loss = 0.41266432, step = 10500 (5.145 sec)
+global_step/sec: 19.5437
+loss = 0.4153478, step = 10600 (5.112 sec)
+global_step/sec: 19.5543
+loss = 0.41779134, step = 10700 (5.115 sec)
+global_step/sec: 19.509
+loss = 0.40897393, step = 10800 (5.132 sec)
+global_step/sec: 19.5309
+loss = 0.3917796, step = 10900 (5.119 sec)
+global_step/sec: 19.4228
+loss = 0.38763514, step = 11000 (5.147 sec)
+Saving checkpoints for 11050 into ../model/distmult_1-N/model.ckpt.
+Calling model_fn.
+Done calling model_fn.
+Starting evaluation at 2019-02-14T03:14:18Z
+Graph was finalized.
+Restoring parameters from ../model/distmult_1-N/model.ckpt-11050
+Running local_init_op.
+Done running local_init_op.
+Finished evaluation at 2019-02-14-03:14:21
+Saving dict for global step 11050: Hits1 = 0.1818, Hits10 = 0.3376, Hits3 = 0.2444, MRR = 0.23373479, global_step = 11050, loss = 0.47560662
+Saving 'checkpoint_path' summary for global step 11050: ../model/distmult_1-N/model.ckpt-11050
+global_step/sec: 11.269
+loss = 0.39174008, step = 11100 (8.871 sec)
+global_step/sec: 17.8309
+loss = 0.38318455, step = 11200 (5.613 sec)
+global_step/sec: 19.474
+loss = 0.38319322, step = 11300 (5.136 sec)
+global_step/sec: 19.3769
+loss = 0.37434977, step = 11400 (5.156 sec)
+global_step/sec: 19.4844
+loss = 0.360962, step = 11500 (5.130 sec)
+global_step/sec: 19.4929
+loss = 0.357938, step = 11600 (5.133 sec)
+global_step/sec: 18.8864
+loss = 0.36040914, step = 11700 (5.298 sec)
+global_step/sec: 19.5546
+loss = 0.34945792, step = 11800 (5.113 sec)
+global_step/sec: 19.4055
+loss = 0.32476375, step = 11900 (5.154 sec)
+global_step/sec: 19.5026
+loss = 0.345344, step = 12000 (5.125 sec)
+global_step/sec: 19.481
+loss = 0.35603255, step = 12100 (5.136 sec)
+Saving checkpoints for 12155 into ../model/distmult_1-N/model.ckpt.
+Calling model_fn.
+Done calling model_fn.
+Starting evaluation at 2019-02-14T03:15:19Z
+Graph was finalized.
+Restoring parameters from ../model/distmult_1-N/model.ckpt-12155
+Running local_init_op.
+Done running local_init_op.
+Finished evaluation at 2019-02-14-03:15:22
+Saving dict for global step 12155: Hits1 = 0.2198, Hits10 = 0.4316, Hits3 = 0.3074, MRR = 0.28951988, global_step = 12155, loss = 0.42853302
+Saving 'checkpoint_path' summary for global step 12155: ../model/distmult_1-N/model.ckpt-12155
+global_step/sec: 11.2753
+loss = 0.33758444, step = 12200 (8.868 sec)
+global_step/sec: 18.8077
+loss = 0.3363366, step = 12300 (5.312 sec)
+global_step/sec: 18.3409
+loss = 0.3215068, step = 12400 (5.454 sec)
+global_step/sec: 19.4716
+loss = 0.3263268, step = 12500 (5.141 sec)
+global_step/sec: 19.3783
+loss = 0.332881, step = 12600 (5.153 sec)
+global_step/sec: 19.4977
+loss = 0.31401134, step = 12700 (5.130 sec)
+global_step/sec: 19.5176
+loss = 0.30741104, step = 12800 (5.123 sec)
+global_step/sec: 19.4229
+loss = 0.3218507, step = 12900 (5.151 sec)
+global_step/sec: 19.3122
+loss = 0.318139, step = 13000 (5.187 sec)
+global_step/sec: 19.3366
+loss = 0.2844369, step = 13100 (5.158 sec)
+global_step/sec: 19.2875
+loss = 0.31750932, step = 13200 (5.189 sec)
+Saving checkpoints for 13260 into ../model/distmult_1-N/model.ckpt.
+Calling model_fn.
+Done calling model_fn.
+Starting evaluation at 2019-02-14T03:16:21Z
+Graph was finalized.
+Restoring parameters from ../model/distmult_1-N/model.ckpt-13260
+Running local_init_op.
+Done running local_init_op.
+Finished evaluation at 2019-02-14-03:16:23
+Saving dict for global step 13260: Hits1 = 0.271, Hits10 = 0.5654, Hits3 = 0.4022, MRR = 0.36646447, global_step = 13260, loss = 0.3963781
+Saving 'checkpoint_path' summary for global step 13260: ../model/distmult_1-N/model.ckpt-13260
+global_step/sec: 11.4252
+loss = 0.29907998, step = 13300 (8.749 sec)
+global_step/sec: 17.8842
+loss = 0.28981036, step = 13400 (5.599 sec)
+global_step/sec: 19.2116
+loss = 0.2809798, step = 13500 (5.203 sec)
+global_step/sec: 19.5225
+loss = 0.2897687, step = 13600 (5.121 sec)
+global_step/sec: 19.3639
+loss = 0.2733691, step = 13700 (5.165 sec)
+global_step/sec: 19.3172
+loss = 0.29973692, step = 13800 (5.172 sec)
+global_step/sec: 19.4624
+loss = 0.2877071, step = 13900 (5.142 sec)
+global_step/sec: 19.525
+loss = 0.27030694, step = 14000 (5.118 sec)
+global_step/sec: 19.5458
+loss = 0.28015542, step = 14100 (5.118 sec)
+global_step/sec: 19.3317
+loss = 0.30954787, step = 14200 (5.176 sec)
+global_step/sec: 19.2884
+loss = 0.29395077, step = 14300 (5.185 sec)
+Saving checkpoints for 14365 into ../model/distmult_1-N/model.ckpt.
+Calling model_fn.
+Done calling model_fn.
+Starting evaluation at 2019-02-14T03:17:22Z
+Graph was finalized.
+Restoring parameters from ../model/distmult_1-N/model.ckpt-14365
+Running local_init_op.
+Done running local_init_op.
+Finished evaluation at 2019-02-14-03:17:24
+Saving dict for global step 14365: Hits1 = 0.347, Hits10 = 0.7178, Hits3 = 0.5288, MRR = 0.46822032, global_step = 14365, loss = 0.37538525
+Saving 'checkpoint_path' summary for global step 14365: ../model/distmult_1-N/model.ckpt-14365
+global_step/sec: 11.2751
+loss = 0.26777983, step = 14400 (8.864 sec)
+global_step/sec: 17.9387
+loss = 0.27859175, step = 14500 (5.573 sec)
+global_step/sec: 19.3004
+loss = 0.29890823, step = 14600 (5.187 sec)
+global_step/sec: 19.401
+loss = 0.27656305, step = 14700 (5.152 sec)
+global_step/sec: 19.4609
+loss = 0.28450167, step = 14800 (5.138 sec)
+global_step/sec: 19.42
+loss = 0.27469796, step = 14900 (5.146 sec)
+global_step/sec: 19.4043
+loss = 0.27970487, step = 15000 (5.157 sec)
+global_step/sec: 19.2909
+loss = 0.26844862, step = 15100 (5.187 sec)
+global_step/sec: 19.3037
+loss = 0.2603048, step = 15200 (5.178 sec)
+global_step/sec: 19.4238
+loss = 0.27243707, step = 15300 (5.146 sec)
+global_step/sec: 19.4386
+loss = 0.24223423, step = 15400 (5.148 sec)
+Saving checkpoints for 15470 into ../model/distmult_1-N/model.ckpt.
+Calling model_fn.
+Done calling model_fn.
+Starting evaluation at 2019-02-14T03:18:23Z
+Graph was finalized.
+Restoring parameters from ../model/distmult_1-N/model.ckpt-15470
+Running local_init_op.
+Done running local_init_op.
+Finished evaluation at 2019-02-14-03:18:26
+Saving dict for global step 15470: Hits1 = 0.4236, Hits10 = 0.829, Hits3 = 0.676, MRR = 0.56898224, global_step = 15470, loss = 0.3607779
+Saving 'checkpoint_path' summary for global step 15470: ../model/distmult_1-N/model.ckpt-15470
+global_step/sec: 11.04
+loss = 0.28412184, step = 15500 (9.057 sec)
+global_step/sec: 18.0068
+loss = 0.26955575, step = 15600 (5.552 sec)
+global_step/sec: 19.4147
+loss = 0.23489006, step = 15700 (5.149 sec)
+global_step/sec: 19.4491
+loss = 0.26737878, step = 15800 (5.142 sec)
+global_step/sec: 19.3594
+loss = 0.27109814, step = 15900 (5.167 sec)
+global_step/sec: 19.3597
+loss = 0.26147845, step = 16000 (5.165 sec)
+global_step/sec: 19.3221
+loss = 0.26564682, step = 16100 (5.176 sec)
+global_step/sec: 19.4443
+loss = 0.2601004, step = 16200 (5.143 sec)
+global_step/sec: 19.53
+loss = 0.27016276, step = 16300 (5.119 sec)
+global_step/sec: 19.5402
+loss = 0.26668322, step = 16400 (5.121 sec)
+global_step/sec: 19.5974
+loss = 0.27116773, step = 16500 (5.100 sec)
+Saving checkpoints for 16575 into ../model/distmult_1-N/model.ckpt.
+Calling model_fn.
+Done calling model_fn.
+Starting evaluation at 2019-02-14T03:19:24Z
+Graph was finalized.
+Restoring parameters from ../model/distmult_1-N/model.ckpt-16575
+Running local_init_op.
+Done running local_init_op.
+Finished evaluation at 2019-02-14-03:19:27
+Saving dict for global step 16575: Hits1 = 0.5018, Hits10 = 0.8944, Hits3 = 0.7878, MRR = 0.65469265, global_step = 16575, loss = 0.34993368
+Saving 'checkpoint_path' summary for global step 16575: ../model/distmult_1-N/model.ckpt-16575
+global_step/sec: 11.4233
+loss = 0.26657507, step = 16600 (8.753 sec)
+global_step/sec: 17.967
+loss = 0.26428026, step = 16700 (5.566 sec)
+global_step/sec: 19.5504
+loss = 0.29423702, step = 16800 (5.115 sec)
+global_step/sec: 19.4434
+loss = 0.24176572, step = 16900 (5.145 sec)
+global_step/sec: 19.587
+loss = 0.26164055, step = 17000 (5.104 sec)
+global_step/sec: 19.3628
+loss = 0.2639875, step = 17100 (5.166 sec)
+global_step/sec: 19.7609
+loss = 0.24282432, step = 17200 (5.058 sec)
+global_step/sec: 19.64
+loss = 0.2598043, step = 17300 (5.096 sec)
+global_step/sec: 20.008
+loss = 0.25598672, step = 17400 (4.994 sec)
+global_step/sec: 20.0254
+loss = 0.25222656, step = 17500 (4.998 sec)
+global_step/sec: 19.6357
+loss = 0.23958184, step = 17600 (5.091 sec)
+Saving checkpoints for 17680 into ../model/distmult_1-N/model.ckpt.
+Calling model_fn.
+Done calling model_fn.
+Starting evaluation at 2019-02-14T03:20:24Z
+Graph was finalized.
+Restoring parameters from ../model/distmult_1-N/model.ckpt-17680
+Running local_init_op.
+Done running local_init_op.
+Finished evaluation at 2019-02-14-03:20:27
+Saving dict for global step 17680: Hits1 = 0.5542, Hits10 = 0.918, Hits3 = 0.8642, MRR = 0.7099019, global_step = 17680, loss = 0.34111738
+Saving 'checkpoint_path' summary for global step 17680: ../model/distmult_1-N/model.ckpt-17680
+global_step/sec: 11.4558
+loss = 0.25509235, step = 17700 (8.729 sec)
+global_step/sec: 18.0829
+loss = 0.27532572, step = 17800 (5.530 sec)
+global_step/sec: 19.54
+loss = 0.26518536, step = 17900 (5.120 sec)
+global_step/sec: 19.8502
+loss = 0.25036427, step = 18000 (5.034 sec)
+global_step/sec: 19.4785
+loss = 0.25694028, step = 18100 (5.136 sec)
+global_step/sec: 19.5174
+loss = 0.2723782, step = 18200 (5.125 sec)
+global_step/sec: 19.4564
+loss = 0.24913767, step = 18300 (5.139 sec)
+global_step/sec: 19.533
+loss = 0.25309622, step = 18400 (5.117 sec)
+global_step/sec: 19.4444
+loss = 0.2663154, step = 18500 (5.142 sec)
+global_step/sec: 19.5016
+loss = 0.28334838, step = 18600 (5.132 sec)
+global_step/sec: 19.4724
+loss = 0.24952154, step = 18700 (5.134 sec)
+Saving checkpoints for 18785 into ../model/distmult_1-N/model.ckpt.
+Calling model_fn.
+Done calling model_fn.
+Starting evaluation at 2019-02-14T03:21:25Z
+Graph was finalized.
+Restoring parameters from ../model/distmult_1-N/model.ckpt-18785
+Running local_init_op.
+Done running local_init_op.
+Finished evaluation at 2019-02-14-03:21:27
+Saving dict for global step 18785: Hits1 = 0.5898, Hits10 = 0.9298, Hits3 = 0.9034, MRR = 0.74523574, global_step = 18785, loss = 0.33418828
+Saving 'checkpoint_path' summary for global step 18785: ../model/distmult_1-N/model.ckpt-18785
+global_step/sec: 11.3972
+loss = 0.27142727, step = 18800 (8.771 sec)
+global_step/sec: 19.5425
+loss = 0.2424482, step = 18900 (5.116 sec)
+global_step/sec: 17.8395
+loss = 0.22824632, step = 19000 (5.607 sec)
+global_step/sec: 19.5212
+loss = 0.2520866, step = 19100 (5.125 sec)
+global_step/sec: 19.6487
+loss = 0.2407787, step = 19200 (5.090 sec)
+global_step/sec: 19.5624
+loss = 0.2234843, step = 19300 (5.113 sec)
+global_step/sec: 19.6136
+loss = 0.24505961, step = 19400 (5.094 sec)
+global_step/sec: 19.3627
+loss = 0.25155824, step = 19500 (5.165 sec)
+global_step/sec: 19.4671
+loss = 0.24747682, step = 19600 (5.138 sec)
+global_step/sec: 19.5056
+loss = 0.24804792, step = 19700 (5.127 sec)
+global_step/sec: 19.4498
+loss = 0.24596481, step = 19800 (5.143 sec)
+Saving checkpoints for 19890 into ../model/distmult_1-N/model.ckpt.
+Calling model_fn.
+Done calling model_fn.
+Starting evaluation at 2019-02-14T03:22:26Z
+Graph was finalized.
+Restoring parameters from ../model/distmult_1-N/model.ckpt-19890
+Running local_init_op.
+Done running local_init_op.
+Finished evaluation at 2019-02-14-03:22:28
+Saving dict for global step 19890: Hits1 = 0.6128, Hits10 = 0.935, Hits3 = 0.9168, MRR = 0.764559, global_step = 19890, loss = 0.32946658
+Saving 'checkpoint_path' summary for global step 19890: ../model/distmult_1-N/model.ckpt-19890
+global_step/sec: 11.1837
+loss = 0.24594893, step = 19900 (8.941 sec)
+global_step/sec: 19.6102
+loss = 0.2385388, step = 20000 (5.096 sec)
+global_step/sec: 17.9665
+loss = 0.2514695, step = 20100 (5.569 sec)
+global_step/sec: 19.5325
+loss = 0.24132697, step = 20200 (5.116 sec)
+global_step/sec: 19.4874
+loss = 0.23581, step = 20300 (5.138 sec)
+global_step/sec: 19.59
+loss = 0.2803949, step = 20400 (5.098 sec)
+global_step/sec: 19.6073
+loss = 0.2657916, step = 20500 (5.106 sec)
+global_step/sec: 19.5912
+loss = 0.22202198, step = 20600 (5.100 sec)
+global_step/sec: 19.507
+loss = 0.23283361, step = 20700 (5.129 sec)
+global_step/sec: 19.531
+loss = 0.24739009, step = 20800 (5.121 sec)
+global_step/sec: 19.4903
+loss = 0.25664502, step = 20900 (5.126 sec)
+Saving checkpoints for 20995 into ../model/distmult_1-N/model.ckpt.
+Calling model_fn.
+Done calling model_fn.
+Starting evaluation at 2019-02-14T03:23:26Z
+Graph was finalized.
+Restoring parameters from ../model/distmult_1-N/model.ckpt-20995
+Running local_init_op.
+Done running local_init_op.
+Finished evaluation at 2019-02-14-03:23:29
+Saving dict for global step 20995: Hits1 = 0.6284, Hits10 = 0.9364, Hits3 = 0.9224, MRR = 0.77488714, global_step = 20995, loss = 0.32491624
+Saving 'checkpoint_path' summary for global step 20995: ../model/distmult_1-N/model.ckpt-20995
+global_step/sec: 11.4054
+loss = 0.24301292, step = 21000 (8.772 sec)
+global_step/sec: 19.3931
+loss = 0.2385795, step = 21100 (5.161 sec)
+global_step/sec: 18.1474
+loss = 0.23092754, step = 21200 (5.506 sec)
+global_step/sec: 19.4813
+loss = 0.24388371, step = 21300 (5.134 sec)
+global_step/sec: 19.5054
+loss = 0.25143802, step = 21400 (5.128 sec)
+global_step/sec: 19.7
+loss = 0.23493096, step = 21500 (5.076 sec)
+global_step/sec: 19.7375
+loss = 0.24038059, step = 21600 (5.063 sec)
+global_step/sec: 19.5109
+loss = 0.23503746, step = 21700 (5.129 sec)
+global_step/sec: 19.5196
+loss = 0.22910285, step = 21800 (5.117 sec)
+global_step/sec: 19.6719
+loss = 0.2502275, step = 21900 (5.088 sec)
+global_step/sec: 19.6382
+loss = 0.23579733, step = 22000 (5.092 sec)
+Saving checkpoints for 22100 into ../model/distmult_1-N/model.ckpt.
+Calling model_fn.
+Done calling model_fn.
+Starting evaluation at 2019-02-14T03:24:27Z
+Graph was finalized.
+Restoring parameters from ../model/distmult_1-N/model.ckpt-22100
+Running local_init_op.
+Done running local_init_op.
+Finished evaluation at 2019-02-14-03:24:30
+Saving dict for global step 22100: Hits1 = 0.636, Hits10 = 0.9374, Hits3 = 0.925, MRR = 0.7801958, global_step = 22100, loss = 0.32144734
+Saving 'checkpoint_path' summary for global step 22100: ../model/distmult_1-N/model.ckpt-22100
+global_step/sec: 11.3165
+loss = 0.2475213, step = 22100 (8.851 sec)
+global_step/sec: 18.8986
+loss = 0.23187849, step = 22200 (5.282 sec)
+global_step/sec: 18.5035
+loss = 0.23982824, step = 22300 (5.395 sec)
+global_step/sec: 19.5953
+loss = 0.23108849, step = 22400 (5.106 sec)
+global_step/sec: 19.5356
+loss = 0.2501828, step = 22500 (5.119 sec)
+global_step/sec: 19.6012
+loss = 0.25233683, step = 22600 (5.101 sec)
+global_step/sec: 19.4987
+loss = 0.22433956, step = 22700 (5.127 sec)
+global_step/sec: 19.415
+loss = 0.23718335, step = 22800 (5.152 sec)
+global_step/sec: 19.5426
+loss = 0.24641435, step = 22900 (5.117 sec)
+global_step/sec: 19.4245
+loss = 0.2197917, step = 23000 (5.152 sec)
+global_step/sec: 19.4088
+loss = 0.24396071, step = 23100 (5.147 sec)
+global_step/sec: 19.3397
+loss = 0.21020293, step = 23200 (5.173 sec)
+Saving checkpoints for 23205 into ../model/distmult_1-N/model.ckpt.
+Calling model_fn.
+Done calling model_fn.
+Starting evaluation at 2019-02-14T03:25:28Z
+Graph was finalized.
+Restoring parameters from ../model/distmult_1-N/model.ckpt-23205
+Running local_init_op.
+Done running local_init_op.
+Finished evaluation at 2019-02-14-03:25:30
+Saving dict for global step 23205: Hits1 = 0.6394, Hits10 = 0.9388, Hits3 = 0.9272, MRR = 0.7826342, global_step = 23205, loss = 0.3185422
+Saving 'checkpoint_path' summary for global step 23205: ../model/distmult_1-N/model.ckpt-23205
+global_step/sec: 10.8197
+loss = 0.21780938, step = 23300 (9.245 sec)
+global_step/sec: 18.9237
+loss = 0.22606939, step = 23400 (5.284 sec)
+global_step/sec: 19.3654
+loss = 0.23363903, step = 23500 (5.162 sec)
+global_step/sec: 19.5303
+loss = 0.23735692, step = 23600 (5.124 sec)
+global_step/sec: 19.4641
+loss = 0.24982607, step = 23700 (5.131 sec)
+global_step/sec: 19.4667
+loss = 0.25034845, step = 23800 (5.142 sec)
+global_step/sec: 19.4019
+loss = 0.23931734, step = 23900 (5.151 sec)
+global_step/sec: 19.4193
+loss = 0.25366673, step = 24000 (5.152 sec)
+global_step/sec: 19.3961
+loss = 0.25315693, step = 24100 (5.159 sec)
+global_step/sec: 19.4373
+loss = 0.2470627, step = 24200 (5.137 sec)
+global_step/sec: 19.3467
+loss = 0.22345407, step = 24300 (5.172 sec)
+Saving checkpoints for 24310 into ../model/distmult_1-N/model.ckpt.
+Calling model_fn.
+Done calling model_fn.
+Starting evaluation at 2019-02-14T03:26:29Z
+Graph was finalized.
+Restoring parameters from ../model/distmult_1-N/model.ckpt-24310
+Running local_init_op.
+Done running local_init_op.
+Finished evaluation at 2019-02-14-03:26:32
+Saving dict for global step 24310: Hits1 = 0.6422, Hits10 = 0.94, Hits3 = 0.9276, MRR = 0.7843409, global_step = 24310, loss = 0.3161434
+Saving 'checkpoint_path' summary for global step 24310: ../model/distmult_1-N/model.ckpt-24310
+global_step/sec: 10.5962
+loss = 0.22852068, step = 24400 (9.436 sec)
+global_step/sec: 19.4248
+loss = 0.24977835, step = 24500 (5.147 sec)
+global_step/sec: 19.3902
+loss = 0.2363683, step = 24600 (5.160 sec)
+global_step/sec: 19.3765
+loss = 0.24591553, step = 24700 (5.163 sec)
+global_step/sec: 19.5404
+loss = 0.23393023, step = 24800 (5.114 sec)
+global_step/sec: 19.5632
+loss = 0.2125035, step = 24900 (5.114 sec)
+global_step/sec: 19.4932
+loss = 0.22496204, step = 25000 (5.128 sec)
+global_step/sec: 19.397
+loss = 0.24624775, step = 25100 (5.158 sec)
+global_step/sec: 19.408
+loss = 0.22374381, step = 25200 (5.152 sec)
+global_step/sec: 19.3102
+loss = 0.22722076, step = 25300 (5.181 sec)
+global_step/sec: 19.3584
+loss = 0.21549816, step = 25400 (5.163 sec)
+Saving checkpoints for 25415 into ../model/distmult_1-N/model.ckpt.
+Calling model_fn.
+Done calling model_fn.
+Starting evaluation at 2019-02-14T03:27:30Z
+Graph was finalized.
+Restoring parameters from ../model/distmult_1-N/model.ckpt-25415
+Running local_init_op.
+Done running local_init_op.
+Finished evaluation at 2019-02-14-03:27:33
+Saving dict for global step 25415: Hits1 = 0.6434, Hits10 = 0.9406, Hits3 = 0.9288, MRR = 0.7856389, global_step = 25415, loss = 0.31401002
+Saving 'checkpoint_path' summary for global step 25415: ../model/distmult_1-N/model.ckpt-25415
+global_step/sec: 11.2003
+loss = 0.2561016, step = 25500 (8.935 sec)
+global_step/sec: 17.8509
+loss = 0.22228925, step = 25600 (5.601 sec)
+global_step/sec: 19.3358
+loss = 0.2551922, step = 25700 (5.164 sec)
+global_step/sec: 19.394
+loss = 0.24335237, step = 25800 (5.157 sec)
+global_step/sec: 19.5047
+loss = 0.22826485, step = 25900 (5.126 sec)
+global_step/sec: 19.4324
+loss = 0.25104067, step = 26000 (5.149 sec)
+global_step/sec: 19.3798
+loss = 0.23958838, step = 26100 (5.156 sec)
+global_step/sec: 19.3818
+loss = 0.22862275, step = 26200 (5.168 sec)
+global_step/sec: 19.5612
+loss = 0.24158166, step = 26300 (5.109 sec)
+global_step/sec: 19.4305
+loss = 0.21812625, step = 26400 (5.144 sec)
+global_step/sec: 19.3912
+loss = 0.22585325, step = 26500 (5.156 sec)
+Saving checkpoints for 26520 into ../model/distmult_1-N/model.ckpt.
+Calling model_fn.
+Done calling model_fn.
+Starting evaluation at 2019-02-14T03:28:31Z
+Graph was finalized.
+Restoring parameters from ../model/distmult_1-N/model.ckpt-26520
+Running local_init_op.
+Done running local_init_op.
+Finished evaluation at 2019-02-14-03:28:34
+Saving dict for global step 26520: Hits1 = 0.648, Hits10 = 0.9412, Hits3 = 0.93, MRR = 0.7883627, global_step = 26520, loss = 0.31238762
+Saving 'checkpoint_path' summary for global step 26520: ../model/distmult_1-N/model.ckpt-26520
+global_step/sec: 11.3343
+loss = 0.23422271, step = 26600 (8.827 sec)
+global_step/sec: 17.8352
+loss = 0.24632028, step = 26700 (5.601 sec)
+global_step/sec: 19.3737
+loss = 0.24897157, step = 26800 (5.162 sec)
+global_step/sec: 19.3623
+loss = 0.22899099, step = 26900 (5.167 sec)
+global_step/sec: 19.5359
+loss = 0.23377527, step = 27000 (5.124 sec)
+global_step/sec: 19.5079
+loss = 0.2354747, step = 27100 (5.124 sec)
+global_step/sec: 19.2667
+loss = 0.23809499, step = 27200 (5.192 sec)
+global_step/sec: 19.4288
+loss = 0.23485962, step = 27300 (5.144 sec)
+global_step/sec: 19.4226
+loss = 0.2230508, step = 27400 (5.150 sec)
+global_step/sec: 19.4388
+loss = 0.22464179, step = 27500 (5.149 sec)
+global_step/sec: 19.4803
+loss = 0.23711257, step = 27600 (5.124 sec)
+Saving checkpoints for 27625 into ../model/distmult_1-N/model.ckpt.
+Calling model_fn.
+Done calling model_fn.
+Starting evaluation at 2019-02-14T03:29:32Z
+Graph was finalized.
+Restoring parameters from ../model/distmult_1-N/model.ckpt-27625
+Running local_init_op.
+Done running local_init_op.
+Finished evaluation at 2019-02-14-03:29:35
+Saving dict for global step 27625: Hits1 = 0.6476, Hits10 = 0.9422, Hits3 = 0.9296, MRR = 0.7882492, global_step = 27625, loss = 0.3104976
+Saving 'checkpoint_path' summary for global step 27625: ../model/distmult_1-N/model.ckpt-27625
+global_step/sec: 11.3783
+loss = 0.22961517, step = 27700 (8.796 sec)
+global_step/sec: 17.8028
+loss = 0.25294212, step = 27800 (5.614 sec)
+global_step/sec: 19.4201
+loss = 0.26880848, step = 27900 (5.146 sec)
+global_step/sec: 19.6071
+loss = 0.2137626, step = 28000 (5.106 sec)
+global_step/sec: 19.626
+loss = 0.26277477, step = 28100 (5.093 sec)
+global_step/sec: 19.3856
+loss = 0.24454477, step = 28200 (5.158 sec)
+global_step/sec: 19.4951
+loss = 0.23729317, step = 28300 (5.129 sec)
+global_step/sec: 19.4725
+loss = 0.25553915, step = 28400 (5.139 sec)
+global_step/sec: 19.4841
+loss = 0.24014527, step = 28500 (5.127 sec)
+global_step/sec: 19.5469
+loss = 0.24075858, step = 28600 (5.119 sec)
+global_step/sec: 19.3684
+loss = 0.25600237, step = 28700 (5.158 sec)
+Saving checkpoints for 28730 into ../model/distmult_1-N/model.ckpt.
+Calling model_fn.
+Done calling model_fn.
+Starting evaluation at 2019-02-14T03:30:33Z
+Graph was finalized.
+Restoring parameters from ../model/distmult_1-N/model.ckpt-28730
+Running local_init_op.
+Done running local_init_op.
+Finished evaluation at 2019-02-14-03:30:36
+Saving dict for global step 28730: Hits1 = 0.6486, Hits10 = 0.9424, Hits3 = 0.9308, MRR = 0.78907555, global_step = 28730, loss = 0.3090794
+Saving 'checkpoint_path' summary for global step 28730: ../model/distmult_1-N/model.ckpt-28730
+global_step/sec: 11.2724
+loss = 0.23784603, step = 28800 (8.875 sec)
+global_step/sec: 18.0028
+loss = 0.21683912, step = 28900 (5.557 sec)
+global_step/sec: 19.4371
+loss = 0.23536626, step = 29000 (5.143 sec)
+global_step/sec: 19.5911
+loss = 0.23274869, step = 29100 (5.104 sec)
+global_step/sec: 19.5367
+loss = 0.21997868, step = 29200 (5.121 sec)
+global_step/sec: 19.565
+loss = 0.23356117, step = 29300 (5.107 sec)
+global_step/sec: 19.4389
+loss = 0.2328171, step = 29400 (5.148 sec)
+global_step/sec: 19.6678
+loss = 0.23458247, step = 29500 (5.085 sec)
+global_step/sec: 19.5447
+loss = 0.22527985, step = 29600 (5.113 sec)
+global_step/sec: 19.5683
+loss = 0.24375978, step = 29700 (5.116 sec)
+global_step/sec: 19.4252
+loss = 0.23466757, step = 29800 (5.148 sec)
+Saving checkpoints for 29835 into ../model/distmult_1-N/model.ckpt.
+Calling model_fn.
+Done calling model_fn.
+Starting evaluation at 2019-02-14T03:31:34Z
+Graph was finalized.
+Restoring parameters from ../model/distmult_1-N/model.ckpt-29835
+Running local_init_op.
+Done running local_init_op.
+Finished evaluation at 2019-02-14-03:31:37
+Saving dict for global step 29835: Hits1 = 0.649, Hits10 = 0.943, Hits3 = 0.931, MRR = 0.7894974, global_step = 29835, loss = 0.30761725
+Saving 'checkpoint_path' summary for global step 29835: ../model/distmult_1-N/model.ckpt-29835
+global_step/sec: 10.9248
+loss = 0.24333794, step = 29900 (9.151 sec)
+global_step/sec: 18.5432
+loss = 0.23009981, step = 30000 (5.394 sec)
+global_step/sec: 19.459
+loss = 0.22510499, step = 30100 (5.142 sec)
+global_step/sec: 19.5754
+loss = 0.2382651, step = 30200 (5.103 sec)
+global_step/sec: 19.5938
+loss = 0.222522, step = 30300 (5.105 sec)
+global_step/sec: 19.4976
+loss = 0.22635311, step = 30400 (5.128 sec)
+global_step/sec: 19.5957
+loss = 0.22512774, step = 30500 (5.103 sec)
+global_step/sec: 19.7023
+loss = 0.23129393, step = 30600 (5.077 sec)
+global_step/sec: 19.6709
+loss = 0.21454233, step = 30700 (5.084 sec)
+global_step/sec: 19.6373
+loss = 0.23376897, step = 30800 (5.089 sec)
+global_step/sec: 19.6588
+loss = 0.23520793, step = 30900 (5.088 sec)
+Saving checkpoints for 30940 into ../model/distmult_1-N/model.ckpt.
+Calling model_fn.
+Done calling model_fn.
+Starting evaluation at 2019-02-14T03:32:34Z
+Graph was finalized.
+Restoring parameters from ../model/distmult_1-N/model.ckpt-30940
+Running local_init_op.
+Done running local_init_op.
+Finished evaluation at 2019-02-14-03:32:37
+Saving dict for global step 30940: Hits1 = 0.6506, Hits10 = 0.944, Hits3 = 0.9318, MRR = 0.79039246, global_step = 30940, loss = 0.30668437
+Saving 'checkpoint_path' summary for global step 30940: ../model/distmult_1-N/model.ckpt-30940
+global_step/sec: 11.0871
+loss = 0.23104182, step = 31000 (9.020 sec)
+global_step/sec: 18.6907
+loss = 0.24716644, step = 31100 (5.349 sec)
+global_step/sec: 19.3884
+loss = 0.21688019, step = 31200 (5.162 sec)
+global_step/sec: 19.3815
+loss = 0.22414467, step = 31300 (5.155 sec)
+global_step/sec: 19.5219
+loss = 0.23780693, step = 31400 (5.123 sec)
+global_step/sec: 19.4562
+loss = 0.23826706, step = 31500 (5.137 sec)
+global_step/sec: 19.4805
+loss = 0.2279173, step = 31600 (5.138 sec)
+global_step/sec: 19.5102
+loss = 0.23357843, step = 31700 (5.125 sec)
+global_step/sec: 19.4192
+loss = 0.24393772, step = 31800 (5.150 sec)
+global_step/sec: 19.4397
+loss = 0.21888724, step = 31900 (5.145 sec)
+global_step/sec: 19.5131
+loss = 0.24220599, step = 32000 (5.122 sec)
+Saving checkpoints for 32045 into ../model/distmult_1-N/model.ckpt.
+Calling model_fn.
+Done calling model_fn.
+Starting evaluation at 2019-02-14T03:33:35Z
+Graph was finalized.
+Restoring parameters from ../model/distmult_1-N/model.ckpt-32045
+Running local_init_op.
+Done running local_init_op.
+Finished evaluation at 2019-02-14-03:33:38
+Saving dict for global step 32045: Hits1 = 0.65, Hits10 = 0.9446, Hits3 = 0.932, MRR = 0.79037315, global_step = 32045, loss = 0.3052531
+Saving 'checkpoint_path' summary for global step 32045: ../model/distmult_1-N/model.ckpt-32045
+global_step/sec: 11.3083
+loss = 0.21344465, step = 32100 (8.843 sec)
+global_step/sec: 17.9809
+loss = 0.22984193, step = 32200 (5.566 sec)
+global_step/sec: 19.2683
+loss = 0.22961168, step = 32300 (5.190 sec)
+global_step/sec: 19.4526
+loss = 0.24332373, step = 32400 (5.136 sec)
+global_step/sec: 19.5702
+loss = 0.21678202, step = 32500 (5.114 sec)
+global_step/sec: 19.4441
+loss = 0.22405897, step = 32600 (5.140 sec)
+global_step/sec: 19.301
+loss = 0.22248518, step = 32700 (5.189 sec)
+global_step/sec: 19.3622
+loss = 0.22343966, step = 32800 (5.159 sec)
+global_step/sec: 19.1761
+loss = 0.24909721, step = 32900 (5.218 sec)
+global_step/sec: 19.389
+loss = 0.26131564, step = 33000 (5.155 sec)
+global_step/sec: 19.4233
+loss = 0.22417225, step = 33100 (5.147 sec)
+Saving checkpoints for 33150 into ../model/distmult_1-N/model.ckpt.
+Calling model_fn.
+Done calling model_fn.
+Starting evaluation at 2019-02-14T03:34:36Z
+Graph was finalized.
+Restoring parameters from ../model/distmult_1-N/model.ckpt-33150
+Running local_init_op.
+Done running local_init_op.
+Finished evaluation at 2019-02-14-03:34:39
+Saving dict for global step 33150: Hits1 = 0.6516, Hits10 = 0.9448, Hits3 = 0.9332, MRR = 0.7912345, global_step = 33150, loss = 0.30441874
+Saving 'checkpoint_path' summary for global step 33150: ../model/distmult_1-N/model.ckpt-33150
+global_step/sec: 11.3286
+loss = 0.2376368, step = 33200 (8.823 sec)
+global_step/sec: 17.8742
+loss = 0.25525925, step = 33300 (5.592 sec)
+global_step/sec: 19.3642
+loss = 0.22110374, step = 33400 (5.164 sec)
+global_step/sec: 19.4769
+loss = 0.22757219, step = 33500 (5.139 sec)
+global_step/sec: 19.4152
+loss = 0.23974946, step = 33600 (5.150 sec)
+global_step/sec: 19.4104
+loss = 0.23089536, step = 33700 (5.153 sec)
+global_step/sec: 19.4497
+loss = 0.2477877, step = 33800 (5.139 sec)
+global_step/sec: 19.5748
+loss = 0.24559444, step = 33900 (5.113 sec)
+global_step/sec: 19.4627
+loss = 0.21515185, step = 34000 (5.133 sec)
+global_step/sec: 19.4248
+loss = 0.21162514, step = 34100 (5.146 sec)
+global_step/sec: 19.56
+loss = 0.21859959, step = 34200 (5.117 sec)
+Saving checkpoints for 34255 into ../model/distmult_1-N/model.ckpt.
+Calling model_fn.
+Done calling model_fn.
+Starting evaluation at 2019-02-14T03:35:37Z
+Graph was finalized.
+Restoring parameters from ../model/distmult_1-N/model.ckpt-34255
+Running local_init_op.
+Done running local_init_op.
+Finished evaluation at 2019-02-14-03:35:40
+Saving dict for global step 34255: Hits1 = 0.6524, Hits10 = 0.9444, Hits3 = 0.9324, MRR = 0.791612, global_step = 34255, loss = 0.30334267
+Saving 'checkpoint_path' summary for global step 34255: ../model/distmult_1-N/model.ckpt-34255
+global_step/sec: 11.001
+loss = 0.21433614, step = 34300 (9.094 sec)
+global_step/sec: 17.8949
+loss = 0.2288533, step = 34400 (5.580 sec)
+global_step/sec: 19.5449
+loss = 0.24060017, step = 34500 (5.123 sec)
+global_step/sec: 19.9315
+loss = 0.21918239, step = 34600 (5.012 sec)
+global_step/sec: 19.7821
+loss = 0.24407804, step = 34700 (5.062 sec)
+global_step/sec: 19.5653
+loss = 0.20837346, step = 34800 (5.112 sec)
+global_step/sec: 19.8858
+loss = 0.23777191, step = 34900 (5.027 sec)
+global_step/sec: 19.9172
+loss = 0.24055001, step = 35000 (5.019 sec)
+global_step/sec: 19.5956
+loss = 0.23783356, step = 35100 (5.100 sec)
+global_step/sec: 19.7845
+loss = 0.23138902, step = 35200 (5.059 sec)
+global_step/sec: 19.8948
+loss = 0.22135673, step = 35300 (5.027 sec)
+Saving checkpoints for 35360 into ../model/distmult_1-N/model.ckpt.
+Calling model_fn.
+Done calling model_fn.
+Starting evaluation at 2019-02-14T03:36:38Z
+Graph was finalized.
+Restoring parameters from ../model/distmult_1-N/model.ckpt-35360
+Running local_init_op.
+Done running local_init_op.
+Finished evaluation at 2019-02-14-03:36:41
+Saving dict for global step 35360: Hits1 = 0.6512, Hits10 = 0.9448, Hits3 = 0.9332, MRR = 0.7911727, global_step = 35360, loss = 0.3024988
+Saving 'checkpoint_path' summary for global step 35360: ../model/distmult_1-N/model.ckpt-35360
+global_step/sec: 11.245
+loss = 0.233984, step = 35400 (8.890 sec)
+global_step/sec: 17.877
+loss = 0.25012034, step = 35500 (5.599 sec)
+global_step/sec: 19.3085
+loss = 0.2191521, step = 35600 (5.174 sec)
+global_step/sec: 19.4194
+loss = 0.22217427, step = 35700 (5.147 sec)
+global_step/sec: 19.5686
+loss = 0.22804818, step = 35800 (5.113 sec)
+global_step/sec: 19.4436
+loss = 0.22214456, step = 35900 (5.142 sec)
+global_step/sec: 19.492
+loss = 0.21632743, step = 36000 (5.128 sec)
+global_step/sec: 19.455
+loss = 0.228416, step = 36100 (5.143 sec)
+global_step/sec: 19.4784
+loss = 0.21897428, step = 36200 (5.132 sec)
+global_step/sec: 19.489
+loss = 0.23860766, step = 36300 (5.138 sec)
+global_step/sec: 19.5452
+loss = 0.20436002, step = 36400 (5.111 sec)
+Saving checkpoints for 36465 into ../model/distmult_1-N/model.ckpt.
+Calling model_fn.
+Done calling model_fn.
+Starting evaluation at 2019-02-14T03:37:39Z
+Graph was finalized.
+Restoring parameters from ../model/distmult_1-N/model.ckpt-36465
+Running local_init_op.
+Done running local_init_op.
+Finished evaluation at 2019-02-14-03:37:42
+Saving dict for global step 36465: Hits1 = 0.6532, Hits10 = 0.9454, Hits3 = 0.9334, MRR = 0.7924058, global_step = 36465, loss = 0.3016227
+Saving 'checkpoint_path' summary for global step 36465: ../model/distmult_1-N/model.ckpt-36465
+global_step/sec: 11.3719
+loss = 0.23096004, step = 36500 (8.795 sec)
+global_step/sec: 17.8697
+loss = 0.2273711, step = 36600 (5.597 sec)
+global_step/sec: 19.4763
+loss = 0.21271768, step = 36700 (5.137 sec)
+global_step/sec: 19.5395
+loss = 0.21821646, step = 36800 (5.114 sec)
+global_step/sec: 19.5529
+loss = 0.23326527, step = 36900 (5.117 sec)
+global_step/sec: 19.3878
+loss = 0.23172884, step = 37000 (5.161 sec)
+global_step/sec: 19.4543
+loss = 0.21921785, step = 37100 (5.137 sec)
+global_step/sec: 19.4585
+loss = 0.22639668, step = 37200 (5.134 sec)
+global_step/sec: 19.4773
+loss = 0.25591952, step = 37300 (5.140 sec)
+global_step/sec: 19.4906
+loss = 0.22545826, step = 37400 (5.129 sec)
+global_step/sec: 19.5193
+loss = 0.25323963, step = 37500 (5.123 sec)
+Saving checkpoints for 37570 into ../model/distmult_1-N/model.ckpt.
+Calling model_fn.
+Done calling model_fn.
+Starting evaluation at 2019-02-14T03:38:40Z
+Graph was finalized.
+Restoring parameters from ../model/distmult_1-N/model.ckpt-37570
+Running local_init_op.
+Done running local_init_op.
+Finished evaluation at 2019-02-14-03:38:42
+Saving dict for global step 37570: Hits1 = 0.6512, Hits10 = 0.9454, Hits3 = 0.9338, MRR = 0.7912131, global_step = 37570, loss = 0.30125424
+Saving 'checkpoint_path' summary for global step 37570: ../model/distmult_1-N/model.ckpt-37570
+global_step/sec: 11.2866
+loss = 0.2136485, step = 37600 (8.855 sec)
+global_step/sec: 17.9832
+loss = 0.23992328, step = 37700 (5.566 sec)
+global_step/sec: 19.3753
+loss = 0.22213416, step = 37800 (5.159 sec)
+global_step/sec: 19.4996
+loss = 0.22495876, step = 37900 (5.133 sec)
+global_step/sec: 19.6039
+loss = 0.21682003, step = 38000 (5.098 sec)
+global_step/sec: 19.0378
+loss = 0.23353787, step = 38100 (5.255 sec)
+global_step/sec: 19.2982
+loss = 0.2428219, step = 38200 (5.180 sec)
+global_step/sec: 19.4257
+loss = 0.23713389, step = 38300 (5.144 sec)
+global_step/sec: 19.4447
+loss = 0.21617825, step = 38400 (5.141 sec)
+global_step/sec: 19.6671
+loss = 0.22149557, step = 38500 (5.088 sec)
+global_step/sec: 19.5264
+loss = 0.21277773, step = 38600 (5.119 sec)
+Saving checkpoints for 38675 into ../model/distmult_1-N/model.ckpt.
+Calling model_fn.
+Done calling model_fn.
+Starting evaluation at 2019-02-14T03:39:41Z
+Graph was finalized.
+Restoring parameters from ../model/distmult_1-N/model.ckpt-38675
+Running local_init_op.
+Done running local_init_op.
+Finished evaluation at 2019-02-14-03:39:43
+Saving dict for global step 38675: Hits1 = 0.6532, Hits10 = 0.946, Hits3 = 0.9342, MRR = 0.7924781, global_step = 38675, loss = 0.30070433
+Saving 'checkpoint_path' summary for global step 38675: ../model/distmult_1-N/model.ckpt-38675
+global_step/sec: 11.3636
+loss = 0.24849391, step = 38700 (8.799 sec)
+global_step/sec: 18.596
+loss = 0.22806029, step = 38800 (5.382 sec)
+global_step/sec: 17.8864
+loss = 0.23211028, step = 38900 (5.591 sec)
+global_step/sec: 19.5763
+loss = 0.23139916, step = 39000 (5.105 sec)
+global_step/sec: 19.7071
+loss = 0.23431544, step = 39100 (5.078 sec)
+global_step/sec: 19.0562
+loss = 0.23050037, step = 39200 (5.246 sec)
+global_step/sec: 19.4837
+loss = 0.23852232, step = 39300 (5.131 sec)
+global_step/sec: 19.5028
+loss = 0.24289829, step = 39400 (5.130 sec)
+global_step/sec: 19.5034
+loss = 0.25323382, step = 39500 (5.123 sec)
+global_step/sec: 19.6677
+loss = 0.24263386, step = 39600 (5.088 sec)
+global_step/sec: 19.5019
+loss = 0.23406455, step = 39700 (5.124 sec)
+Saving checkpoints for 39780 into ../model/distmult_1-N/model.ckpt.
+Calling model_fn.
+Done calling model_fn.
+Starting evaluation at 2019-02-14T03:40:42Z
+Graph was finalized.
+Restoring parameters from ../model/distmult_1-N/model.ckpt-39780
+Running local_init_op.
+Done running local_init_op.
+Finished evaluation at 2019-02-14-03:40:44
+Saving dict for global step 39780: Hits1 = 0.654, Hits10 = 0.947, Hits3 = 0.9336, MRR = 0.7928375, global_step = 39780, loss = 0.29990658
+Saving 'checkpoint_path' summary for global step 39780: ../model/distmult_1-N/model.ckpt-39780
+global_step/sec: 11.3223
+loss = 0.22483937, step = 39800 (8.835 sec)
+global_step/sec: 18.4154
+loss = 0.21437682, step = 39900 (5.438 sec)
+global_step/sec: 18.8358
+loss = 0.24394943, step = 40000 (5.303 sec)
+global_step/sec: 19.4876
+loss = 0.22970885, step = 40100 (5.134 sec)
+global_step/sec: 19.4168
+loss = 0.23216608, step = 40200 (5.150 sec)
+global_step/sec: 19.5077
+loss = 0.23476331, step = 40300 (5.121 sec)
+global_step/sec: 19.5217
+loss = 0.21014923, step = 40400 (5.122 sec)
+global_step/sec: 19.4417
+loss = 0.2284092, step = 40500 (5.150 sec)
+global_step/sec: 19.5465
+loss = 0.22169414, step = 40600 (5.111 sec)
+global_step/sec: 19.5676
+loss = 0.21914269, step = 40700 (5.115 sec)
+global_step/sec: 19.3922
+loss = 0.23401703, step = 40800 (5.157 sec)
+Saving checkpoints for 40885 into ../model/distmult_1-N/model.ckpt.
+Calling model_fn.
+Done calling model_fn.
+Starting evaluation at 2019-02-14T03:41:43Z
+Graph was finalized.
+Restoring parameters from ../model/distmult_1-N/model.ckpt-40885
+Running local_init_op.
+Done running local_init_op.
+Finished evaluation at 2019-02-14-03:41:45
+Saving dict for global step 40885: Hits1 = 0.6504, Hits10 = 0.9476, Hits3 = 0.9328, MRR = 0.790676, global_step = 40885, loss = 0.2994578
+Saving 'checkpoint_path' summary for global step 40885: ../model/distmult_1-N/model.ckpt-40885
+global_step/sec: 11.3404
+loss = 0.211934, step = 40900 (8.815 sec)
+global_step/sec: 18.3962
+loss = 0.23581491, step = 41000 (5.435 sec)
+global_step/sec: 18.9823
+loss = 0.24437554, step = 41100 (5.270 sec)
+global_step/sec: 19.547
+loss = 0.20516051, step = 41200 (5.119 sec)
+global_step/sec: 19.5469
+loss = 0.22129984, step = 41300 (5.123 sec)
+global_step/sec: 19.0372
+loss = 0.23425221, step = 41400 (5.239 sec)
+global_step/sec: 19.4952
+loss = 0.21604241, step = 41500 (5.134 sec)
+global_step/sec: 19.5073
+loss = 0.22525358, step = 41600 (5.123 sec)
+global_step/sec: 19.5072
+loss = 0.22809617, step = 41700 (5.125 sec)
+global_step/sec: 19.4883
+loss = 0.20228098, step = 41800 (5.131 sec)
+global_step/sec: 19.4196
+loss = 0.2394456, step = 41900 (5.149 sec)
+Saving checkpoints for 41990 into ../model/distmult_1-N/model.ckpt.
+Calling model_fn.
+Done calling model_fn.
+Starting evaluation at 2019-02-14T03:42:44Z
+Graph was finalized.
+Restoring parameters from ../model/distmult_1-N/model.ckpt-41990
+Running local_init_op.
+Done running local_init_op.
+Finished evaluation at 2019-02-14-03:42:46
+Saving dict for global step 41990: Hits1 = 0.6518, Hits10 = 0.948, Hits3 = 0.9346, MRR = 0.7919511, global_step = 41990, loss = 0.29879248
+Saving 'checkpoint_path' summary for global step 41990: ../model/distmult_1-N/model.ckpt-41990
+global_step/sec: 11.3511
+loss = 0.2180844, step = 42000 (8.814 sec)
+global_step/sec: 17.853
+loss = 0.21519955, step = 42100 (5.599 sec)
+global_step/sec: 19.3683
+loss = 0.22433598, step = 42200 (5.163 sec)
+global_step/sec: 19.5532
+loss = 0.22295761, step = 42300 (5.118 sec)
+global_step/sec: 19.4123
+loss = 0.21277359, step = 42400 (5.152 sec)
+global_step/sec: 19.1324
+loss = 0.23283982, step = 42500 (5.226 sec)
+global_step/sec: 19.2929
+loss = 0.22661388, step = 42600 (5.180 sec)
+global_step/sec: 19.4199
+loss = 0.2186128, step = 42700 (5.157 sec)
+global_step/sec: 19.4308
+loss = 0.23572002, step = 42800 (5.144 sec)
+global_step/sec: 19.6017
+loss = 0.24138875, step = 42900 (5.098 sec)
+global_step/sec: 19.4189
+loss = 0.23187533, step = 43000 (5.154 sec)
+Saving checkpoints for 43095 into ../model/distmult_1-N/model.ckpt.
+Calling model_fn.
+Done calling model_fn.
+Starting evaluation at 2019-02-14T03:43:45Z
+Graph was finalized.
+Restoring parameters from ../model/distmult_1-N/model.ckpt-43095
+Running local_init_op.
+Done running local_init_op.
+Finished evaluation at 2019-02-14-03:43:47
+Saving dict for global step 43095: Hits1 = 0.6534, Hits10 = 0.9482, Hits3 = 0.934, MRR = 0.79276085, global_step = 43095, loss = 0.29847685
+Saving 'checkpoint_path' summary for global step 43095: ../model/distmult_1-N/model.ckpt-43095
+global_step/sec: 11.335
+loss = 0.21867539, step = 43100 (8.820 sec)
+global_step/sec: 17.8969
+loss = 0.23071037, step = 43200 (5.586 sec)
+global_step/sec: 19.387
+loss = 0.21743916, step = 43300 (5.162 sec)
+global_step/sec: 19.4122
+loss = 0.21375363, step = 43400 (5.145 sec)
+global_step/sec: 19.472
+loss = 0.21922427, step = 43500 (5.142 sec)
+global_step/sec: 19.3442
+loss = 0.21394892, step = 43600 (5.171 sec)
+global_step/sec: 18.8342
+loss = 0.22935979, step = 43700 (5.301 sec)
+global_step/sec: 19.4742
+loss = 0.23815024, step = 43800 (5.138 sec)
+global_step/sec: 19.3352
+loss = 0.22795005, step = 43900 (5.175 sec)
+global_step/sec: 19.4274
+loss = 0.24655524, step = 44000 (5.143 sec)
+global_step/sec: 19.3331
+loss = 0.24184568, step = 44100 (5.173 sec)
+Saving checkpoints for 44200 into ../model/distmult_1-N/model.ckpt.
+Calling model_fn.
+Done calling model_fn.
+Starting evaluation at 2019-02-14T03:44:46Z
+Graph was finalized.
+Restoring parameters from ../model/distmult_1-N/model.ckpt-44200
+Running local_init_op.
+Done running local_init_op.
+Finished evaluation at 2019-02-14-03:44:49
+Saving dict for global step 44200: Hits1 = 0.6534, Hits10 = 0.9484, Hits3 = 0.9354, MRR = 0.7927217, global_step = 44200, loss = 0.2978714
+Saving 'checkpoint_path' summary for global step 44200: ../model/distmult_1-N/model.ckpt-44200
+global_step/sec: 11.3243
+loss = 0.22275569, step = 44200 (8.849 sec)
+global_step/sec: 19.3363
+loss = 0.24137014, step = 44300 (5.154 sec)
+global_step/sec: 17.7427
+loss = 0.22718248, step = 44400 (5.637 sec)
+global_step/sec: 19.294
+loss = 0.21397316, step = 44500 (5.183 sec)
+global_step/sec: 19.429
+loss = 0.21688265, step = 44600 (5.145 sec)
+global_step/sec: 19.3514
+loss = 0.23347206, step = 44700 (5.167 sec)
+global_step/sec: 19.3252
+loss = 0.20934601, step = 44800 (5.177 sec)
+global_step/sec: 19.3847
+loss = 0.2330021, step = 44900 (5.160 sec)
+global_step/sec: 19.2318
+loss = 0.23552689, step = 45000 (5.195 sec)
+global_step/sec: 19.51
+loss = 0.21238111, step = 45100 (5.126 sec)
+global_step/sec: 19.4812
+loss = 0.23193127, step = 45200 (5.133 sec)
+global_step/sec: 19.4323
+loss = 0.22773212, step = 45300 (5.148 sec)
+Saving checkpoints for 45305 into ../model/distmult_1-N/model.ckpt.
+Calling model_fn.
+Done calling model_fn.
+Starting evaluation at 2019-02-14T03:45:47Z
+Graph was finalized.
+Restoring parameters from ../model/distmult_1-N/model.ckpt-45305
+Running local_init_op.
+Done running local_init_op.
+Finished evaluation at 2019-02-14-03:45:50
+Saving dict for global step 45305: Hits1 = 0.653, Hits10 = 0.9488, Hits3 = 0.934, MRR = 0.79194, global_step = 45305, loss = 0.2973695
+Saving 'checkpoint_path' summary for global step 45305: ../model/distmult_1-N/model.ckpt-45305
+global_step/sec: 11.3469
+loss = 0.20768614, step = 45400 (8.814 sec)
+global_step/sec: 17.8741
+loss = 0.25201404, step = 45500 (5.599 sec)
+global_step/sec: 19.6095
+loss = 0.19728124, step = 45600 (5.099 sec)
+global_step/sec: 19.3085
+loss = 0.21943712, step = 45700 (5.179 sec)
+global_step/sec: 19.4386
+loss = 0.2306443, step = 45800 (5.138 sec)
+global_step/sec: 19.3131
+loss = 0.25463808, step = 45900 (5.182 sec)
+global_step/sec: 19.3226
+loss = 0.23825106, step = 46000 (5.176 sec)
+global_step/sec: 19.5468
+loss = 0.24666865, step = 46100 (5.118 sec)
+global_step/sec: 19.5099
+loss = 0.22785567, step = 46200 (5.123 sec)
+global_step/sec: 19.417
+loss = 0.23082669, step = 46300 (5.149 sec)
+global_step/sec: 19.4685
+loss = 0.22138108, step = 46400 (5.137 sec)
+Saving checkpoints for 46410 into ../model/distmult_1-N/model.ckpt.
+Calling model_fn.
+Done calling model_fn.
+Starting evaluation at 2019-02-14T03:46:48Z
+Graph was finalized.
+Restoring parameters from ../model/distmult_1-N/model.ckpt-46410
+Running local_init_op.
+Done running local_init_op.
+Finished evaluation at 2019-02-14-03:46:51
+Saving dict for global step 46410: Hits1 = 0.6534, Hits10 = 0.948, Hits3 = 0.9348, MRR = 0.792531, global_step = 46410, loss = 0.2972431
+Saving 'checkpoint_path' summary for global step 46410: ../model/distmult_1-N/model.ckpt-46410
+global_step/sec: 11.1236
+loss = 0.22675806, step = 46500 (8.989 sec)
+global_step/sec: 18.4374
+loss = 0.21602069, step = 46600 (5.426 sec)
+global_step/sec: 19.358
+loss = 0.23980318, step = 46700 (5.163 sec)
+global_step/sec: 19.2987
+loss = 0.24173132, step = 46800 (5.180 sec)
+global_step/sec: 19.4245
+loss = 0.23887049, step = 46900 (5.155 sec)
+global_step/sec: 19.2728
+loss = 0.21738699, step = 47000 (5.185 sec)
+global_step/sec: 19.4466
+loss = 0.23031981, step = 47100 (5.145 sec)
+global_step/sec: 19.3146
+loss = 0.25547108, step = 47200 (5.173 sec)
+global_step/sec: 19.284
+loss = 0.22345586, step = 47300 (5.184 sec)
+global_step/sec: 19.3812
+loss = 0.2192871, step = 47400 (5.160 sec)
+global_step/sec: 19.2972
+loss = 0.2129738, step = 47500 (5.188 sec)
+Saving checkpoints for 47515 into ../model/distmult_1-N/model.ckpt.
+Calling model_fn.
+Done calling model_fn.
+Starting evaluation at 2019-02-14T03:47:49Z
+Graph was finalized.
+Restoring parameters from ../model/distmult_1-N/model.ckpt-47515
+Running local_init_op.
+Done running local_init_op.
+Finished evaluation at 2019-02-14-03:47:52
+Saving dict for global step 47515: Hits1 = 0.6548, Hits10 = 0.949, Hits3 = 0.9342, MRR = 0.7935389, global_step = 47515, loss = 0.29669172
+Saving 'checkpoint_path' summary for global step 47515: ../model/distmult_1-N/model.ckpt-47515
+global_step/sec: 10.8856
+loss = 0.24500911, step = 47600 (9.183 sec)
+global_step/sec: 19.0252
+loss = 0.24217467, step = 47700 (5.258 sec)
+global_step/sec: 19.3518
+loss = 0.23032893, step = 47800 (5.164 sec)
+global_step/sec: 19.243
+loss = 0.22544488, step = 47900 (5.199 sec)
+global_step/sec: 19.3912
+loss = 0.23017694, step = 48000 (5.156 sec)
+global_step/sec: 19.3245
+loss = 0.23472452, step = 48100 (5.180 sec)
+global_step/sec: 19.3161
+loss = 0.21493396, step = 48200 (5.170 sec)
+global_step/sec: 19.5495
+loss = 0.20680574, step = 48300 (5.124 sec)
+global_step/sec: 19.5214
+loss = 0.2073533, step = 48400 (5.115 sec)
+global_step/sec: 19.4777
+loss = 0.2181482, step = 48500 (5.137 sec)
+global_step/sec: 18.8877
+loss = 0.23352237, step = 48600 (5.298 sec)
+Saving checkpoints for 48620 into ../model/distmult_1-N/model.ckpt.
+Calling model_fn.
+Done calling model_fn.
+Starting evaluation at 2019-02-14T03:48:50Z
+Graph was finalized.
+Restoring parameters from ../model/distmult_1-N/model.ckpt-48620
+Running local_init_op.
+Done running local_init_op.
+Finished evaluation at 2019-02-14-03:48:53
+Saving dict for global step 48620: Hits1 = 0.6522, Hits10 = 0.95, Hits3 = 0.9332, MRR = 0.7915594, global_step = 48620, loss = 0.29631957
+Saving 'checkpoint_path' summary for global step 48620: ../model/distmult_1-N/model.ckpt-48620
+global_step/sec: 11.358
+loss = 0.24212436, step = 48700 (8.800 sec)
+global_step/sec: 17.9369
+loss = 0.2193442, step = 48800 (5.581 sec)
+global_step/sec: 19.3582
+loss = 0.20039397, step = 48900 (5.160 sec)
+global_step/sec: 19.3275
+loss = 0.2247337, step = 49000 (5.175 sec)
+global_step/sec: 19.5217
+loss = 0.23944743, step = 49100 (5.123 sec)
+global_step/sec: 19.3982
+loss = 0.21648754, step = 49200 (5.152 sec)
+global_step/sec: 19.3647
+loss = 0.24015933, step = 49300 (5.162 sec)
+global_step/sec: 19.4472
+loss = 0.23452263, step = 49400 (5.141 sec)
+global_step/sec: 19.3937
+loss = 0.21113165, step = 49500 (5.161 sec)
+global_step/sec: 19.5086
+loss = 0.23296458, step = 49600 (5.126 sec)
+global_step/sec: 19.42
+loss = 0.21145114, step = 49700 (5.148 sec)
+Saving checkpoints for 49725 into ../model/distmult_1-N/model.ckpt.
+Calling model_fn.
+Done calling model_fn.
+Starting evaluation at 2019-02-14T03:49:51Z
+Graph was finalized.
+Restoring parameters from ../model/distmult_1-N/model.ckpt-49725
+Running local_init_op.
+Done running local_init_op.
+Finished evaluation at 2019-02-14-03:49:54
+Saving dict for global step 49725: Hits1 = 0.6534, Hits10 = 0.95, Hits3 = 0.9322, MRR = 0.79214245, global_step = 49725, loss = 0.2959851
+Saving 'checkpoint_path' summary for global step 49725: ../model/distmult_1-N/model.ckpt-49725
+global_step/sec: 11.3426
+loss = 0.24101847, step = 49800 (8.817 sec)
+global_step/sec: 17.8933
+loss = 0.23070231, step = 49900 (5.590 sec)
+global_step/sec: 19.425
+loss = 0.2213109, step = 50000 (5.147 sec)
+global_step/sec: 19.5173
+loss = 0.22116856, step = 50100 (5.121 sec)
+global_step/sec: 19.4997
+loss = 0.21334136, step = 50200 (5.133 sec)
+global_step/sec: 19.5478
+loss = 0.240693, step = 50300 (5.115 sec)
+global_step/sec: 19.5327
+loss = 0.22264953, step = 50400 (5.120 sec)
+global_step/sec: 19.4466
+loss = 0.2091978, step = 50500 (5.143 sec)
+global_step/sec: 19.4042
+loss = 0.23248713, step = 50600 (5.151 sec)
+global_step/sec: 19.4423
+loss = 0.21849574, step = 50700 (5.149 sec)
+global_step/sec: 19.4014
+loss = 0.21305515, step = 50800 (5.149 sec)
+Saving checkpoints for 50830 into ../model/distmult_1-N/model.ckpt.
+Calling model_fn.
+Done calling model_fn.
+Starting evaluation at 2019-02-14T03:50:52Z
+Graph was finalized.
+Restoring parameters from ../model/distmult_1-N/model.ckpt-50830
+Running local_init_op.
+Done running local_init_op.
+Finished evaluation at 2019-02-14-03:50:55
+Saving dict for global step 50830: Hits1 = 0.6526, Hits10 = 0.9496, Hits3 = 0.9342, MRR = 0.79224914, global_step = 50830, loss = 0.2956496
+Saving 'checkpoint_path' summary for global step 50830: ../model/distmult_1-N/model.ckpt-50830
+global_step/sec: 11.3858
+loss = 0.22001155, step = 50900 (8.786 sec)
+global_step/sec: 18.0655
+loss = 0.2327225, step = 51000 (5.532 sec)
+global_step/sec: 19.4144
+loss = 0.2386344, step = 51100 (5.146 sec)
+global_step/sec: 19.2819
+loss = 0.24221805, step = 51200 (5.192 sec)
+global_step/sec: 19.5435
+loss = 0.22398792, step = 51300 (5.120 sec)
+global_step/sec: 19.4893
+loss = 0.23717284, step = 51400 (5.131 sec)
+global_step/sec: 19.4979
+loss = 0.21741411, step = 51500 (5.123 sec)
+global_step/sec: 19.3563
+loss = 0.20823534, step = 51600 (5.165 sec)
+global_step/sec: 19.5601
+loss = 0.22367343, step = 51700 (5.113 sec)
+global_step/sec: 19.5247
+loss = 0.22028744, step = 51800 (5.125 sec)
+global_step/sec: 19.919
+loss = 0.2245032, step = 51900 (5.015 sec)
+Saving checkpoints for 51935 into ../model/distmult_1-N/model.ckpt.
+Calling model_fn.
+Done calling model_fn.
+Starting evaluation at 2019-02-14T03:51:53Z
+Graph was finalized.
+Restoring parameters from ../model/distmult_1-N/model.ckpt-51935
+Running local_init_op.
+Done running local_init_op.
+Finished evaluation at 2019-02-14-03:51:56
+Saving dict for global step 51935: Hits1 = 0.6516, Hits10 = 0.9498, Hits3 = 0.9344, MRR = 0.79194075, global_step = 51935, loss = 0.29533446
+Saving 'checkpoint_path' summary for global step 51935: ../model/distmult_1-N/model.ckpt-51935
+global_step/sec: 11.4583
+loss = 0.23240238, step = 52000 (8.728 sec)
+global_step/sec: 18.2335
+loss = 0.21841902, step = 52100 (5.483 sec)
+global_step/sec: 19.4937
+loss = 0.22624995, step = 52200 (5.141 sec)
+global_step/sec: 19.8138
+loss = 0.22076881, step = 52300 (5.042 sec)
+global_step/sec: 19.7664
+loss = 0.2290897, step = 52400 (5.060 sec)
+global_step/sec: 19.5957
+loss = 0.22939895, step = 52500 (5.097 sec)
+global_step/sec: 19.5922
+loss = 0.20878294, step = 52600 (5.109 sec)
+global_step/sec: 19.8299
+loss = 0.20215221, step = 52700 (5.041 sec)
+global_step/sec: 19.3645
+loss = 0.23108153, step = 52800 (5.164 sec)
+global_step/sec: 19.4068
+loss = 0.21150057, step = 52900 (5.155 sec)
+global_step/sec: 19.4332
+loss = 0.22191742, step = 53000 (5.144 sec)
+Saving checkpoints for 53040 into ../model/distmult_1-N/model.ckpt.
+Calling model_fn.
+Done calling model_fn.
+Starting evaluation at 2019-02-14T03:52:54Z
+Graph was finalized.
+Restoring parameters from ../model/distmult_1-N/model.ckpt-53040
+Running local_init_op.
+Done running local_init_op.
+Finished evaluation at 2019-02-14-03:52:56
+Saving dict for global step 53040: Hits1 = 0.6482, Hits10 = 0.9488, Hits3 = 0.9334, MRR = 0.7892743, global_step = 53040, loss = 0.29504377
+Saving 'checkpoint_path' summary for global step 53040: ../model/distmult_1-N/model.ckpt-53040
+global_step/sec: 11.0055
+loss = 0.22711338, step = 53100 (9.086 sec)
+global_step/sec: 17.8017
+loss = 0.23362298, step = 53200 (5.620 sec)
+global_step/sec: 19.3237
+loss = 0.23222183, step = 53300 (5.175 sec)
+global_step/sec: 19.2594
+loss = 0.22656028, step = 53400 (5.189 sec)
+global_step/sec: 19.4097
+loss = 0.2205697, step = 53500 (5.159 sec)
+global_step/sec: 19.5465
+loss = 0.2364752, step = 53600 (5.108 sec)
+global_step/sec: 19.457
+loss = 0.23598269, step = 53700 (5.146 sec)
+global_step/sec: 19.5522
+loss = 0.24429056, step = 53800 (5.109 sec)
+global_step/sec: 19.5125
+loss = 0.21591854, step = 53900 (5.128 sec)
+global_step/sec: 19.5306
+loss = 0.22675925, step = 54000 (5.123 sec)
+global_step/sec: 19.4901
+loss = 0.22105065, step = 54100 (5.128 sec)
+Saving checkpoints for 54145 into ../model/distmult_1-N/model.ckpt.
+Calling model_fn.
+Done calling model_fn.
+Starting evaluation at 2019-02-14T03:53:55Z
+Graph was finalized.
+Restoring parameters from ../model/distmult_1-N/model.ckpt-54145
+Running local_init_op.
+Done running local_init_op.
+Finished evaluation at 2019-02-14-03:53:57
+Saving dict for global step 54145: Hits1 = 0.653, Hits10 = 0.9496, Hits3 = 0.9322, MRR = 0.7918461, global_step = 54145, loss = 0.2949101
+Saving 'checkpoint_path' summary for global step 54145: ../model/distmult_1-N/model.ckpt-54145
+No increase in metric "Hits10" for 5525 steps, which is greater than or equal to max steps (5525) configured for early stopping.
+Requesting early stopping at global step 54145
+Saving checkpoints for 54146 into ../model/distmult_1-N/model.ckpt.
+Skip the current checkpoint eval due to throttle secs (10 secs).
+Calling model_fn.
+Done calling model_fn.
+Starting evaluation at 2019-02-14T03:53:58Z
+Graph was finalized.
+Restoring parameters from ../model/distmult_1-N/model.ckpt-54146
+Running local_init_op.
+Done running local_init_op.
+Finished evaluation at 2019-02-14-03:54:01
+Saving dict for global step 54146: Hits1 = 0.6532, Hits10 = 0.9496, Hits3 = 0.9322, MRR = 0.79194087, global_step = 54146, loss = 0.29487878
+Saving 'checkpoint_path' summary for global step 54146: ../model/distmult_1-N/model.ckpt-54146
+Loss for final step: 0.25004214.

@@ -1,0 +1,50 @@
+index_1	is_male_False	age_0	job_id_10	movie_1193	Drama	one flew over e cuckoo nest 	5.0
+index_1	is_male_False	age_0	job_id_10	movie_661	Animation Children's Musical	james and e giant peach 	3.0
+index_1	is_male_False	age_0	job_id_10	movie_914	Musical Romance	my fair lady 	3.0
+index_1	is_male_False	age_0	job_id_10	movie_3408	Drama	erin brockovich 	4.0
+index_1	is_male_False	age_0	job_id_10	movie_2355	Animation Children's Comedy	bug life a 	5.0
+index_1	is_male_False	age_0	job_id_10	movie_1197	Action Adventure Comedy Romance	princess bride e 	3.0
+index_1	is_male_False	age_0	job_id_10	movie_1287	Action Adventure Drama	ben hur 	5.0
+index_1	is_male_False	age_0	job_id_10	movie_2804	Comedy Drama	christmas story a 	5.0
+index_1	is_male_False	age_0	job_id_10	movie_594	Animation Children's Musical	snow white and e seven dwarfs 	4.0
+index_1	is_male_False	age_0	job_id_10	movie_919	Adventure Children's Drama Musical	wizard of oz e 	4.0
+index_1	is_male_False	age_0	job_id_10	movie_595	Animation Children's Musical	beauty and e beast 	5.0
+index_1	is_male_False	age_0	job_id_10	movie_938	Musical	gigi 	4.0
+index_1	is_male_False	age_0	job_id_10	movie_2398	Drama	miracle on <d> street 	4.0
+index_1	is_male_False	age_0	job_id_10	movie_2918	Comedy	ferris bueller day off 	4.0
+index_1	is_male_False	age_0	job_id_10	movie_2018	Animation Children's	bambi 	4.0
+index_1	is_male_False	age_0	job_id_10	movie_3105	Drama	awakenings 	5.0
+index_1	is_male_False	age_0	job_id_10	movie_2797	Comedy Fantasy	big 	4.0
+index_1	is_male_False	age_0	job_id_10	movie_2321	Comedy	pleasantville 	3.0
+index_1	is_male_False	age_0	job_id_10	movie_720	Animation	wallace gromit e best of aardman animation 	3.0
+index_1	is_male_False	age_0	job_id_10	movie_1270	Comedy Sci-Fi	back to e future 	5.0
+index_1	is_male_False	age_0	job_id_10	movie_527	Drama War	schindler list 	5.0
+index_1	is_male_False	age_0	job_id_10	movie_2340	Romance	meet joe black 	3.0
+index_1	is_male_False	age_0	job_id_10	movie_48	Animation Children's Musical Romance	pocahontas 	5.0
+index_1	is_male_False	age_0	job_id_10	movie_1097	Children's Drama Fantasy Sci-Fi	e t e extra terrestrial 	4.0
+index_1	is_male_False	age_0	job_id_10	movie_1721	Drama Romance	titanic 	4.0
+index_1	is_male_False	age_0	job_id_10	movie_1545	Drama	ponette 	4.0
+index_1	is_male_False	age_0	job_id_10	movie_745	Animation Comedy Thriller	close shave a 	3.0
+index_1	is_male_False	age_0	job_id_10	movie_2294	Animation Children's	antz 	4.0
+index_1	is_male_False	age_0	job_id_10	movie_3186	Drama	girl interrupted 	4.0
+index_1	is_male_False	age_0	job_id_10	movie_1566	Adventure Animation Children's Comedy Musical	hercules 	4.0
+index_1	is_male_False	age_0	job_id_10	movie_588	Animation Children's Comedy Musical	aladdin 	4.0
+index_1	is_male_False	age_0	job_id_10	movie_783	Animation Children's Musical	hunchback of notre dame e 	4.0
+index_1	is_male_False	age_0	job_id_10	movie_1836	Drama	last days of disco e 	5.0
+index_1	is_male_False	age_0	job_id_10	movie_1022	Animation Children's Musical	cinderella 	5.0
+index_1	is_male_False	age_0	job_id_10	movie_2762	Thriller	six sense e 	4.0
+index_1	is_male_False	age_0	job_id_10	movie_150	Drama	apollo <d> 	5.0
+index_1	is_male_False	age_0	job_id_10	movie_1	Animation Children's Comedy	toy story 	5.0
+index_1	is_male_False	age_0	job_id_10	movie_1961	Drama	rain man 	5.0
+index_1	is_male_False	age_0	job_id_10	movie_1962	Drama	driving miss daisy 	4.0
+index_1	is_male_False	age_0	job_id_10	movie_260	Action Adventure Fantasy Sci-Fi	star wars episode iv a new hope 	4.0
+index_1	is_male_False	age_0	job_id_10	movie_1028	Children's Comedy Musical	mary poppins 	5.0
+index_1	is_male_False	age_0	job_id_10	movie_1029	Animation Children's Musical	dumbo 	5.0
+index_1	is_male_False	age_0	job_id_10	movie_1207	Drama	to kill a mockingbird 	4.0
+index_1	is_male_False	age_0	job_id_10	movie_2028	Action Drama War	saving private ryan 	5.0
+index_1	is_male_False	age_0	job_id_10	movie_531	Children's Drama	secret garden e 	4.0
+index_1	is_male_False	age_0	job_id_10	movie_3114	Animation Children's Comedy	toy story <d> 	4.0
+index_1	is_male_False	age_0	job_id_10	movie_608	Crime Drama Thriller	fargo 	4.0
+index_1	is_male_False	age_0	job_id_10	movie_1246	Drama	dead poets society 	4.0
+index_2	is_male_True	age_6	job_id_16	movie_1357	Drama Romance	shine 	5.0
+index_2	is_male_True	age_6	job_id_16	movie_3068	Drama	verdict e 	4.0

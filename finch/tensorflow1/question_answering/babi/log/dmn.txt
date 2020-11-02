@@ -1,0 +1,258 @@
+Using config: {'_model_dir': '../model/dmn', '_tf_random_seed': None, '_save_summary_steps': 100, '_save_checkpoints_steps': 200, '_save_checkpoints_secs': None, '_session_config': allow_soft_placement: true
+graph_options {
+  rewrite_options {
+    meta_optimizer_iterations: ONE
+  }
+}
+, '_keep_checkpoint_max': 5, '_keep_checkpoint_every_n_hours': 10000, '_log_step_count_steps': 100, '_train_distribute': None, '_device_fn': None, '_protocol': None, '_eval_distribute': None, '_experimental_distribute': None, '_service': None, '_cluster_spec': <tensorflow.python.training.server_lib.ClusterSpec object at 0x7fd73cddd438>, '_task_type': 'worker', '_task_id': 0, '_global_id_in_cluster': 0, '_master': '', '_evaluation_master': '', '_is_chief': True, '_num_ps_replicas': 0, '_num_worker_replicas': 1}
+Not using Distribute Coordinator.
+Running training and evaluation locally (non-distributed).
+Start train and evaluate loop. The evaluate will happen after every checkpoint. Checkpoint frequency is determined based on RunConfig arguments: save_checkpoints_steps 200 or save_checkpoints_secs None.
+From /usr/local/lib/python3.6/dist-packages/tensorflow/python/framework/op_def_library.py:263: colocate_with (from tensorflow.python.framework.ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Colocations handled automatically by placer.
+From /usr/local/lib/python3.6/dist-packages/tensorflow/python/data/ops/dataset_ops.py:429: py_func (from tensorflow.python.ops.script_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+tf.py_func is deprecated in TF V2. Instead, use
+    tf.py_function, which takes a python function which manipulates tf eager
+    tensors instead of numpy arrays. It's easy to convert a tf eager tensor to
+    an ndarray (just call tensor.numpy()) but having access to eager tensors
+    means `tf.py_function`s can use accelerators such as GPUs as well as
+    being differentiable using a gradient tape.
+    
+From /usr/local/lib/python3.6/dist-packages/tensorflow_estimator/python/estimator/util.py:104: DatasetV1.make_initializable_iterator (from tensorflow.python.data.ops.dataset_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use `for ... in dataset:` to iterate over a dataset. If using `tf.estimator`, return the `Dataset` object directly from your input function. As a last resort, you can use `tf.compat.v1.data.make_initializable_iterator(dataset)`.
+Calling model_fn.
+From <ipython-input-5-d91de2831218>:14: GRUCell.__init__ (from tensorflow.python.ops.rnn_cell_impl) is deprecated and will be removed in a future version.
+Instructions for updating:
+This class is equivalent as tf.keras.layers.GRUCell, and will be replaced by that in Tensorflow 2.0.
+From <ipython-input-6-e2247cd79295>:16: bidirectional_dynamic_rnn (from tensorflow.python.ops.rnn) is deprecated and will be removed in a future version.
+Instructions for updating:
+Please use `keras.layers.Bidirectional(keras.layers.RNN(cell))`, which is equivalent to this API
+From /usr/local/lib/python3.6/dist-packages/tensorflow/python/ops/rnn.py:443: dynamic_rnn (from tensorflow.python.ops.rnn) is deprecated and will be removed in a future version.
+Instructions for updating:
+Please use `keras.layers.RNN(cell)`, which is equivalent to this API
+From /usr/local/lib/python3.6/dist-packages/tensorflow/python/ops/rnn.py:626: to_int32 (from tensorflow.python.ops.math_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use tf.cast instead.
+From <ipython-input-6-e2247cd79295>:18: dropout (from tensorflow.python.layers.core) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use keras.layers.dropout instead.
+From /usr/local/lib/python3.6/dist-packages/tensorflow/python/keras/layers/core.py:143: calling dropout (from tensorflow.python.ops.nn_ops) with keep_prob is deprecated and will be removed in a future version.
+Instructions for updating:
+Please use `rate` instead of `keep_prob`. Rate should be set to `rate = 1 - keep_prob`.
+From <ipython-input-6-e2247cd79295>:86: dense (from tensorflow.python.layers.core) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use keras.layers.dense instead.
+
+[<tf.Variable 'word_embedding/lookup:0' shape=(41, 80) dtype=float32_ref>,
+ <tf.Variable 'input_module/bidirectional_rnn/fw/gru_cell/gates/kernel:0' shape=(120, 80) dtype=float32_ref>,
+ <tf.Variable 'input_module/bidirectional_rnn/fw/gru_cell/gates/bias:0' shape=(80,) dtype=float32_ref>,
+ <tf.Variable 'input_module/bidirectional_rnn/fw/gru_cell/candidate/kernel:0' shape=(120, 40) dtype=float32_ref>,
+ <tf.Variable 'input_module/bidirectional_rnn/fw/gru_cell/candidate/bias:0' shape=(40,) dtype=float32_ref>,
+ <tf.Variable 'input_module/bidirectional_rnn/bw/gru_cell/gates/kernel:0' shape=(120, 80) dtype=float32_ref>,
+ <tf.Variable 'input_module/bidirectional_rnn/bw/gru_cell/gates/bias:0' shape=(80,) dtype=float32_ref>,
+ <tf.Variable 'input_module/bidirectional_rnn/bw/gru_cell/candidate/kernel:0' shape=(120, 40) dtype=float32_ref>,
+ <tf.Variable 'input_module/bidirectional_rnn/bw/gru_cell/candidate/bias:0' shape=(40,) dtype=float32_ref>,
+ <tf.Variable 'question_module/rnn/gru_cell/gates/kernel:0' shape=(160, 160) dtype=float32_ref>,
+ <tf.Variable 'question_module/rnn/gru_cell/gates/bias:0' shape=(160,) dtype=float32_ref>,
+ <tf.Variable 'question_module/rnn/gru_cell/candidate/kernel:0' shape=(160, 80) dtype=float32_ref>,
+ <tf.Variable 'question_module/rnn/gru_cell/candidate/bias:0' shape=(80,) dtype=float32_ref>,
+ <tf.Variable 'memory_module/attn_proj_1/kernel:0' shape=(320, 80) dtype=float32_ref>,
+ <tf.Variable 'memory_module/attn_proj_1/bias:0' shape=(80,) dtype=float32_ref>,
+ <tf.Variable 'memory_module/attn_proj_2/kernel:0' shape=(80, 1) dtype=float32_ref>,
+ <tf.Variable 'memory_module/attn_proj_2/bias:0' shape=(1,) dtype=float32_ref>,
+ <tf.Variable 'memory_module/rnn/attn_gru/gates/kernel:0' shape=(160, 80) dtype=float32_ref>,
+ <tf.Variable 'memory_module/rnn/attn_gru/gates/bias:0' shape=(80,) dtype=float32_ref>,
+ <tf.Variable 'memory_module/rnn/attn_gru/candidate/kernel:0' shape=(160, 80) dtype=float32_ref>,
+ <tf.Variable 'memory_module/rnn/attn_gru/candidate/bias:0' shape=(80,) dtype=float32_ref>,
+ <tf.Variable 'memory_module/memory_proj/kernel:0' shape=(240, 80) dtype=float32_ref>,
+ <tf.Variable 'memory_module/memory_proj/bias:0' shape=(80,) dtype=float32_ref>,
+ <tf.Variable 'answer_module/dense/kernel:0' shape=(160, 41) dtype=float32_ref>,
+ <tf.Variable 'answer_module/dense/bias:0' shape=(41,) dtype=float32_ref>]
+Done calling model_fn.
+Create CheckpointSaverHook.
+Graph was finalized.
+Running local_init_op.
+Done running local_init_op.
+Saving checkpoints for 0 into ../model/dmn/model.ckpt.
+loss = 3.7059402, step = 0
+global_step/sec: 1.75133
+loss = 1.3650131, step = 100 (57.105 sec)
+Saving checkpoints for 200 into ../model/dmn/model.ckpt.
+Calling model_fn.
+From /usr/local/lib/python3.6/dist-packages/tensorflow/python/ops/metrics_impl.py:455: to_float (from tensorflow.python.ops.math_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use tf.cast instead.
+Done calling model_fn.
+Starting evaluation at 2019-02-13T11:54:24Z
+Graph was finalized.
+From /usr/local/lib/python3.6/dist-packages/tensorflow/python/training/saver.py:1266: checkpoint_exists (from tensorflow.python.training.checkpoint_management) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use standard file APIs to check for files with this prefix.
+Restoring parameters from ../model/dmn/model.ckpt-200
+Running local_init_op.
+Done running local_init_op.
+Finished evaluation at 2019-02-13-11:54:27
+Saving dict for global step 200: acc = 0.782, global_step = 200, loss = 0.6338689
+Saving 'checkpoint_path' summary for global step 200: ../model/dmn/model.ckpt-200
+global_step/sec: 1.61566
+From /usr/local/lib/python3.6/dist-packages/tensorflow/python/summary/summary_iterator.py:68: tf_record_iterator (from tensorflow.python.lib.io.tf_record) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use eager execution and: 
+`tf.data.TFRecordDataset(path)`
+loss = 0.7098075, step = 200 (61.914 sec)
+global_step/sec: 1.75428
+loss = 0.26251137, step = 300 (56.981 sec)
+Saving checkpoints for 400 into ../model/dmn/model.ckpt.
+Calling model_fn.
+Done calling model_fn.
+Starting evaluation at 2019-02-13T11:56:20Z
+Graph was finalized.
+Restoring parameters from ../model/dmn/model.ckpt-400
+Running local_init_op.
+Done running local_init_op.
+Finished evaluation at 2019-02-13-11:56:23
+Saving dict for global step 400: acc = 0.843, global_step = 400, loss = 0.27265805
+Saving 'checkpoint_path' summary for global step 400: ../model/dmn/model.ckpt-400
+global_step/sec: 1.69731
+loss = 0.18384781, step = 400 (58.936 sec)
+global_step/sec: 1.80313
+loss = 0.22520888, step = 500 (55.439 sec)
+Saving checkpoints for 600 into ../model/dmn/model.ckpt.
+Calling model_fn.
+Done calling model_fn.
+Starting evaluation at 2019-02-13T11:58:17Z
+Graph was finalized.
+Restoring parameters from ../model/dmn/model.ckpt-600
+Running local_init_op.
+Done running local_init_op.
+Finished evaluation at 2019-02-13-11:58:20
+Saving dict for global step 600: acc = 0.834, global_step = 600, loss = 0.25944102
+Saving 'checkpoint_path' summary for global step 600: ../model/dmn/model.ckpt-600
+global_step/sec: 1.62637
+loss = 0.41380847, step = 600 (61.503 sec)
+global_step/sec: 1.78944
+loss = 0.19449098, step = 700 (55.872 sec)
+Saving checkpoints for 800 into ../model/dmn/model.ckpt.
+Calling model_fn.
+Done calling model_fn.
+Starting evaluation at 2019-02-13T12:00:14Z
+Graph was finalized.
+Restoring parameters from ../model/dmn/model.ckpt-800
+Running local_init_op.
+Done running local_init_op.
+Finished evaluation at 2019-02-13-12:00:17
+Saving dict for global step 800: acc = 0.832, global_step = 800, loss = 0.2575265
+Saving 'checkpoint_path' summary for global step 800: ../model/dmn/model.ckpt-800
+global_step/sec: 1.62341
+loss = 0.26415473, step = 800 (61.611 sec)
+global_step/sec: 1.78614
+loss = 0.22967395, step = 900 (55.973 sec)
+Saving checkpoints for 1000 into ../model/dmn/model.ckpt.
+From /usr/local/lib/python3.6/dist-packages/tensorflow/python/training/saver.py:966: remove_checkpoint (from tensorflow.python.training.checkpoint_management) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use standard file APIs to delete files with this prefix.
+Calling model_fn.
+Done calling model_fn.
+Starting evaluation at 2019-02-13T12:02:11Z
+Graph was finalized.
+Restoring parameters from ../model/dmn/model.ckpt-1000
+Running local_init_op.
+Done running local_init_op.
+Finished evaluation at 2019-02-13-12:02:14
+Saving dict for global step 1000: acc = 0.891, global_step = 1000, loss = 0.24205628
+Saving 'checkpoint_path' summary for global step 1000: ../model/dmn/model.ckpt-1000
+global_step/sec: 1.64112
+loss = 0.17308657, step = 1000 (60.945 sec)
+global_step/sec: 1.78743
+loss = 0.12043685, step = 1100 (55.934 sec)
+Saving checkpoints for 1200 into ../model/dmn/model.ckpt.
+Calling model_fn.
+Done calling model_fn.
+Starting evaluation at 2019-02-13T12:04:09Z
+Graph was finalized.
+Restoring parameters from ../model/dmn/model.ckpt-1200
+Running local_init_op.
+Done running local_init_op.
+Finished evaluation at 2019-02-13-12:04:12
+Saving dict for global step 1200: acc = 0.989, global_step = 1200, loss = 0.09721884
+Saving 'checkpoint_path' summary for global step 1200: ../model/dmn/model.ckpt-1200
+global_step/sec: 1.62864
+loss = 0.04999805, step = 1200 (61.415 sec)
+global_step/sec: 1.76553
+loss = 0.030324563, step = 1300 (56.624 sec)
+Saving checkpoints for 1400 into ../model/dmn/model.ckpt.
+Calling model_fn.
+Done calling model_fn.
+Starting evaluation at 2019-02-13T12:06:06Z
+Graph was finalized.
+Restoring parameters from ../model/dmn/model.ckpt-1400
+Running local_init_op.
+Done running local_init_op.
+Finished evaluation at 2019-02-13-12:06:09
+Saving dict for global step 1400: acc = 0.994, global_step = 1400, loss = 0.046021726
+Saving 'checkpoint_path' summary for global step 1400: ../model/dmn/model.ckpt-1400
+global_step/sec: 1.64764
+loss = 0.04744132, step = 1400 (60.709 sec)
+global_step/sec: 1.77611
+loss = 0.0075320965, step = 1500 (56.292 sec)
+Saving checkpoints for 1600 into ../model/dmn/model.ckpt.
+Calling model_fn.
+Done calling model_fn.
+Starting evaluation at 2019-02-13T12:08:04Z
+Graph was finalized.
+Restoring parameters from ../model/dmn/model.ckpt-1600
+Running local_init_op.
+Done running local_init_op.
+Finished evaluation at 2019-02-13-12:08:07
+Saving dict for global step 1600: acc = 0.994, global_step = 1600, loss = 0.047745097
+Saving 'checkpoint_path' summary for global step 1600: ../model/dmn/model.ckpt-1600
+global_step/sec: 1.61234
+loss = 0.015278418, step = 1600 (62.033 sec)
+global_step/sec: 1.7599
+loss = 0.0033423228, step = 1700 (56.804 sec)
+Saving checkpoints for 1800 into ../model/dmn/model.ckpt.
+Calling model_fn.
+Done calling model_fn.
+Starting evaluation at 2019-02-13T12:10:03Z
+Graph was finalized.
+Restoring parameters from ../model/dmn/model.ckpt-1800
+Running local_init_op.
+Done running local_init_op.
+Finished evaluation at 2019-02-13-12:10:07
+Saving dict for global step 1800: acc = 0.989, global_step = 1800, loss = 0.06317021
+Saving 'checkpoint_path' summary for global step 1800: ../model/dmn/model.ckpt-1800
+global_step/sec: 1.60111
+loss = 0.00329536, step = 1800 (62.473 sec)
+global_step/sec: 1.77323
+loss = 0.0027753857, step = 1900 (56.382 sec)
+Saving checkpoints for 2000 into ../model/dmn/model.ckpt.
+Calling model_fn.
+Done calling model_fn.
+Starting evaluation at 2019-02-13T12:12:02Z
+Graph was finalized.
+Restoring parameters from ../model/dmn/model.ckpt-2000
+Running local_init_op.
+Done running local_init_op.
+Finished evaluation at 2019-02-13-12:12:06
+Saving dict for global step 2000: acc = 0.993, global_step = 2000, loss = 0.057220567
+Saving 'checkpoint_path' summary for global step 2000: ../model/dmn/model.ckpt-2000
+global_step/sec: 1.59384
+No increase in metric "acc" for 600 steps, which is greater than or equal to max steps (600) configured for early stopping.
+Requesting early stopping at global step 2000
+loss = 0.0014298395, step = 2000 (62.832 sec)
+Saving checkpoints for 2001 into ../model/dmn/model.ckpt.
+Skip the current checkpoint eval due to throttle secs (10 secs).
+Calling model_fn.
+Done calling model_fn.
+Starting evaluation at 2019-02-13T12:12:10Z
+Graph was finalized.
+Restoring parameters from ../model/dmn/model.ckpt-2001
+Running local_init_op.
+Done running local_init_op.
+Finished evaluation at 2019-02-13-12:12:13
+Saving dict for global step 2001: acc = 0.993, global_step = 2001, loss = 0.05458973
+Saving 'checkpoint_path' summary for global step 2001: ../model/dmn/model.ckpt-2001
+Loss for final step: 0.0014298395.

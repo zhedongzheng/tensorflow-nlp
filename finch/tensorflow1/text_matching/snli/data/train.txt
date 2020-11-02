@@ -1,0 +1,5 @@
+neutral	a person on a horse jumps over a broken down airplane	a person is training his horse for a competition
+contradiction	a person on a horse jumps over a broken down airplane	a person is at a diner ordering an omelette
+entailment	a person on a horse jumps over a broken down airplane	a person is outdoors on a horse
+neutral	children smiling and waving at camera	they are smiling at their parents
+entailment	children smiling and waving at camera	there are children present
