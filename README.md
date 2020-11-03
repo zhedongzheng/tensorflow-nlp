@@ -187,7 +187,18 @@
 	
         Training Data: 31728, Testing Data: 3967, Labels: 7
 
-	* Model
+	* Model: TF-IDF + Linear Model
+
+		| Logistic Regression | Binary TF | NGram Range | Split By | Testing Accuracy |
+		| --- | --- | --- | --- | --- |
+		| [\<Notebook>](https://nbviewer.jupyter.org/github/zhedongzheng/tensorflow-nlp/blob/master/finch/tensorflow2/text_classification/clue/main/tfidf_lr_binary_f_char_unigram.ipynb) | False | (1, 1) | Char | 57.4% |
+		| [\<Notebook>](https://nbviewer.jupyter.org/github/zhedongzheng/tensorflow-nlp/blob/master/finch/tensorflow2/text_classification/clue/main/tfidf_lr_binary_t_word_unigram.ipynb) | True | (1, 1) | Word | 57.7% |
+		| [\<Notebook>](https://nbviewer.jupyter.org/github/zhedongzheng/tensorflow-nlp/blob/master/finch/tensorflow2/text_classification/clue/main/tfidf_lr_binary_f_word_bigram.ipynb) | False | (1, 2) | Word | 57.8% |
+		| [\<Notebook>](https://nbviewer.jupyter.org/github/zhedongzheng/tensorflow-nlp/blob/master/finch/tensorflow2/text_classification/clue/main/tfidf_lr_binary_f_word_unigram.ipynb) | False | (1, 1) | Word | 58.3% |
+		| [\<Notebook>](https://nbviewer.jupyter.org/github/zhedongzheng/tensorflow-nlp/blob/master/finch/tensorflow2/text_classification/clue/main/tfidf_lr_binary_t_char_bigram.ipynb) | True | (1, 2) | Char | 59.1% |
+		| [\<Notebook>](https://nbviewer.jupyter.org/github/zhedongzheng/tensorflow-nlp/blob/master/finch/tensorflow2/text_classification/clue/main/tfidf_lr_binary_f_char_bigram.ipynb) | False | (1, 2) | Char | 59.4% |
+
+	* Model: Deep Model
 				
 		| Code | Model | Env | Testing Accuracy |
 		| --- | --- | --- | --- |
