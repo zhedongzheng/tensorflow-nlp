@@ -720,30 +720,12 @@
 		| [\<Notebook>](https://nbviewer.jupyter.org/github/zhedongzheng/tensorflow-nlp/blob/master/finch/tensorflow1/multi_turn_rewrite/chinese/main/pointer_gru_train_clr.ipynb) | GRU [Pointer](https://arxiv.org/abs/1506.03134) | TF1 | 59.2% | 93.2 | 87.7 | 77.2 |
 		| [\<Notebook>](https://nbviewer.jupyter.org/github/zhedongzheng/tensorflow-nlp/blob/master/finch/tensorflow1/multi_turn_rewrite/chinese/main/pointer_gru_train_clr_multi_attn_.ipynb) | GRU [Pointer](https://arxiv.org/abs/1506.03134) + Multi-Attention | TF1 | 60.2% | 94.2 | 88.7 | 78.3 |
 
-	* If you want to deploy model
+	* Deployment: [first export the model](https://nbviewer.jupyter.org/github/zhedongzheng/finch/blob/master/finch/tensorflow1/multi_turn_rewrite/chinese/main/baseline_lstm_export.ipynb)
 
-		* Python Inference（基于 Python 的推理）
-
-			* [\<Notebook> Export](https://nbviewer.jupyter.org/github/zhedongzheng/finch/blob/master/finch/tensorflow1/multi_turn_rewrite/chinese/main/baseline_lstm_export.ipynb)
-			
-			* [\<Notebook> Inference](https://nbviewer.jupyter.org/github/zhedongzheng/tensorflow-nlp/blob/master/finch/tensorflow1/multi_turn_rewrite/chinese/main/baseline_lstm_predict.ipynb)
-		
-		* Java Inference（基于 Java 的推理）
-
-			* [\<Notebook> Inference](https://github.com/zhedongzheng/tensorflow-nlp/blob/master/finch/java/MultiDialogInference/src/ModelInference.java)
-
-				```
-				└── MultiDialogInference
-					│
-					├── data
-					│   └── baseline_lstm_export/
-					│   └── char.txt
-					│   └── libtensorflow-1.14.0.jar
-					│   └── tensorflow_jni.dll
-					│
-					└── src              
-						└── ModelInference.java
-				```
+		| Inference Code | Environment |
+		| --- | --- |
+		| [\<Notebook>](https://nbviewer.jupyter.org/github/zhedongzheng/tensorflow-nlp/blob/master/finch/tensorflow1/multi_turn_rewrite/chinese/main/baseline_lstm_predict.ipynb) | Python |
+		| [\<Notebook>](https://github.com/zhedongzheng/tensorflow-nlp/blob/master/finch/java/MultiDialogInference/src/ModelInference.java) | Java |
 
 	* Despite End-to-End, this problem can also be decomposed into two stages
 
@@ -872,30 +854,10 @@
 
 		* [\<Notebook> Java Inference](https://github.com/zhedongzheng/tensorflow-nlp/blob/master/finch/java/FreeChatInference/src/ModelInference.java)
 
-		* If you don't know the input and output node names in Java, you can call:
+		* If you don't know the input and output node names in Java, you can display the node names:
 
 			```
 			!saved_model_cli show --dir ../model/xxx/1587959473/ --tag_set serve --signature_def serving_default
-			```
-
-			which will display the node names:
-
-			```
-			The given SavedModel SignatureDef contains the following input(s):
-			inputs['history'] tensor_info:
-				dtype: DT_INT32
-				shape: (-1, -1, -1)
-				name: history:0
-			inputs['query'] tensor_info:
-				dtype: DT_INT32
-				shape: (-1, -1)
-				name: query:0
-			The given SavedModel SignatureDef contains the following output(s):
-			outputs['output'] tensor_info:
-				dtype: DT_INT32
-				shape: (-1, -1)
-				name: Decoder/decoder/transpose_1:0
-			Method name is: tensorflow/serving/predict
 			```
 
 	* Large Pre-trained [GPT](https://www.semanticscholar.org/paper/Language-Models-are-Unsupervised-Multitask-Learners-Radford-Wu/9405cc0d6169988371b2755e573cc28650d14dfe)
