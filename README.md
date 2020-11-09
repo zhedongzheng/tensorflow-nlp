@@ -203,6 +203,7 @@
 		| Code | Model | Env | Testing Accuracy |
 		| --- | --- | --- | --- |
 		| [\<Notebook>](https://nbviewer.jupyter.org/github/zhedongzheng/tensorflow-nlp/blob/master/finch/tensorflow2/text_classification/clue/main/bert_finetune.ipynb) | [BERT](https://arxiv.org/abs/1810.04805) | TF2 | 61.7% |
+		| [\<Notebook>](https://nbviewer.jupyter.org/github/zhedongzheng/tensorflow-nlp/blob/master/finch/tensorflow2/text_classification/clue/main/bert_further_pretrain_finetune.ipynb) | BERT + [TAPT](https://arxiv.org/abs/2004.10964) ([\<Notebook>](https://nbviewer.jupyter.org/github/zhedongzheng/tensorflow-nlp/blob/master/finch/tensorflow2/text_classification/clue/main/bert_further_pretrain.ipynb)) | TF2 | 61.9% |
 
 ---
 
