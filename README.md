@@ -325,6 +325,7 @@
 	| [\<Notebook>](https://nbviewer.jupyter.org/github/zhedongzheng/tensorflow-nlp/blob/master/finch/tensorflow2/text_matching/ant/main/pyramid.ipynb) | [Match Pyramid](https://arxiv.org/abs/1602.06359) | TF2 | Char | 69.0% |
 	| [\<Notebook>](https://nbviewer.jupyter.org/github/zhedongzheng/tensorflow-nlp/blob/master/finch/tensorflow2/text_matching/joint/main/pyramid.ipynb) | Match Pyramid + Joint Training | TF2 | Char | 70.3% |
 	| [\<Notebook>](https://nbviewer.jupyter.org/github/zhedongzheng/tensorflow-nlp/blob/master/finch/tensorflow2/text_matching/ant/main/bert.ipynb) | [BERT](https://arxiv.org/abs/1810.04805) | TF2 | Char | 73.8% |
+	| [\<Notebook>](https://nbviewer.jupyter.org/github/zhedongzheng/tensorflow-nlp/blob/master/finch/tensorflow2/text_matching/ant/main/bert_further_pretrain_finetune.ipynb) | BERT + [TAPT](https://arxiv.org/abs/2004.10964) ([\<Notebook>](https://nbviewer.jupyter.org/github/zhedongzheng/tensorflow-nlp/blob/master/finch/tensorflow2/text_matching/ant/main/bert_further_pretrain.ipynb)) | TF2 | Char | 74.1% |
 
 * Joint training
 
