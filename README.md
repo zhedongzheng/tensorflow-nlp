@@ -335,11 +335,11 @@
 
 	* total size = 100000 + 34334 = 134334
 
-	| BERT | only train by data_1 | only train by data_2 | jointly train by data_1 and data_2 |
+	| BERT | only train by data_1 | only train by data_2 | joint train by data_1 and data_2 |
 	| --- | --- | --- | --- |
-	| Code | [\<Notebook>](https://nbviewer.jupyter.org/github/zhedongzheng/tensorflow-nlp/blob/master/finch/tensorflow2/text_matching/chinese/main/bert_finetune.ipynb) | [\<Notebook>](https://nbviewer.jupyter.org/github/zhedongzheng/tensorflow-nlp/blob/master/finch/tensorflow2/text_matching/ant/main/bert.ipynb) | [\<Notebook>](https://nbviewer.jupyter.org/github/zhedongzheng/tensorflow-nlp/blob/master/finch/tensorflow2/text_matching/joint/main/bert.ipynb) |
-	| data_1 accuracy | 83.8% | - | 84.4% |
-	| data_2 accuracy | - | 73.8% | 74.0% |
+	| Code | [\<Notebook>](https://nbviewer.jupyter.org/github/zhedongzheng/tensorflow-nlp/blob/master/finch/tensorflow2/text_matching/chinese/main/bert_finetune.ipynb) | [\<Notebook>](https://nbviewer.jupyter.org/github/zhedongzheng/tensorflow-nlp/blob/master/finch/tensorflow2/text_matching/ant/main/bert.ipynb) | [\<Notebook>](https://nbviewer.jupyter.org/github/zhedongzheng/tensorflow-nlp/blob/master/finch/tensorflow2/text_matching/joint/main/bert_further_pretrain_finetune.ipynb) |
+	| data_1 accuracy | 83.8% | - | 84.2% |
+	| data_2 accuracy | - | 73.8% | 74.4% |
 
 ---
 
