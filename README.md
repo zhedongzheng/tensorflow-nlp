@@ -393,37 +393,12 @@
 
 * Task: Build a chatbot answering fundamental questions
 
-	* Engine: Elasticsearch
-
-		* [\<Notebook> Sparse Retrieval (split by char)](https://nbviewer.jupyter.org/github/zhedongzheng/tensorflow-nlp/blob/master/finch/es/free_chat/main/default_retrieve.ipynb)
-
-		* [\<Notebook> Sparse Retrieval (split by word)](https://nbviewer.jupyter.org/github/zhedongzheng/tensorflow-nlp/blob/master/finch/es/free_chat/main/default_retrieve_seg.ipynb)
-
-			Case Analysis
-
-			| 问题 / 拆解方式 | split by char | split by word |
-			| --- | --- | --- |
-			| Q: 热死了 | 热死了 -> 热 &nbsp; / &nbsp; 死 &nbsp; / &nbsp; 了 | 热死了 -> 热 &nbsp; / &nbsp; 死了 |
-
-			| 问题 / 模型回复 | split by char | split by word |
-			| --- | --- | --- |
-			| Q: 热死了 | Q: 热死了 -> Q: 想死你了 | Q: 热死了 -> Q: 热 |
-			
-			split by word is more robust
-			
-		* [\<Notebook> Dense Retrieval](https://nbviewer.jupyter.org/github/zhedongzheng/tensorflow-nlp/blob/master/finch/es/free_chat/main/dense_retrieve.ipynb)
-
-		   Case Analysis
-
-			| 问题 / 模型回复 | Sparse Retrieval | Dense Retrieval |
-			| --- | --- | --- |
-			| Q: 我喜欢你 | Q: 我喜欢你 -> Q: 我喜欢看书 | Q: 我喜欢你 -> Q: 我爱你 |
-			
-			dense retrieval is more robust
-
-		* [\<Notebook> Dense Retrieval (Bert)](https://nbviewer.jupyter.org/github/zhedongzheng/tensorflow-nlp/blob/master/finch/es/free_chat/main/dense_retrieve_bert_hub.ipynb)
-
-		* [\<Notebook> Dense Retrieval (Cross-lingual)](https://nbviewer.jupyter.org/github/zhedongzheng/tensorflow-nlp/blob/master/finch/es/free_chat/main/dense_retrieve_cross_lingual.ipynb)
+	| Code | Engine | Encoder | Vector Type | Unit Test Accuracy |
+	| --- | --- | --- | --- | --- |
+	| [\<Notebook>](https://nbviewer.jupyter.org/github/zhedongzheng/tensorflow-nlp/blob/master/finch/es/free_chat/main/default_retrieve.ipynb) | Elastic Search | Default (TF-IDF) | Sparse | 80% |
+	| [\<Notebook>](https://nbviewer.jupyter.org/github/zhedongzheng/tensorflow-nlp/blob/master/finch/es/free_chat/main/default_retrieve_seg.ipynb) | Elastic Search | Default (TF-IDF) + [Segmentation](https://github.com/medcl/elasticsearch-analysis-ik) | Sparse | 90% |
+	| [\<Notebook>](https://nbviewer.jupyter.org/github/zhedongzheng/tensorflow-nlp/blob/master/finch/es/free_chat/main/dense_retrieve_bert_hub.ipynb) | Elastic Search | [Bert](https://arxiv.org/abs/1810.04805) | Dense | 80% |
+	| [\<Notebook>](https://nbviewer.jupyter.org/github/zhedongzheng/tensorflow-nlp/blob/master/finch/es/free_chat/main/dense_retrieve.ipynb) | Elastic Search | [Universal Sentence Encoder](https://arxiv.org/abs/1907.04307) | Dense | 100% |
 
 ---
 
