@@ -147,25 +147,17 @@
 
 				This result (without transfer learning) is higher than [CoVe](https://arxiv.org/pdf/1708.00107.pdf) (with transfer learning)
 
-	* Model: [BERT](https://arxiv.org/abs/1810.04805)
+	* Model: Large-scale Transformer
 
 		* TensorFlow 2 + [transformers](https://github.com/huggingface/transformers)
 
-			| Bert (base-uncased) | Batch Size | Max Length | Testing Accuracy |
-			| --- | --- | --- | --- |
-			| [\<Notebook>](https://nbviewer.jupyter.org/github/zhedongzheng/tensorflow-nlp/blob/master/finch/tensorflow2/text_classification/imdb/main/bert_finetune_32_128.ipynb) | 32 | 128 | 92.6% |
-			| [\<Notebook>](https://nbviewer.jupyter.org/github/zhedongzheng/tensorflow-nlp/blob/master/finch/tensorflow2/text_classification/imdb/main/bert_finetune_16_200.ipynb) | 16 | 200 | 93.3% |
-			| [\<Notebook>](https://nbviewer.jupyter.org/github/zhedongzheng/tensorflow-nlp/blob/master/finch/tensorflow2/text_classification/imdb/main/bert_finetune_12_256.ipynb) | 12 | 256 | 93.8% |
-			| [\<Notebook>](https://nbviewer.jupyter.org/github/zhedongzheng/tensorflow-nlp/blob/master/finch/tensorflow2/text_classification/imdb/main/bert_finetune_8_300.ipynb) | 8 | 300 | 94% |
-
-	* Model: [RoBERTa](https://arxiv.org/abs/1907.11692)
-
-		* TensorFlow 2 + [transformers](https://github.com/huggingface/transformers)
-
-			* [\<Notebook> RoBERTa (base) { batch_size=8, max_len=300 }](https://nbviewer.jupyter.org/github/zhedongzheng/tensorflow-nlp/blob/master/finch/tensorflow2/text_classification/imdb/main/roberta_finetune_8_300.ipynb)
-			
-			 	-> 94.7% Testing Accuracy
-
+			| Code | Model | Batch Size | Max Length | Testing Accuracy |
+			| --- | --- | --- | --- | --- |
+			| [\<Notebook>](https://nbviewer.jupyter.org/github/zhedongzheng/tensorflow-nlp/blob/master/finch/tensorflow2/text_classification/imdb/main/bert_finetune_32_128.ipynb) | [BERT](https://arxiv.org/abs/1810.04805) | 32 | 128 | 92.6% |
+			| [\<Notebook>](https://nbviewer.jupyter.org/github/zhedongzheng/tensorflow-nlp/blob/master/finch/tensorflow2/text_classification/imdb/main/bert_finetune_16_200.ipynb) | BERT | 16 | 200 | 93.3% |
+			| [\<Notebook>](https://nbviewer.jupyter.org/github/zhedongzheng/tensorflow-nlp/blob/master/finch/tensorflow2/text_classification/imdb/main/bert_finetune_12_256.ipynb) | BERT | 12 | 256 | 93.8% |
+			| [\<Notebook>](https://nbviewer.jupyter.org/github/zhedongzheng/tensorflow-nlp/blob/master/finch/tensorflow2/text_classification/imdb/main/bert_finetune_8_300.ipynb) | BERT | 8 | 300 | 94% |
+			| [\<Notebook>](https://nbviewer.jupyter.org/github/zhedongzheng/tensorflow-nlp/blob/master/finch/tensorflow2/text_classification/imdb/main/roberta_finetune_8_300.ipynb) | [RoBERTa](https://arxiv.org/abs/1907.11692) | 8 | 300 | 94.7% |
 
 ```
 └── finch/tensorflow2/text_classification/clue
