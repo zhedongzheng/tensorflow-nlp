@@ -105,47 +105,15 @@
 
 		-> [PySpark](https://nbviewer.jupyter.org/github/zhedongzheng/finch/blob/master/finch/spark/text_classification/imdb/tfidf_lr.ipynb) Equivalent
 
-	* Model: [FastText](https://arxiv.org/abs/1607.01759)
+	* Model: [FastText](https://arxiv.org/abs/1607.01759), CNN and RNN
 	
-		| FastText | Setting | Testing Accuracy |
+		| Code | Model | Testing Accuracy |
 		| --- | --- | --- |
-		| [\<Notebook>](https://nbviewer.jupyter.org/github/zhedongzheng/finch/blob/master/finch/framework/official_fasttext/text_classification/imdb/unigram.ipynb) | Unigram | 87.3% |
-		| [\<Notebook>](https://nbviewer.jupyter.org/github/zhedongzheng/finch/blob/master/finch/framework/official_fasttext/text_classification/imdb/bigram.ipynb) | Bigram | 89.8% |
-		| [\<Notebook>](https://nbviewer.jupyter.org/github/zhedongzheng/finch/blob/master/finch/framework/official_fasttext/text_classification/imdb/autotune.ipynb) | Autotune | 90.1% |
-	
-	```
-	Back-Translation increases training data from 25000 to 50000
-
-	which is done by "english -> french -> english" translation
-	```
-
-	```python
-	from googletrans import Translator
-
-	translator = Translator()
-
-	translated = translator.translate(text, src='en', dest='fr').text
-
-	back = translator.translate(translated, src='fr', dest='en').text
-	```
-	
-	* Model: [TextCNN](https://arxiv.org/abs/1408.5882)
-
-		* TensorFlow 2
-
-			* [\<Notebook> CNN + Attention](https://nbviewer.jupyter.org/github/zhedongzheng/finch/blob/master/finch/tensorflow2/text_classification/imdb/main/cnn_attention_bt_char_label_smooth_cyclical.ipynb)
-			
-				-> 91.8 % Testing Accuracy
-
-	* Model: [Sliced RNN](https://arxiv.org/abs/1807.02291)
-
-		* TensorFlow 2
-
-			* [\<Notebook> Sliced LSTM](https://nbviewer.jupyter.org/github/zhedongzheng/tensorflow-nlp/blob/master/finch/tensorflow2/text_classification/imdb/main/sliced_rnn_bt_char_label_smooth_clr.ipynb)
-			
-				-> 92.6 % Testing Accuracy
-
-				This result (without transfer learning) is higher than [CoVe](https://arxiv.org/pdf/1708.00107.pdf) (with transfer learning)
+		| [\<Notebook>](https://nbviewer.jupyter.org/github/zhedongzheng/finch/blob/master/finch/framework/official_fasttext/text_classification/imdb/unigram.ipynb) | Unigram FastText | 87.3% |
+		| [\<Notebook>](https://nbviewer.jupyter.org/github/zhedongzheng/finch/blob/master/finch/framework/official_fasttext/text_classification/imdb/bigram.ipynb) | Bigram FastText | 89.8% |
+		| [\<Notebook>](https://nbviewer.jupyter.org/github/zhedongzheng/finch/blob/master/finch/framework/official_fasttext/text_classification/imdb/autotune.ipynb) | Autotune FastText | 90.1% |
+		| [\<Notebook>](https://nbviewer.jupyter.org/github/zhedongzheng/finch/blob/master/finch/tensorflow2/text_classification/imdb/main/cnn_attention_bt_char_label_smooth_cyclical.ipynb) | [TextCNN](https://arxiv.org/abs/1408.5882) | 91.8% |
+		| [\<Notebook>](https://nbviewer.jupyter.org/github/zhedongzheng/tensorflow-nlp/blob/master/finch/tensorflow2/text_classification/imdb/main/sliced_rnn_bt_char_label_smooth_clr.ipynb) | [Sliced RNN](https://arxiv.org/abs/1807.02291) | 92.6% |
 
 	* Model: Large-scale Transformer
 
