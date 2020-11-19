@@ -109,9 +109,9 @@
 	
 		| Code | Model | Testing Accuracy |
 		| --- | --- | --- |
-		| [\<Notebook>](https://nbviewer.jupyter.org/github/zhedongzheng/finch/blob/master/finch/framework/official_fasttext/text_classification/imdb/unigram.ipynb) | Unigram FastText | 87.3% |
-		| [\<Notebook>](https://nbviewer.jupyter.org/github/zhedongzheng/finch/blob/master/finch/framework/official_fasttext/text_classification/imdb/bigram.ipynb) | Bigram FastText | 89.8% |
-		| [\<Notebook>](https://nbviewer.jupyter.org/github/zhedongzheng/finch/blob/master/finch/framework/official_fasttext/text_classification/imdb/autotune.ipynb) | Autotune FastText | 90.1% |
+		| [\<Notebook>](https://nbviewer.jupyter.org/github/zhedongzheng/finch/blob/master/finch/framework/official_fasttext/text_classification/imdb/unigram.ipynb) | FastText (Unigram) | 87.3% |
+		| [\<Notebook>](https://nbviewer.jupyter.org/github/zhedongzheng/finch/blob/master/finch/framework/official_fasttext/text_classification/imdb/bigram.ipynb) | FastText (Bigram) | 89.8% |
+		| [\<Notebook>](https://nbviewer.jupyter.org/github/zhedongzheng/finch/blob/master/finch/framework/official_fasttext/text_classification/imdb/autotune.ipynb) | FastText (AutoTune) | 90.1% |
 		| [\<Notebook>](https://nbviewer.jupyter.org/github/zhedongzheng/finch/blob/master/finch/tensorflow2/text_classification/imdb/main/cnn_attention_bt_char_label_smooth_cyclical.ipynb) | [TextCNN](https://arxiv.org/abs/1408.5882) | 91.8% |
 		| [\<Notebook>](https://nbviewer.jupyter.org/github/zhedongzheng/tensorflow-nlp/blob/master/finch/tensorflow2/text_classification/imdb/main/sliced_rnn_bt_char_label_smooth_clr.ipynb) | [Sliced RNN](https://arxiv.org/abs/1807.02291) | 92.6% |
 
