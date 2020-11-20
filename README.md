@@ -46,7 +46,7 @@
 	
 		* bAbI（ENG）
 		
-	* [Text Processing Tools（文本处理工具）](https://github.com/zhedongzheng/finch#text-processing-tools)
+	* [Text Visualization（文本可视化）](https://github.com/zhedongzheng/finch#text-visualization)
 
 * Knowledge Graph（知识图谱）
 
@@ -529,33 +529,17 @@
 
 ---
 
-## Text Processing Tools
-
-* Word Extraction
-
-	* Chinese
-
-		* [\<Notebook>: Regex Expression Example](https://nbviewer.jupyter.org/github/zhedongzheng/finch/blob/master/finch/python/regex/zhcn_extract.ipynb)
-
-* Word Segmentation
-
-	* Chinese
-	
-		* [\<Notebook>](https://nbviewer.jupyter.org/github/zhedongzheng/finch/blob/master/finch/tensorflow1/custom_op/tf_jieba.ipynb) Jieba TensorFlow Op purposed by [Junwen Chen](https://github.com/applenob)
+## Text Visualization
 
 * Topic Modelling
 
+	* Model: TF-IDF + LDA
+
 	* Data: [2373 Lines of Book Titles](https://github.com/zhedongzheng/tensorflow-nlp/blob/master/finch/spark/topic_modelling/book_titles/all_book_titles.txt)（English Data）
-
-		* Model: TF-IDF + LDA
-
-			* Sklearn + pyLDAvis
 			
-				* [\<Notebook> TF + IDF + LDA](https://nbviewer.jupyter.org/github/zhedongzheng/finch/blob/master/finch/sklearn/topic_modelling/book_titles/lda.ipynb)
-				
-					[PySpark](https://nbviewer.jupyter.org/github/zhedongzheng/finch/blob/master/finch/spark/topic_modelling/book_titles/lda.ipynb) implementation here
-				
-				* [\<Notebook> Visualization](https://nbviewer.jupyter.org/github/zhedongzheng/finch/blob/master/finch/sklearn/topic_modelling/book_titles/lda.html#topic=1&lambda=1&term=)
+	* [\<Notebook> Code](https://nbviewer.jupyter.org/github/zhedongzheng/finch/blob/master/finch/sklearn/topic_modelling/book_titles/lda.ipynb)
+
+	* [\<Notebook> Visualization](https://nbviewer.jupyter.org/github/zhedongzheng/finch/blob/master/finch/sklearn/topic_modelling/book_titles/lda.html#topic=1&lambda=1&term=)
 
 ---
 
