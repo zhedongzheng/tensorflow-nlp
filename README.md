@@ -48,6 +48,10 @@
 		
 	* [Text Visualization（文本可视化）](https://github.com/zhedongzheng/finch#text-visualization)
 
+		* Topic Modelling
+
+		* Explain Prediction
+
 * Knowledge Graph（知识图谱）
 
 	* [Knowledge Graph Completion（知识图谱补全）](https://github.com/zhedongzheng/finch#knowledge-graph-completion)
@@ -526,6 +530,14 @@
 	* [\<Notebook> Code](https://nbviewer.jupyter.org/github/zhedongzheng/finch/blob/master/finch/sklearn/topic_modelling/imdb/lda.ipynb)
 
 	* [\<Notebook> Visualization](https://nbviewer.jupyter.org/github/zhedongzheng/finch/blob/master/finch/sklearn/topic_modelling/imdb/lda.html#topic=1&lambda=1&term=)
+
+* Explain Prediction
+
+	* Model: [SHAP](https://github.com/slundberg/shap)
+
+	* Data: IMDB Movie Reviews
+
+	* [\<Notebook>](https://nbviewer.jupyter.org/github/zhedongzheng/finch/blob/master/finch/python/shap/imdb_linear.ipynb)
 
 ---
 
