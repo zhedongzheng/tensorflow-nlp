@@ -301,9 +301,9 @@
 
 	* set data_2 = 蚂蚁金融语义相似度
 
-	* total size = 100000 + 34334 = 134334
+	* joint train size = 100000 + 34334 = 134334
 
-	| BERT | train by data_1 | train by data_2 | joint train by data_1 and data_2 | joint train + [TAPT](https://arxiv.org/abs/2004.10964) |
+	| BERT | train by data_1 | train by data_2 | joint train | joint train + [TAPT](https://arxiv.org/abs/2004.10964) |
 	| --- | --- | --- | --- | --- |
 	| Code | [\<Notebook>](https://nbviewer.jupyter.org/github/zhedongzheng/tensorflow-nlp/blob/master/finch/tensorflow2/text_matching/chinese/main/bert_finetune.ipynb) | [\<Notebook>](https://nbviewer.jupyter.org/github/zhedongzheng/tensorflow-nlp/blob/master/finch/tensorflow2/text_matching/ant/main/bert.ipynb) | [\<Notebook>](https://nbviewer.jupyter.org/github/zhedongzheng/tensorflow-nlp/blob/master/finch/tensorflow2/text_matching/joint/main/bert_further_pretrain_finetune.ipynb) | [\<Notebook>](https://nbviewer.jupyter.org/github/zhedongzheng/tensorflow-nlp/blob/master/finch/tensorflow2/text_matching/joint/main/bert_tapt.ipynb) |
 	| data_1 accuracy | 83.8% | - | 84.2% | 85.0% |
