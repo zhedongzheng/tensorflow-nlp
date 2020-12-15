@@ -297,11 +297,11 @@
 
 * Joint training
 
-	* set data_1 = 微众银行智能客服
+	* set data_1 = 微众银行智能客服 (size: 100000)
 
-	* set data_2 = 蚂蚁金融语义相似度
+	* set data_2 = 蚂蚁金融语义相似度 (size: 34334)
 
-	* joint train size = 100000 + 34334 = 134334
+	* joint training (size: 100000 + 34334 = 134334)
 
 	| BERT | train by data_1 | train by data_2 | joint train | joint train + [TAPT](https://arxiv.org/abs/2004.10964) |
 	| --- | --- | --- | --- | --- |
