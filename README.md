@@ -34,7 +34,7 @@
 
 		* Large-scale Chinese Conversation Dataset (CHN)
 
-	* [Multi-turn Dialogue Rewriting（多轮对话 的 指代消歧、省略补全）](https://github.com/zhedongzheng/finch#multi-turn-dialogue-rewriting)
+	* [Multi-turn Dialogue Rewriting（多轮对话改写）](https://github.com/zhedongzheng/finch#multi-turn-dialogue-rewriting)
 
 		* 20k 腾讯 AI 研发数据（CHN）
 
